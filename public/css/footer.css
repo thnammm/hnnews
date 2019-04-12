@@ -1,0 +1,39 @@
+.sub-footer{
+    height: 5px;
+    background-image: linear-gradient(to right,rgba(224, 195, 252, 0.5) 50%, rgba(141, 176, 247, 0.5));
+    margin: 0;
+    
+}
+
+.footer-main{
+    background-image: linear-gradient(to right,#E0C3FC 50%, #8DB1F7);
+    margin: 0;
+    padding: 10px;
+    color: white;
+}
+
+.bullet-title{
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.footer-list{
+    list-style-type: none;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.footer-content{
+    margin: 10px 130px;
+}
+
+.resize-col-footer{
+    padding: 0px 5px;
+    width: fit-content;
+    /* text-align: center; */
+}
+
+p{
+    margin: 0px;
+}

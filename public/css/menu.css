@@ -1,0 +1,16 @@
+.menu{
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+.line-under-menu{
+    height: 2px;
+    width: 80%;
+    background-color: black;
+}
+
+.resize-col-menu{
+    padding: 0px 5px;
+    width: fit-content;
+    text-align: center;
+}
