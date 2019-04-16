@@ -1,65 +1,66 @@
+{{!-- External CSS --}}
 <link rel="stylesheet" type="text/css" href="/css/nav.css">
 
-
-<div class="row">
-    <div class="col-md-7 nav-content">
-        <div><strong class="text-gradient">HN</strong> News</div>
+{{!-- Navbar not sign-in yet --}}
+<div class="row up-nav">
+    <div class="col-md-6">
+        <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
     </div>
-    <div class="col-md-2" style="text-align:right">
-        <i class="fa fa-phone fa-rotate-90"></i>0981864424
+    <div class="col-md-3" id="phone-contact">
+        <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
     </div>
-    <div class="col-md-3 " style="text-align:right; display: flex; justify-content:flex-end">
-        <div style="margin-right:20px">Đăng ký</div>
-        <div>Đăng nhập</div>
+    <div class="col-md-3" id="login-register-area">
+        <a href="#" id="register-choice" class="choice-here"> Đăng ký </a>
+        <a href="#" id="login-choice" class="choice-here"> Đăng nhập </a>
     </div>
-
 </div>
+
 <div class="nav-main">
     <div class="row">
         <div class="col-md-4 nav-logo">
-            <img src="/img/logo.png" alt="HN News">
+            <a href="#"> <img src="/img/general/logo.png" alt="HN News"> </a>
         </div>
-        <div class="container col-md-8" style="line-height:80px !important">
+        <div class="col-md-8 nav-container">
             <div class="text-search">
-                <i class="fas fa-search icon-search-in-text"></i>
-                {{!-- <span class="glyphicon glyphicon-search icon-search-in-text"></span> --}}
-                <input class="form-control search-input " type="text" placeholder="Search" name="search"
+                <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
+                <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..." name="search"
                     ng-model="searchItem" />
             </div>
         </div>
     </div>
 </div>
-<div class="sub-nav-main">
 
+<div class="shadowbox-nav"></div>
+
+{{!-- Navbar sign-in already --}}
+{{!-- <div class="row up-nav">
+    <div class="col-md-9">
+        <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
+    </div>
+    <div class="col-md-3" id="phone-contact">
+        <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
+    </div>
 </div>
 
-{{!-- navbar signined --}}
-<div class="row">
-    <div class="col-md-10 nav-content">
-        <div><strong class="text-gradient">HN</strong> News</div>
-    </div>
-    <div class="col-md-2" style="text-align:right">
-        <i class="fa fa-phone fa-rotate-90"></i>0981864424
-    </div>
-</div>
 <div class="nav-main">
     <div class="row">
-        <div class="col-md-2 nav-logo">
-            <img src="/img/logo.png" alt="HN News">
+        <div class="col-md-3 nav-logo">
+            <img src="/img/general/logo.png" alt="HN News">
         </div>
-        <div class="container col-md-9" style="line-height:80px !important">
+        <div class="col-md-8 nav-container">
             <div class="text-search">
-                <i class="fas fa-search icon-search-in-text"></i>
-                {{!-- <span class="glyphicon glyphicon-search icon-search-in-text"></span> --}}
-                <input class="form-control search-input " type="text" placeholder="Search" name="search"
+                <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
+                <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..." name="search"
                     ng-model="searchItem" />
             </div>
         </div>
-        <div class="col-md-1 avatar-fr">
-            <input class="avatar" type="image" src="/img/avatar.png" alt="profile" width="100%" >
+        <div class="col-md-1 profile-col">
+            <a class="form-inline profile-link" href="#">
+                <span class="sr-only">(current)</span>
+                <img class="nav-avatar" src="/img/general/avatar-default.png" alt="Ảnh đại diện">
+            </a>
         </div>
     </div>
 </div>
-<div class="sub-nav-main">
 
-</div>
+<div class="shadowbox-nav"></div> --}}

@@ -5,11 +5,11 @@ var path = require('path');
 
 app.set('view engine', 'hbs');
 app.listen(3000);
-app.use( express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 // app.set('views', path.join(__dirname, 'views'));
 
 
-app.engine ('hbs', hbs({
+app.engine('hbs', hbs({
     extname: 'hbs',
     defaultView: 'default',
     layoutsDir: __dirname + '/views/pages/',
@@ -18,6 +18,6 @@ app.engine ('hbs', hbs({
 
 
 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     res.render('pages/index');
 })
