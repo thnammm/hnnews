@@ -1,16 +1,30 @@
-.menu{
-    font-weight: bold;
+.menu {
+    font-weight: 500;
     font-size: 14pt;
+    margin-top: 6px;
+    margin-bottom: 3px;
 }
 
-.line-under-menu{
+.line-under-menu {
     height: 2px;
-    width: 80%;
-    background-color: black;
+    margin: 0px 145px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
 }
 
-.resize-col-menu{
+.resize-col-menu {
     padding: 0px 5px;
     width: fit-content;
     text-align: center;
+}
+
+.menu-link {
+    color: rgb(86, 86, 86);
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    text-decoration: none;
+    font-weight: 700;
+    color: black;
 }
