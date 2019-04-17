@@ -4,9 +4,9 @@ var app = express();
 var path = require('path');
 
 var login = require('./routers/login');
+var admin = require('./routers/admin');
 
 app.set('view engine', 'hbs');
-app.listen(3000);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 
@@ -23,3 +23,6 @@ app.get('/', (req, res) => {
 })
 
 app.use(login)
+app.use(admin)
+
+app.listen(3000);

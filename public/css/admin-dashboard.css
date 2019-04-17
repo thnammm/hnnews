@@ -1,0 +1,15 @@
+* {
+    font-family: 'Comfortaa', cursive;
+    height: 100%;
+}
+
+.content-here {
+    text-align: center;
+    padding: 0;
+    height: initial;
+}
+
+.content-undraw {
+    margin: 20px 0px;
+    height: initial;
+}
