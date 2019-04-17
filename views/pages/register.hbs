@@ -3,8 +3,8 @@
 
 <head>
     {{> header}}
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
-    <title>HNNews - Đăng nhập</title>
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <title>HNNews - Đăng ký</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
             <div class="col-sm-4" style="padding-left: 0px">
                 <div>
                     <p class="text-login">
-                        ĐĂNG NHẬP
+                        ĐĂNG KÝ
                     </p>
                 </div>
 
@@ -37,25 +37,34 @@
                             <label><span class="span-input">Tên đăng nhập</span></label>
                         </div>
                         <div class="group">
+                            <input type="text" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label><span class="span-input">Họ tên người dùng</span></label>
+                        </div>
+                        <div class="group">
+                            <input type="text" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label><span class="span-input">Email</span></label>
+                        </div>
+                        <div class="group">
                             <input type="password" required>
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label><span class="span-input">Mật khẩu</span></label>
                         </div>
-                        <div class="row" style="width:100%; margin:0px 0px 20px 0px">
-                             <a href="/forget-password" id="foget_pw" class="col-sm-8 forget-password" style="padding: 0">Quên mật khẩu</a>
-                              <a href="/register" id="register" class="col-sm-4 register" style="padding: 0">Đăng ký</a>
-        
+                        <div class="row login" style="width:100%; margin:0px 0px 20px 0px">
+                             Đã có tài khoản?<a href="/login"> Đăng nhập</a>
                         </div>
                         
-                        <a href="#" class="giris-yap-buton">Đăng nhập</a>
-                        
-                        <div style="text-align: center; margin-top: 20px">hay <strong>Đăng nhập</strong> với</div>
+                        <a href="#" class="giris-yap-buton">Đăng ký</a>
+                    
                     </form>
                 </div>
             </div>
             <div class="col-sm-8 img-background">
-                <img src="/img/undraw/undraw-loginout.png" width="100%">
+                <img src="/img/undraw/undraw-register.png" width="100%">
             </div>
         </div>
     </div>

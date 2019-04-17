@@ -4,6 +4,8 @@ var app = express();
 var path = require('path');
 
 var login = require('./routers/login');
+var register = require('./routers/register');
+var forgetpassword = require('./routers/forget-password');
 
 app.set('view engine', 'hbs');
 app.listen(3000);
@@ -23,3 +25,5 @@ app.get('/', (req, res) => {
 })
 
 app.use(login)
+app.use(register)
+app.use(forgetpassword)
