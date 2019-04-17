@@ -5,6 +5,8 @@ var path = require('path');
 
 var login = require('./routers/login');
 var admin = require('./routers/admin');
+var register = require('./routers/register');
+var forgetpassword = require('./routers/forget-password');
 
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,5 +26,7 @@ app.get('/', (req, res) => {
 
 app.use(login)
 app.use(admin)
+app.use(register)
+app.use(forgetpassword)
 
 app.listen(3000);

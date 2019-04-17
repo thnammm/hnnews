@@ -1,7 +1,3 @@
-* {
-    font-size: 14pt;
-}
-
 .row {
     margin: 0px 130px;
 }
@@ -9,6 +5,7 @@
 .up-nav {
     margin-top: 3px;
     margin-bottom: 3px;
+    font-size: 14pt;
 }
 
 .text-gradient {
@@ -49,6 +46,7 @@
 .nav-main {
     background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
     margin: 0;
+    font-size: 14pt;
 }
 
 .nav-logo {
