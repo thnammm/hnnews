@@ -7,6 +7,8 @@ var login = require('./routers/login');
 var admin = require('./routers/admin');
 var register = require('./routers/register');
 var forgetpassword = require('./routers/forget-password');
+var resultsearch = require('./routers/result-search');
+
 
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,5 +30,6 @@ app.use(login)
 app.use(admin)
 app.use(register)
 app.use(forgetpassword)
+app.use(resultsearch);
 
 app.listen(3000);
