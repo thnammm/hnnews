@@ -1,0 +1,233 @@
+* {
+    font-family: 'Comfortaa', cursive;
+}
+
+body {
+    height: 100%;
+}
+
+.content-here {
+    text-align: center;
+    padding: 0;
+    height: initial;
+}
+
+.content-undraw {
+    margin: 20px 0px;
+    height: initial;
+}
+
+.top-bar {
+    height: initial;
+    margin: 0;
+    padding: 10px 0px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.topbar-title {
+    height: initial;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.topbar-title-text-1 {
+    height: initial;
+    text-align: left;
+    font-size: 10pt;
+    font-weight: 300;
+    color: black;
+}
+
+.topbar-title-text-2 {
+    height: initial;
+    text-align: left;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #8DB1F7;
+}
+
+.topbar-account {
+    height: initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 0;
+}
+
+.topbar-account-text-1 {
+    height: initial;
+    text-align: right;
+    font-size: 14pt;
+    font-weight: 700;
+    color: black;
+}
+
+.topbar-account-text-2 {
+    height: initial;
+    text-align: right;
+    font-size: 10pt;
+    font-weight: 300;
+    color: #868686;
+}
+
+.topbar-avatar {
+    height: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+}
+
+.topbar-avatar-img {
+    height: initial;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid #deac27;
+}
+
+.content-inside {
+    height: initial;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.account-page {
+    height: initial;  
+    text-align: right;
+    padding: 0px 40px;  
+}
+
+.list-style {
+    margin: 0;
+    background-color: white;
+    color: black;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.list-style-flex {
+    padding: 30px 15px 5px 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.list-style-active {
+    background-image: linear-gradient(to right, #8DB1F7 30%, #E0C3FC);
+    color: white;
+}
+
+.ls-title {
+    font-size: 16pt;
+    font-weight: 700;
+}
+
+.count {
+    font-size: 10pt;
+    font-weight: 300;
+}
+
+.count-bold {
+    font-size: 14pt;
+    font-weight: 400;
+}
+
+.posts-page {
+    height: initial;
+    text-align: right;
+    padding: 0px 40px;
+}
+
+.btn-outline-warning:hover {
+    color: white;
+}
+
+.publish {
+    color: rgb(40, 200, 0);
+    font-weight: 500;
+}
+
+.not-approve {
+    color: #ffc107;
+    font-weight: 500;
+}
+
+.approved {
+    color: blue;
+    font-weight: 500;
+}
+
+.refuse {
+    color: red;
+    font-weight: 500;
+}
+
+.category-page {
+    height: initial;
+    text-align: right;
+    padding: 0px 40px;
+}
+
+.tag-page {
+    text-align: right;
+    padding: 0px 40px;
+    height: initial;
+}
+
+.btn {
+    margin: 0px 5px;
+    height: initial;
+}
+
+.btn-outline-success {
+    color: rgb(40, 200, 0);
+    border: 1px solid rgb(40, 200, 0);
+}
+
+.btn-outline-success:hover {
+    background-color: rgb(40, 200, 0);
+    border: 1px solid rgb(40, 200, 0);
+}
+
+.table {
+    margin: 40px 0px;
+    height: initial;
+    font-size: 12pt;
+}
+
+thead, tbody, tr, th, td {
+    text-align: left;
+    height: initial;
+}
+
+.nav-pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.page-link {
+    color: black;
+    border: none;
+}
+
+.page-link:hover {
+    color: white;
+    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.page-item.active .page-link {
+    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+}

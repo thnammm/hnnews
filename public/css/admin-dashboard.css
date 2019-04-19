@@ -13,3 +13,77 @@
     margin: 20px 0px;
     height: initial;
 }
+
+.top-bar {
+    height: initial;
+    margin: 0;
+    padding: 10px 0px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.topbar-title {
+    height: initial;
+    padding-left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #8DB1F7;
+}
+
+.topbar-account {
+    height: initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 0;
+}
+
+.topbar-account-text-1 {
+    height: initial;
+    text-align: right;
+    font-size: 14pt;
+    font-weight: 700;
+    color: black;
+}
+
+.topbar-account-text-2 {
+    height: initial;
+    text-align: right;
+    font-size: 10pt;
+    font-weight: 300;
+    color: #868686;
+}
+
+.topbar-avatar {
+    height: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+}
+
+.topbar-avatar-img {
+    height: initial;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid #deac27;
+}
+
+.content-inside {
+    height: initial;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.dashboard-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-bg {
+    width: 50%;
+}

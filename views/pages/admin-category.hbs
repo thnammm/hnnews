@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> header}}
+    <link rel="stylesheet" type="text/css" href="/css/admin-menu.css">
+    <title> HNNews :: Quản trị viên </title>
+</head>
+
+<body>
+    <div class="row" style="margin: 0;">
+        <div class="col-md-1" style="padding: 0;">
+            {{> admin-nav}}
+        </div>
+        <div class="col-md-11 content-here">
+            {{!-- Topbar (Different each page here) --}}
+            <div class="row top-bar">
+                <div class="col-md-8 topbar-title">
+                    <div class="topbar-title-text-1"> QUẢN LÝ </div>
+                    <div class="topbar-title-text-2"> DANH SÁCH CHUYÊN MỤC </div>
+                </div>
+                <div class="col-md-3 topbar-account">
+                    <div class="topbar-account-text-1"> TRẦN HẠO NAM </div>
+                    <div class="topbar-account-text-2"> Quản trị viên </div>
+                </div>
+                <div class="col-md-1 topbar-avatar">
+                    <img class="topbar-avatar-img" src="/img/general/admin-avatar.png">
+                </div>
+            </div>
+
+            {{!-- Content inside --}}
+            <div class="row content-inside">
+                <div class="col-md-12 account-page">
+                    {{!-- Form --}}
+                    <form method="POST">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> Chuyên mục </th>
+                                    <th> Số lượng bài viết </th>
+                                    <th> Số biên tập viên phụ trách </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>Giáo dục</td>
+                                    <td>12.069</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td>Giải trí</td>
+                                    <td>23.666</td>
+                                    <td>85</td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td>Giao thông</td>
+                                    <td>269</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>04</td>
+                                    <td>Du lịch</td>
+                                    <td>4.368</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>05</td>
+                                    <td>Đời sống</td>
+                                    <td>1.022</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>06</td>
+                                    <td>Công nghệ</td>
+                                    <td>203.613</td>
+                                    <td>230</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+
+                    {{!-- Pagination --}}
+                    <nav class="nav-pagination" aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Bootstrap 4.3.1 --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    {{!-- JQuery 3.3.1 --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+
+</html>

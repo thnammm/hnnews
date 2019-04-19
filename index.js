@@ -4,9 +4,12 @@ var app = express();
 var path = require('path');
 
 var login = require('./routers/login');
-var admin = require('./routers/admin');
 var register = require('./routers/register');
 var forgetpassword = require('./routers/forget-password');
+var admin = require('./routers/admin');
+var admindashboard = require('./routers/admin-dashboard');
+var adminmenu = require('./routers/admin-menu');
+
 
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,8 +28,10 @@ app.get('/', (req, res) => {
 })
 
 app.use(login)
-app.use(admin)
 app.use(register)
 app.use(forgetpassword)
+app.use(admin)
+app.use(admindashboard)
+app.use(adminmenu)
 
 app.listen(3000);
