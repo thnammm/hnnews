@@ -6,6 +6,7 @@ var path = require('path');
 var login = require('./routers/login');
 var register = require('./routers/register');
 var forgetpassword = require('./routers/forget-password');
+var resultsearch = require('./routers/result-search');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
 var adminmenu = require('./routers/admin-menu');
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 app.use(login)
 app.use(register)
 app.use(forgetpassword)
+app.use(resultsearch);
 app.use(admin)
 app.use(admindashboard)
 app.use(adminmenu)
