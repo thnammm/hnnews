@@ -8,61 +8,68 @@
 </head>
 
 <body>
-    {{>nav}}
-    <div class="content">
-        <div class="row" style="margin: 0px">
-            <div class="col-sm-4" style="padding-left: 0px">
-                <div>
-                    <p class="text-login">
-                        ĐĂNG NHẬP
-                    </p>
+    <div class="container">
+
+        {{!-- Nav --}}
+        {{>nav}}
+        <div class="content">
+            <div class="row" style="margin: 0px">
+                <div class="col-sm-4" style="padding-left: 0px">
+                    <div>
+                        <p class="text-login">
+                            ĐĂNG NHẬP
+                        </p>
+                    </div>
+
+                    <div class="line-login"></div>
+
+                    <div class="text-content">
+                        <p style="color: grey"> Chào mừng bạn đến với Website Báo điện tử <strong>HN
+                                News</strong>.<strong>
+                                Đăng
+                                nhập</strong> để trải
+                            nghiệm nhiều tính năng của website.</p>
+                    </div>
+
+                    <div class="login-card">
+                        <form id="login-form" class="col-lg-12">
+                            <div style="clear:both;"></div>
+                            <div class="group">
+                                <input type="text" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label><span class="span-input">Tên đăng nhập</span></label>
+                            </div>
+                            <div class="group">
+                                <input type="password" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label><span class="span-input">Mật khẩu</span></label>
+                            </div>
+                            <div class="row" style="width:100%; margin:0px 0px 20px 0px">
+                                <a href="/forget-password" id="foget_pw" class="col-sm-8 forget-password"
+                                    style="padding: 0">Quên mật khẩu</a>
+                                <a href="/register" id="register" class="col-sm-4 register" style="padding: 0">Đăng
+                                    ký</a>
+
+                            </div>
+
+                            <a href="#" class="giris-yap-buton">Đăng nhập</a>
+
+                            <div style="text-align: center; margin-top: 20px">hay <strong>Đăng nhập</strong> với</div>
+                        </form>
+                    </div>
                 </div>
-
-                <div class="line-login"></div>
-
-                <div class="text-content">
-                    <p style="color: grey"> Chào mừng bạn đến với Website Báo điện tử <strong>HN News</strong>.<strong>
-                            Đăng
-                            nhập</strong> để trải
-                        nghiệm nhiều tính năng của website.</p>
+                <div class="col-sm-8 img-background">
+                    <img src="/img/undraw/undraw-loginout.png" width="100%">
                 </div>
-
-                <div class="login-card">
-                    <form id="login-form" class="col-lg-12">
-                        <div style="clear:both;"></div>
-                        <div class="group">
-                            <input type="text" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label><span class="span-input">Tên đăng nhập</span></label>
-                        </div>
-                        <div class="group">
-                            <input type="password" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label><span class="span-input">Mật khẩu</span></label>
-                        </div>
-                        <div class="row" style="width:100%; margin:0px 0px 20px 0px">
-                            <a href="/forget-password" id="foget_pw" class="col-sm-8 forget-password"
-                                style="padding: 0">Quên mật khẩu</a>
-                            <a href="/register" id="register" class="col-sm-4 register" style="padding: 0">Đăng ký</a>
-
-                        </div>
-
-                        <a href="#" class="giris-yap-buton">Đăng nhập</a>
-
-                        <div style="text-align: center; margin-top: 20px">hay <strong>Đăng nhập</strong> với</div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-8 img-background">
-                <img src="/img/undraw/undraw-loginout.png" width="100%">
             </div>
         </div>
-    </div>
 
-    {{!-- Footer --}}
-    {{>footer}}
+        {{!-- Footer --}}
+        {{>footer}}
+        
+    </div>
 
     {{!-- Bootstrap 4.3.1 --}}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

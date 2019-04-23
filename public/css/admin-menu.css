@@ -6,6 +6,13 @@ body {
     height: 100%;
 }
 
+/* container */
+.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+
 .content-here {
     text-align: center;
     padding: 0;

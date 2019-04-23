@@ -8,39 +8,41 @@
 </head>
 
 <body>
-    <div class="row" style="margin: 0;">
-        <div class="col-md-1" style="padding: 0;">
-            {{> admin-nav}}
-        </div>
-        <div class="col-md-11 content-here">
-            <div class="row content-undraw">
-                <div class="col-md-6 pic-left">
-                    <img class="content-img" src="/img/undraw/undraw-admin1.png">
-                </div>
-                <div class="col-md-6 pic-right">
-                    <img class="content-img" src="/img/undraw/undraw-admin2.png">
-                </div>
+    <div class="container">
+        <div class="row" style="margin: 0;">
+            <div class="col-md-1" style="padding: 0;">
+                {{> admin-nav}}
             </div>
-            <div class="content-form">
-                <div class="form-title"> QUẢN TRỊ VIÊN </div>
-                <div class="line-below-contentform"></div>
-                <div class="note-for-title"> Chỉ có <strong style="font-weight: 700; color: black;  ">quản trị
-                        viên</strong> mới có thể đăng nhập </div>
-                <form class="login-form">
-                    <div class="group">
-                        <input type="text" name="id-admin" id="id-admin" required>
-                        <span class="bar"></span>
-                        <label><span class="span-input"> Tên đăng nhập </span></label>
+            <div class="col-md-11 content-here">
+                <div class="row content-undraw">
+                    <div class="col-md-6 pic-left">
+                        <img class="content-img" src="/img/undraw/undraw-admin1.png">
                     </div>
-
-                    <div class="group">
-                        <input type="password" name="password-admin" id="password-admin" required>
-                        <span class="bar"></span>
-                        <label><span class="span-input"> Mật khẩu </span></label>
+                    <div class="col-md-6 pic-right">
+                        <img class="content-img" src="/img/undraw/undraw-admin2.png">
                     </div>
+                </div>
+                <div class="content-form">
+                    <div class="form-title"> QUẢN TRỊ VIÊN </div>
+                    <div class="line-below-contentform"></div>
+                    <div class="note-for-title"> Chỉ có <strong style="font-weight: 700; color: black;  ">quản trị
+                            viên</strong> mới có thể đăng nhập </div>
+                    <form class="login-form">
+                        <div class="group">
+                            <input type="text" name="id-admin" id="id-admin" required>
+                            <span class="bar"></span>
+                            <label><span class="span-input"> Tên đăng nhập </span></label>
+                        </div>
 
-                    <div id="login-button" class="login-btn"> Đăng nhập </div>
-                </form>
+                        <div class="group">
+                            <input type="password" name="password-admin" id="password-admin" required>
+                            <span class="bar"></span>
+                            <label><span class="span-input"> Mật khẩu </span></label>
+                        </div>
+
+                        <div id="login-button" class="login-btn"> Đăng nhập </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
