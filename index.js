@@ -7,6 +7,9 @@ var login = require('./routers/login');
 var register = require('./routers/register');
 var forgetpassword = require('./routers/forget-password');
 var resultsearch = require('./routers/result-search');
+var categorypostlist = require('./routers/category-post-list');
+var hashtaglist = require('./routers/hashtag-list');
+var hashtagdetail = require('./routers/hashtag-detail');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
 var adminmenu = require('./routers/admin-menu');
@@ -32,11 +35,14 @@ app.get('/', (req, res) => {
 app.use(login)
 app.use(register)
 app.use(forgetpassword)
-app.use(resultsearch);
+app.use(resultsearch)
+app.use(categorypostlist)
+app.use(hashtaglist)
 app.use(admin)
 app.use(admindashboard)
 app.use(adminmenu)
 app.use(user)
 app.use(detaileachpost)
+app.use(hashtagdetail);
 
 app.listen(3000);
