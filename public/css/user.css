@@ -1,0 +1,152 @@
+* {
+    font-family: 'Comfortaa', cursive;
+}
+
+.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+
+.user-body {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Menu left */
+.menu-left {
+    text-align: center;
+    padding: 20px 0px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #8DB1F7;
+}
+
+.avatar {
+    border-radius: 50%;
+    border: 0.5px solid black;
+    width: 70%;
+}
+
+.name {
+    margin: 10px 0px;
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+.user-setting {
+    font-size: 11pt;
+    font-weight: 500;
+    list-style-type: none;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    color: black;
+}
+
+.list {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 0px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.user-setting-link {
+    text-decoration: none;
+    color: black;
+    padding-left: 5px;
+    text-align: left;
+}
+
+.list:hover {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    font-weight: 700;
+}
+
+.user-setting-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.bg-active-now {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+}
+
+.text-active-now {
+    font-weight: 700;
+    color: white !important;
+}
+
+/* Content right */
+.content-right {
+    text-align: left;
+    padding: 20px 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #8DB1F7;
+}
+
+.content {
+    height: 100%;
+}
+
+/* Personal-Information */
+
+.custom-file {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.custom-file-control {
+    color: black;
+    font-weight: 700;
+}
+
+.custom-file-control:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.ava {
+    border: 1px solid black;
+    width: 90%;
+}
+
+.form-group {
+    margin-bottom: 20px !important;
+}
+
+.form-control-label {
+    font-size: 10pt !important;
+    padding: 0 0 5px 0 !important;
+}
+
+.form-text-size {
+    font-size: 11pt !important;
+    color: black !important;
+    font-weight: 500 !important;
+    padding: 5px 15px;
+}
+
+.btn-primary {
+    margin-top: 10px !important;
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    border: none !important;
+    font-size: 11pt !important;
+}
+
+.btn-primary:hover {
+    font-weight: 700;
+}
+
+/* New post */
+.post-content-area {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+/* Change-Password */
+
+.passchange {
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 390px;
+}

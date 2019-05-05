@@ -10,7 +10,8 @@ var resultsearch = require('./routers/result-search');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
 var adminmenu = require('./routers/admin-menu');
-
+var user = require('./routers/user');
+var detaileachpost = require('./routers/detail-eachpost');
 
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,5 +36,7 @@ app.use(resultsearch);
 app.use(admin)
 app.use(admindashboard)
 app.use(adminmenu)
+app.use(user)
+app.use(detaileachpost)
 
 app.listen(3000);
