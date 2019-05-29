@@ -1,7 +1,9 @@
 var express = require('express');
 var hbs = require('express-handlebars');
-var app = express();
 var path = require('path');
+var morgan = require('morgan');
+
+var app = express();
 
 var login = require('./routers/login');
 var register = require('./routers/register');
@@ -19,7 +21,18 @@ var detaileachpost = require('./routers/detail-eachpost');
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
+app.use(morgan);
+app.use(express.json());
+app.use(express.urlencoded());
 
+// var mysql = require('mysql');
+// var connection = mysql.createConnection({
+//     host: 'localhost',
+//     port: '',
+//     user: 'me',
+//     password: 'secret',
+//     database: 'my_db'
+// });
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -45,4 +58,6 @@ app.use(user)
 app.use(detaileachpost)
 app.use(hashtagdetail);
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log('Web Server is running at http://localhost:3000');
+});
