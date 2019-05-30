@@ -14,6 +14,7 @@
 }
 
 /* Menu left */
+
 .menu-left {
     text-align: center;
     padding: 20px 0px;
@@ -77,6 +78,7 @@
 }
 
 /* Content right */
+
 .content-right {
     text-align: left;
     padding: 20px 10px;
@@ -138,9 +140,111 @@
 }
 
 /* New post */
+
 .post-content-area {
     margin-top: 10px;
     margin-left: 20px;
+}
+
+/* List posts */
+
+.listposts {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.lp-nav-container {
+    line-height: 80px !important;
+    margin-bottom: 20px;
+}
+
+.lp-text-search {
+    /* min-width: 700px; */
+    width: 90%;
+    display: inline-block;
+}
+
+.lp-icon-search {
+    position: absolute;
+    top: 35px;
+    left: 25px;
+    color: #D9D9D9;
+}
+
+.lp-search-box {
+    border-radius: 10px;
+    padding: 3px 5px 3px 30px;
+    color: black;
+    font-size: 11pt;
+    font-weight: 400;
+}
+
+.content-list-post {
+    width: 90%;
+    margin: 0 !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ced4da;
+}
+
+.content-title {
+    font-size: 11pt;
+    font-weight: 700;
+    padding: 0;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.content-datesend {
+    padding: 0;
+    color: rgb(104, 104, 104);
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+.content-status {
+    padding: 0;
+    color: rgb(104, 104, 104);
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+.content-button {
+    padding: 0;
+    padding-left: 20px;
+    color: #D3D3D3;
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+.nav-pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    text-align: center;
+    margin: 0;
+}
+
+.page-link {
+    color: black;
+    border: none;
+}
+
+.page-link:hover {
+    color: white;
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.page-item.active .page-link {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
 }
 
 /* Change-Password */

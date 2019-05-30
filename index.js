@@ -2,6 +2,7 @@ var express = require('express');
 var hbs = require('express-handlebars');
 var path = require('path');
 var morgan = require('morgan');
+var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -21,9 +22,11 @@ var detaileachpost = require('./routers/detail-eachpost');
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-app.use(morgan);
-app.use(express.json());
-app.use(express.urlencoded());
+
+// app.use(bodyParser());
+// app.use(morgan());
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded());
 
 // var mysql = require('mysql');
 // var connection = mysql.createConnection({

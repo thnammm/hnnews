@@ -182,33 +182,104 @@
 
                         <!-- List posts -->
                         <div class="content collapse" id="list-posts" data-parent="#tab-content">
-                            <div id="passwordForm" class="col-md-8 passchange">
-                                <!-- Old password -->
-                                <div class="form-group">
-                                    <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="oldpassword" id="oldpassword" placeholder="Nhập mật khẩu cũ"
-                                        autocomplete="off">
+                            <div class="col-md-12 listposts">
+                                {{!-- Search and filter --}}
+                                <div class="col-form-label form-control-label"> Tìm kiếm </div>
+                                <div class="lp-nav-container lp-text-search">
+                                    <i class="fas fa-search lp-icon-search" style="font-size: 11pt;"></i>
+                                    <input class="form-control lp-search-box" type="text"
+                                        placeholder="Tìm kiếm bài viết theo tên bài viết" name="search"
+                                        ng-model="searchItem" />
                                 </div>
-                                <!-- New password -->
-                                <div class="form-group">
-                                    <label class="col-form-label form-control-label"> Mật khẩu mới </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="newpassword" id="newpassword" placeholder="Nhập mật khẩu mới"
-                                        autocomplete="off">
+                                {{!-- <div class="row my-1">
+
+                                </div> --}}
+
+                                {{!-- Content list posts --}}
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-8 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: blue">Đã duyệt
+                                            và chờ xuất bản</strong>
+                                    </div>
                                 </div>
-                                <!-- Retype new password -->
-                                <div class="form-group">
-                                    <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="retypepassword" id="retypepassword" placeholder="Nhập lại mật khẩu mới"
-                                        autocomplete="off">
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-8 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: rgb(40, 200, 0)">Đã
+                                            xuất bản</strong>
+                                    </div>
                                 </div>
-                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-pass"
-                                    data-loading-text="Changing Password..."> Đổi mật khẩu </button>
-                            </div>
-                            <div class="col-md-8 passchange">
-                                <a href="#" class="forgot-password"> Quên mật khẩu? </a>
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-3 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: red">Bị từ
+                                            chối</strong>
+                                    </div>
+                                    <div class="cold-md-3 content-button">
+                                        <a href="#"> Xem góp ý chỉnh sửa </a>
+                                    </div>
+                                    <div class="cold-md-2 content-button">
+                                        <a href="#"> Chỉnh sửa </a>
+                                    </div>
+                                </div>
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-6 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: #ffc107">Chưa được
+                                            duyệt</strong>
+                                    </div>
+                                    <div class="cold-md-2 content-button">
+                                        <a href="#"> Chỉnh sửa </a>
+                                    </div>
+                                </div>
+
+                                {{!-- Pagination --}}
+                                <nav class="nav-pagination" aria-label="...">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
 
