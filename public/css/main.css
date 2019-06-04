@@ -47,7 +47,7 @@
 }
 
 .highlight-right-pic {
-    width: 90%;
+    width: 100%;
     height: 250px;
     border-radius: 10px;
 }
@@ -61,7 +61,7 @@
     top: 0px;
     background-color: rgba(0, 0, 0, 0.3);
     height: 250px;
-    width: 736.750px;
+    width: 736.75px;
     border-radius: 10px;
 }
 
@@ -131,6 +131,8 @@
 
 .newest-post-content-pic {
     padding: 0px;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
 .content-pic-pic {
@@ -373,4 +375,39 @@
 
 .statistic-pic {
     width: 55px;
+}
+
+/* Effect Hover */
+
+.carousel-item {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.carousel-item:hover {
+    cursor: pointer;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.5);
+    border-radius: 10px;
+    transition: 1.5s ease 0s;
+}
+
+.newest-post-content:hover {
+    cursor: pointer;
+}
+
+.newest-post-content:hover img {
+    transform: scale(1.2);
+    border-radius: 5px;
+    transition: 1.5s ease 0s;
+}
+
+.newest-post-content:hover .content-pic-category {
+    font-weight: 700;
+}
+
+.newest-post-content:hover .content-detail-title {
+    color: blue !important;
 }

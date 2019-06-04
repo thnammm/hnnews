@@ -110,3 +110,8 @@
     -webkit-box-shadow: 1px 2px 5px white;
     box-shadow: 0px 0px 10px white;
 }
+
+.fixedtop {
+    position: fixed;
+    top: 0;
+}

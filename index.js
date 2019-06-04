@@ -29,15 +29,6 @@ app.set('views', path.join(__dirname, 'views'));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded());
 
-// var mysql = require('mysql');
-// var connection = mysql.createConnection({
-//     host: 'localhost',
-//     port: '',
-//     user: 'me',
-//     password: 'secret',
-//     database: 'my_db'
-// });
-
 app.engine('hbs', hbs({
     extname: 'hbs',
     defaultView: 'default',
@@ -65,4 +56,4 @@ app.use(editpost);
 
 app.listen(3000, () => {
     console.log('Web Server is running at http://localhost:3000');
-});
+})

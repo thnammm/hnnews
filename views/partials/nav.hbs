@@ -2,38 +2,39 @@
 <link rel="stylesheet" type="text/css" href="/css/nav.css">
 
 {{!-- Navbar not sign-in yet --}}
-<div class="row up-nav">
-    <div class="col-md-6">
-        <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
-    </div>
-    <div class="col-md-3" id="phone-contact">
-        <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
-    </div>
-    <div class="col-md-3" id="login-register-area">
-        <a href="/register" id="register-choice" class="choice-here"> Đăng ký </a>
-        <a href="/login" id="login-choice" class="choice-here"> Đăng nhập </a>
-    </div>
-</div>
-
-<div class="nav-main">
-    <div class="row">
-        <div class="col-md-4 nav-logo">
-            <a href="/"> <img src="/img/general/logo.png" alt="HN News"> </a>
+<div id="scroll-nav">
+    <div class="row up-nav">
+        <div class="col-md-6">
+            <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
         </div>
-        <div class="col-md-8 nav-container">
-            <div class="text-search">
-                <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
-                <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..." name="search"
-                    ng-model="searchItem" />
+        <div class="col-md-3" id="phone-contact">
+            <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
+        </div>
+        <div class="col-md-3" id="login-register-area">
+            <a href="/register" id="register-choice" class="choice-here"> Đăng ký </a>
+            <a href="/login" id="login-choice" class="choice-here"> Đăng nhập </a>
+        </div>
+    </div>
+
+    <div class="nav-main">
+        <div class="row">
+            <div class="col-md-4 nav-logo">
+                <a href="/"> <img src="/img/general/logo.png" alt="HN News"> </a>
+            </div>
+            <div class="col-md-8 nav-container">
+                <div class="text-search">
+                    <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
+                    <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..."
+                        name="search" ng-model="searchItem" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="shadowbox-nav"></div>
+    <div class="shadowbox-nav"></div>
 
-{{!-- Navbar sign-in already --}}
-{{!-- <div class="row up-nav">
+    {{!-- Navbar sign-in already --}}
+    {{!-- <div class="row up-nav">
     <div class="col-md-9">
         <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
     </div>
@@ -64,3 +65,10 @@
 </div>
 
 <div class="shadowbox-nav"></div> --}}
+</div>
+
+<script>
+    $(window).onscroll(function () {
+        $('#scroll-nav').addClass('fixedtop');
+    });
+</script>
