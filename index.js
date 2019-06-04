@@ -18,6 +18,7 @@ var admindashboard = require('./routers/admin-dashboard');
 var adminmenu = require('./routers/admin-menu');
 var user = require('./routers/user');
 var detaileachpost = require('./routers/detail-eachpost');
+var editpost = require('./routers/edit-post');
 
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -60,6 +61,7 @@ app.use(adminmenu)
 app.use(user)
 app.use(detaileachpost)
 app.use(hashtagdetail);
+app.use(editpost);
 
 app.listen(3000, () => {
     console.log('Web Server is running at http://localhost:3000');
