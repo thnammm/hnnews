@@ -8,16 +8,18 @@
 </head>
 
 <body>
+    {{!-- Navigation bar --}}
+    {{> nav}}
+
+    {{!-- Menu bar --}}
+    {{!-- {{> menu}} --}}
+
     <div class="container">
-        {{!-- Navigation bar --}}
-        {{> nav}}
-
-        {{!-- Menu bar --}}
-        {{> menu}}
-
         {{!-- Body detail --}}
         {{!-- <img src="/img/HomePage.png" width="100%"> --}}
-        <div class="row highlight-new">
+        <div id="scroll-smooth"></div>
+
+        <div id="id-highlight-new" class="row highlight-new">
             <div class="col-md-3 align-middle">
                 <div class="highlight-left-text"> TIN NỔI BẬT </div>
                 <div class="row highlight-left-line-1"></div>
@@ -93,7 +95,7 @@
             {{!-- Content-left --}}
             <div class="col-md-9">
                 {{!-- Newest posts --}}
-                <div class="row row-margin newest-post">
+                <div id="id-newest-post" class="row row-margin newest-post">
                     <div class="col-md-5 newest-post-title">
                         <p class="newest-post-title-text"> BÀI VIẾT MỚI NHẤT </p>
                     </div>
@@ -107,6 +109,7 @@
                         <img class="content-pic-pic" src="/img/home-image.png">
                         <div class="content-pic-transparent"></div>
                         <p class="content-pic-category"> Chuyên mục: Du lịch - Thế giới </p>
+                        <a class="content-pic-info" href=""> Xem chi tiết </a>
                     </div>
                     <div class="col-md-7 newest-post-content-detail">
                         <p class="content-detail-title"> Tham quan du lịch quần đảo Hawaii - Hòn ngọc trên Thái Bình
@@ -142,7 +145,7 @@
                 </div>
 
                 {{!-- Viewest posts --}}
-                <div class="row row-margin viewest-post">
+                <div id="id-viewest-post" class="row row-margin viewest-post">
                     <div class="col-md-5 newest-post-title">
                         <p class="viewest-post-title-text"> BÀI VIẾT XEM NHIỀU NHẤT </p>
                     </div>
@@ -178,7 +181,7 @@
                 </div>
 
                 {{!-- Top 10 posts --}}
-                <div class="row row-margin top10-post">
+                <div id="id-top10-post" class="row row-margin top10-post">
                     <div class="col-md-5 newest-post-title">
                         <p class="top10-post-title-text"> TOP 10 CHUYÊN MỤC </p>
                     </div>
@@ -338,6 +341,32 @@
             </div>
         </div>
 
+        <div class="position-fixed rscr-btn">
+            <img src="/img/scrollbar/rscr-btn.png">
+        </div>
+
+        <div class="position-fixed lscr-bar">
+            <div class="lscr lscr-best lscr-checked" href="#id-highlight-new">
+                <img class="lscr-img" src="/img/scrollbar/lscr-best-checked.png">
+                <p class="lscr-title"> Nổi bật </p>
+            </div>
+            <div class="lscr-line-between"></div>
+            <div class="lscr lscr-new" href="#id-newest-post">
+                <img class="lscr-img" src="/img/scrollbar/lscr-new.png">
+                <p class="lscr-title"> Mới nhất </p>
+            </div>
+            <div class="lscr-line-between"></div>
+            <div class="lscr lscr-view" href="#id-viewest-post">
+                <img class="lscr-img" src="/img/scrollbar/lscr-view.png">
+                <p class="lscr-title"> Lượt xem </p>
+            </div>
+            <div class="lscr-line-between"></div>
+            <div class="lscr lscr-category" href="#id-top10-post">
+                <img class="lscr-img" src="/img/scrollbar/lscr-category.png">
+                <p class="lscr-title"> Top 10 </p>
+            </div>
+        </div>
+
         {{!-- Footer --}}
         {{> footer}}
 
@@ -359,8 +388,110 @@
 
     {{!-- JavaScript --}}
     <script>
-        $('.carousel').carousel();
+        $(document).ready(function () {
+            // Auto scroll to top
+            $(window).scrollTop(0);
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 27) {
+                    $("#scroll-smooth").css("display", "block");
+                    $("#scroll-nav").addClass("position-fixed");
+                    $("#scroll-nav").addClass("bootstrap-position-fixed");
+                    $(".menu").addClass("menu-scroll");
+                    $(".line-under-menu").hide();
+                    $(".shadowbox-nav").hide();
+                    $(".menu-link").hover(function () {
+                        $(this).css("color", "blue");
+                        $(this).css("font-weight", "700");
+                    }, function () {
+                        $(this).css("color", "rgb(86, 86, 86)");
+                        $(this).css("font-weight", "500");
+                    });
+                }
+                else {
+                    $("#scroll-smooth").css("display", "none");
+                    $("#scroll-nav").removeClass("position-fixed");
+                    $("#scroll-nav").removeClass("bootstrap-position-fixed");
+                    $(".menu").removeClass("menu-scroll");
+                    $(".line-under-menu").show();
+                    $(".shadowbox-nav").show();
+                    $(".menu-link").hover(function () {
+                        $(this).css("color", "black");
+                    }, function () {
+                        $(this).css("color", "rgb(86, 86, 86)");
+                    });
+                }
+            });
+
+            $(".rscr-btn").hide();
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 400) {
+                    $(".rscr-btn").show();
+                }
+                else {
+                    $(".rscr-btn").hide();
+                }
+            });
+
+            $(".rscr-btn").click(function () {
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: $("body").offset().top
+                }, 1000);
+            });
+
+            $(".lscr").click(function (e) {
+                var jump = $(this).attr('href');
+                var new_position = $(jump).offset();
+                $('html, body').stop().animate({ scrollTop: new_position.top - 130 }, 1000);
+                e.preventDefault();
+            });
+
+            $(".lscr").hover(function () {
+                if ($(this).hasClass("lscr-checked") === false) {
+                    var x = $(this).children("img").attr("src");
+                    var y = x.substr(-4, 4);
+                    var z = x.replace(y, '-checked.png');
+                    $(this).children("img").attr("src", z);
+                    $(this).children("p").addClass("lscr-checked");
+                }
+            }, function () {
+                if ($(this).hasClass("lscr-checked") === false) {
+                    var x = $(this).children("img").attr("src");
+                    var y = x.substr(-12, 12);
+                    var z = x.replace(y, '.png');
+                    $(this).children("img").attr("src", z);
+                    $(this).children("p").removeClass("lscr-checked");
+                }
+            });
+
+            $(".lscr").click(function () {
+                if ($(this).hasClass("lscr-checked") === false) {
+                    /* Minus checked for image checked */
+                    var x = $(".lscr-bar").children(".lscr-checked").children("img").attr("src");
+                    var y = x.substr(-12, 12);
+                    var z = x.replace(y, '.png');
+                    $(".lscr-bar").children(".lscr-checked").children("img").attr("src", z);
+                    $(".lscr-bar").children(".lscr-checked").removeClass("lscr-checked");
+
+                    /* Add checked for image not checked */
+                    $(this).addClass("lscr-checked");
+                }
+            });
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 432) {
+
+                } else if ($(window).scrollTop() > 1073) {
+
+                } else if ($(window).scrollTop() > 1480) {
+
+                } else {
+
+                }
+            });
+        })
     </script>
+
 </body>
 
 </html>

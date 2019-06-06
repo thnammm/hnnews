@@ -1,25 +1,26 @@
 {{!-- External CSS --}}
 <link rel="stylesheet" type="text/css" href="/css/nav.css">
+<link rel="stylesheet" type="text/css" href="/css/menu.css">
 
 {{!-- Navbar not sign-in yet --}}
-<div id="scroll-nav">
-    <div class="row up-nav">
-        <div class="col-md-6">
-            <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
-        </div>
-        <div class="col-md-3" id="phone-contact">
-            <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
-        </div>
-        <div class="col-md-3" id="login-register-area">
-            <a href="/register" id="register-choice" class="choice-here"> Đăng ký </a>
-            <a href="/login" id="login-choice" class="choice-here"> Đăng nhập </a>
-        </div>
+<div class="row up-nav">
+    <div class="col-md-6">
+        <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
     </div>
+    <div class="col-md-3" id="phone-contact">
+        <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
+    </div>
+    <div class="col-md-3" id="login-register-area">
+        <a href="/register" id="register-choice" class="choice-here"> Đăng ký </a>
+        <a href="/login" id="login-choice" class="choice-here"> Đăng nhập </a>
+    </div>
+</div>
 
+<div id="scroll-nav">
     <div class="nav-main">
         <div class="row">
             <div class="col-md-4 nav-logo">
-                <a href="/"> <img src="/img/general/logo.png" alt="HN News"> </a>
+                <a href="/"> <img id="hnnews-logo" src="/img/general/logo.png" alt="HN News"> </a>
             </div>
             <div class="col-md-8 nav-container">
                 <div class="text-search">
@@ -35,40 +36,64 @@
 
     {{!-- Navbar sign-in already --}}
     {{!-- <div class="row up-nav">
-    <div class="col-md-9">
-        <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
-    </div>
-    <div class="col-md-3" id="phone-contact">
-        <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
-    </div>
-</div>
-
-<div class="nav-main">
-    <div class="row">
-        <div class="col-md-3 nav-logo">
-            <img src="/img/general/logo.png" alt="HN News">
+        <div class="col-md-9">
+            <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
         </div>
-        <div class="col-md-8 nav-container">
-            <div class="text-search">
-                <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
-                <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..." name="search"
-                    ng-model="searchItem" />
+        <div class="col-md-3" id="phone-contact">
+            <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
+        </div>
+    </div>
+
+    <div class="nav-main">
+        <div class="row">
+            <div class="col-md-3 nav-logo">
+                <img src="/img/general/logo.png" alt="HN News">
+            </div>
+            <div class="col-md-8 nav-container">
+                <div class="text-search">
+                    <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
+                    <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..."
+                        name="search" ng-model="searchItem" />
+                </div>
+            </div>
+            <div class="col-md-1 profile-col">
+                <a class="form-inline profile-link" href="#">
+                    <span class="sr-only">(current)</span>
+                    <img class="nav-avatar" src="/img/general/avatar-default.png" alt="Ảnh đại diện">
+                </a>
             </div>
         </div>
-        <div class="col-md-1 profile-col">
-            <a class="form-inline profile-link" href="#">
-                <span class="sr-only">(current)</span>
-                <img class="nav-avatar" src="/img/general/avatar-default.png" alt="Ảnh đại diện">
-            </a>
+    </div>
+
+    <div class="shadowbox-nav"></div> --}}
+
+    {{!-- Menu category --}}
+    <div class="row menu">
+        <div class="col-md" style="padding-right: 5px;">
+            <a href="#" class="menu-link"> GIẢI TRÍ </a>
+        </div>
+        <div class="col-md resize-col-menu">
+            <a href="#" class="menu-link"> GIÁO DỤC </a>
+        </div>
+        <div class="col-md-2 resize-col-menu">
+            <a href="#" class="menu-link"> GIAO THÔNG </a>
+        </div>
+        <div class="col-md resize-col-menu">
+            <a href="#" class="menu-link"> DU LỊCH </a>
+        </div>
+        <div class="col-md resize-col-menu">
+            <a href="#" class="menu-link"> ĐỜI SỐNG </a>
+        </div>
+        <div class="col-md-2 resize-col-menu">
+            <a href="#" class="menu-link"> CÔNG NGHỆ </a>
+        </div>
+        <div class="col-md resize-col-menu">
+            <a href="#" class="menu-link"> XE CỘ </a>
+        </div>
+        <div class="col-md" style="padding-left: 5px; text-align: right;">
+            <a href="#" class="menu-link"> THẾ GIỚI </a>
         </div>
     </div>
-</div>
 
-<div class="shadowbox-nav"></div> --}}
+    <div class="line-under-menu"></div>
 </div>
-
-<script>
-    $(window).onscroll(function () {
-        $('#scroll-nav').addClass('fixedtop');
-    });
-</script>

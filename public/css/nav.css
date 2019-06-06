@@ -44,7 +44,7 @@
 }
 
 .nav-main {
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     margin: 0;
     font-size: 14pt;
 }
@@ -81,7 +81,7 @@
 
 .shadowbox-nav {
     height: 5px;
-    background-image: linear-gradient(to right,rgba(224, 195, 252, 0.5) 30%, rgba(141, 176, 247, 0.5));
+    background-image: linear-gradient(to right, rgba(224, 195, 252, 0.5) 30%, rgba(141, 176, 247, 0.5));
     margin: 0;
 }
 
@@ -111,7 +111,11 @@
     box-shadow: 0px 0px 10px white;
 }
 
-.fixedtop {
-    position: fixed;
+#scroll-nav {
+    width: 100%;
+}
+
+.bootstrap-position-fixed {
     top: 0;
+    z-index: 100;
 }
