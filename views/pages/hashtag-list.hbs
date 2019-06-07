@@ -10,7 +10,6 @@
 <body>
     <div class="container">
         {{>nav}}
-        {{>menu}}
         <div class="nav-search">
             <div class="title-nav-search">DANH SÁCH NHÃN DÁN</div>
             <form class="col-md-12" style="padding: 0">
@@ -18,145 +17,20 @@
             </form>
         </div>
         <div style="margin: 0px 130px 30px 130px">
-            <div class="row row-margin row-hasgtag">
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
+            <div class="row row-margin row-hashtag">
+                {{#each alltag.[0]}}
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <div class="row row-margin hashtag-img">
                         <div class="col-md-12">
                             <img class="img" src="/img/hashtag-pic.png">
                         </div>
                     </div>
                     <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
+                        <div class="col-md-6 tag-name">{{tag_name}}</div>
+                        <div class="col-md-6 tag-value">{{tagvalue}} bài</div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row row-margin row-hasgtag">
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row row-margin row-hasgtag">
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row row-margin hasgtag-img">
-                        <div class="col-md-12">
-                            <img class="img" src="/img/hashtag-pic.png">
-                        </div>
-                    </div>
-                    <div class="row row-margin title-img">
-                        <div class="col-md-6">#giaitri</div>
-                        <div class="col-md-6">21 bài viết</div>
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
 

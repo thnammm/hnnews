@@ -7,8 +7,8 @@ var createConnection = () => {
         user: 'root',
         password: 'root',
         database: 'hnnews'
-    })
-};
+    });
+}
 
 module.exports = {
     load: sql => {
@@ -79,5 +79,21 @@ module.exports = {
                 connection.end();
             });
         });
-    }
+    },
+
+    search: sql => {
+        return new Promise((resolve, reject) => {
+            var connection = createConnection();
+
+            connection.connect();
+            connection.query(sql, (error, results, fields) => {
+                if (error)
+                    reject(error);
+                else {
+                    resolve(results);
+                }
+                connection.end();
+            });
+        });
+    },
 };

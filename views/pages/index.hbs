@@ -35,47 +35,36 @@
                         <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
+                        {{#each bestofbestpost.[0]}}
                         <div class="carousel-item active">
-                            <img src="/img/image-post.png" class="d-block w-100 highlight-right-pic" alt="...">
+                            <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
                             <div class="carousel-caption d-none d-md-block top">
-                                <p>Phim ảnh</p>
+                                <p>{{subcategory_name}}</p>
                             </div>
                             <div class="carousel-caption d-none d-md-block center">
-                                <p>Game Of Thrones trở lại mạnh mẽ vào 14/04/2019</p>
+                                <p>{{title}}</p>
                             </div>
                             <div class="carousel-caption d-none d-md-block bottom">
-                                <p>20/01/2019</p>
+                                <p>{{finaldate}}</p>
                             </div>
                         </div>
+                        {{/each}}
+                        {{#each bestpost.[0]}}
                         <div class="carousel-item">
-                            <img src="/img/image-post.png" class="d-block w-100 highlight-right-pic" alt="...">
+                            <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
                             <div class="carousel-caption d-none d-md-block top">
-                                <p>Xe cộ</p>
+                                <p>{{subcategory_name}}</p>
                             </div>
                             <div class="carousel-caption d-none d-md-block center">
-                                <p>Vinfast tung ra 1678 mẫu, thắng mạnh trong làng xe
-                                    hơi thế giới</p>
+                                <p>{{title}}</p>
                             </div>
                             <div class="carousel-caption d-none d-md-block bottom">
-                                <p>13/04/2019</p>
+                                <p>{{finaldate}}</p>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="/img/image-post.png" class="d-block w-100 highlight-right-pic" alt="...">
-                            <div class="transparent"></div>
-                            <div class="carousel-caption d-none d-md-block top">
-                                <p>Thế giới</p>
-                            </div>
-                            <div class="carousel-caption d-none d-md-block center">
-                                <p>Chán thiệt chứ, không hiểu nổi đang xảy ra gì luôn á
-                                </p>
-                            </div>
-                            <div class="carousel-caption d-none d-md-block bottom">
-                                <p>25/05/2019</p>
-                            </div>
-                        </div>
+                        {{/each}}
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -104,45 +93,20 @@
                     </div>
                 </div>
 
+                {{#each newpost.[0]}}
                 <div class="row row-margin newest-post-content">
                     <div class="col-md-5 newest-post-content-pic">
-                        <img class="content-pic-pic" src="/img/home-image.png">
+                        <img class="content-pic-pic" src="{{link_image}}" alt="{{link_name}}">
                         <div class="content-pic-transparent"></div>
-                        <p class="content-pic-category"> Chuyên mục: Du lịch - Thế giới </p>
+                        <p class="content-pic-category"> Chuyên mục: {{category_name}} - {{subcategory_name}} </p>
                         <a class="content-pic-info" href=""> Xem chi tiết </a>
                     </div>
                     <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> Tham quan du lịch quần đảo Hawaii - Hòn ngọc trên Thái Bình
-                            Dương </p>
-                        <p class="content-detail-number"> 21/02/2019 - 1.687 lượt xem </p>
+                        <p class="content-detail-title"> {{title}} </p>
+                        <p class="content-detail-number"> {{finaldate}} - {{views}} lượt xem </p>
                     </div>
                 </div>
-
-                <div class="row row-margin newest-post-content">
-                    <div class="col-md-5 newest-post-content-pic">
-                        <img class="content-pic-pic" src="/img/home-image.png">
-                        <div class="content-pic-transparent"></div>
-                        <p class="content-pic-category"> Chuyên mục: Du lịch - Thế giới </p>
-                    </div>
-                    <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> Tham quan du lịch quần đảo Hawaii - Hòn ngọc trên Thái Bình
-                            Dương </p>
-                        <p class="content-detail-number"> 21/02/2019 - 1.687 lượt xem </p>
-                    </div>
-                </div>
-
-                <div class="row row-margin newest-post-content">
-                    <div class="col-md-5 newest-post-content-pic">
-                        <img class="content-pic-pic" src="/img/home-image.png">
-                        <div class="content-pic-transparent"></div>
-                        <p class="content-pic-category"> Chuyên mục: Du lịch - Thế giới </p>
-                    </div>
-                    <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> Tham quan du lịch quần đảo Hawaii - Hòn ngọc trên Thái Bình
-                            Dương </p>
-                        <p class="content-detail-number"> 21/02/2019 - 1.687 lượt xem </p>
-                    </div>
-                </div>
+                {{/each}}
 
                 {{!-- Viewest posts --}}
                 <div id="id-viewest-post" class="row row-margin viewest-post">
@@ -154,36 +118,25 @@
                     </div>
                 </div>
 
+                {{#each viewpost.[0]}}
                 <div class="row row-margin newest-post-content">
                     <div class="col-md-5 newest-post-content-pic">
-                        <img class="content-pic-pic" src="/img/home-image.png">
+                        <img class="content-pic-pic" src="{{link_image}}" alt="{{link_name}}">
                         <div class="content-pic-transparent"></div>
-                        <p class="content-pic-category"> Chuyên mục: Du lịch - Thế giới </p>
+                        <p class="content-pic-category"> Chuyên mục: {{category_name}} - {{subcategory_name}} </p>
+                        <a class="content-pic-info" href=""> Xem chi tiết </a>
                     </div>
                     <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> Tham quan du lịch quần đảo Hawaii - Hòn ngọc trên Thái Bình
-                            Dương </p>
-                        <p class="content-detail-number"> 21/02/2019 - 1.687 lượt xem </p>
+                        <p class="content-detail-title"> {{title}} </p>
+                        <p class="content-detail-number"> {{finaldate}} - {{views}} lượt xem </p>
                     </div>
                 </div>
-
-                <div class="row row-margin newest-post-content">
-                    <div class="col-md-5 newest-post-content-pic">
-                        <img class="content-pic-pic" src="/img/home-image.png">
-                        <div class="content-pic-transparent"></div>
-                        <p class="content-pic-category"> Chuyên mục: Du lịch - Thế giới </p>
-                    </div>
-                    <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> Tham quan du lịch quần đảo Hawaii - Hòn ngọc trên Thái Bình
-                            Dương </p>
-                        <p class="content-detail-number"> 21/02/2019 - 1.687 lượt xem </p>
-                    </div>
-                </div>
+                {{/each}}
 
                 {{!-- Top 10 posts --}}
                 <div id="id-top10-post" class="row row-margin top10-post">
                     <div class="col-md-5 newest-post-title">
-                        <p class="top10-post-title-text"> TOP 10 CHUYÊN MỤC </p>
+                        <p class="top10-post-title-text"> TOP 8 CHUYÊN MỤC </p>
                     </div>
                     <div class="col-md-7">
                         <div class="line-continue"></div>
@@ -191,46 +144,28 @@
                 </div>
 
                 <div class="row row-margin top10-post-content">
+                    {{#each top10post.[0]}}
                     <div class="col-md-6 top10-post-content-detail">
                         <div class="row row-margin top10-post-content-part">
                             <div class="line-left"></div>
                             <div class="top10-post-content-title">
-                                GIAO THÔNG
+                                {{category_name}}
                             </div>
                         </div>
                         <div class="row row-margin top10-post-content-part">
-                            <img class="top10-post-content-pic" src="/img/image-post.png">
+                            <img class="top10-post-content-pic" src="{{link_image}}" alt="{{link_name}}">
                             <div class="top10-post-content-transparent"></div>
                             <div class="col-md-12">
-                                <p class="top10-post-content-category"> Chuyên mục: Giao thông </p>
+                                <p class="top10-post-content-category"> Chuyên mục: {{category_name}} -
+                                    {{subcategory_name}} </p>
                             </div>
                         </div>
                         <div class="row row-margin top10-post-content-part">
-                            <p class="top10-post-content-text"> Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn
-                                tắc giao thông </p>
-                            <p class="top10-post-content-number"> 01/04/2019 - 13.135 lượt xem </p>
+                            <p class="top10-post-content-text"> {{title}} </p>
+                            <p class="top10-post-content-number"> {{finaldate}} - {{views}} lượt xem </p>
                         </div>
                     </div>
-                    <div class="col-md-6 top10-post-content-detail">
-                        <div class="row row-margin top10-post-content-part">
-                            <div class="line-left"></div>
-                            <div class="top10-post-content-title">
-                                CÔNG NGHỆ
-                            </div>
-                        </div>
-                        <div class="row row-margin top10-post-content-part">
-                            <img class="top10-post-content-pic" src="/img/tech-image.png">
-                            <div class="top10-post-content-transparent"></div>
-                            <div class="col-md-12">
-                                <p class="top10-post-content-category"> Chuyên mục: Công nghệ </p>
-                            </div>
-                        </div>
-                        <div class="row row-margin top10-post-content-part">
-                            <p class="top10-post-content-text"> Chuyện kể rằng ngày xửa ngày xưa, trong khu rừng có một
-                                con mắt </p>
-                            <p class="top10-post-content-number"> 12/03/2019 - 987 lượt xem </p>
-                        </div>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
 
@@ -238,65 +173,18 @@
             <div class="col-md-3">
                 <div class="row row-margin content-right">
                     <div class="col-md-12 line-top"></div>
-                    <div class="col-md-12 title-left">CÁC NHÃN DÁN</div>
+                    <div class="col-md-12 title-left">
+                        <a href="/hashtag-list" class="title-left-hyperlink"> CÁC NHÃN DÁN </a>
+                    </div>
                     <div class="col-md-12 line-bottom-title"></div>
                     <div class="row row-margin" style="margin-top: 15px !important">
+                        {{#each top10tag.[0]}}
                         <div class="col-md-6 img-hash">
                             <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
+                            <div class="text-hash">{{tag_name}}</div>
+                            <div class="text2-hash">{{tagvalue}} bài viết</div>
                         </div>
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                    </div>
-                    <div class="row row-margin" style="margin-top: 15px !important">
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                    </div>
-                    <div class="row row-margin" style="margin-top: 15px !important">
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                    </div>
-                    <div class="row row-margin" style="margin-top: 15px !important">
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                            <div class="text2-hash">#giaitri</div>
-                        </div>
-                    </div>
-                    <div class="row row-margin" style="margin-top: 15px !important; margin-bottom: 15px !important">
-                        <div class="col-md-6 img-hash" style="padding-right: 7px">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                        </div>
-                        <div class="col-md-6 img-hash" style="padding-right: 7px">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
-                            <div class="text-hash">GIẢI TRÍ</div>
-                        </div>
+                        {{/each}}
                     </div>
                     <a href="#" class="giris-yap-buton"> XEM TẤT CẢ </a>
                 </div>
@@ -306,6 +194,7 @@
         <div class="row ctn-line-under"></div>
 
         <div class="row statistic">
+            {{#each statistic.[0]}}
             <div class="col-md-4">
                 <div class="row statistic-detail">
                     <div class="col-md-3 statistic-left">
@@ -313,7 +202,7 @@
                     </div>
                     <div class="col-md-9 statistic-right">
                         <p class="statistic-title"> Tài khoản </p>
-                        <p class="statistic-number"> 20.456 </p>
+                        <p class="statistic-number"> {{accountvalue}} </p>
                     </div>
                 </div>
             </div>
@@ -324,7 +213,7 @@
                     </div>
                     <div class="col-md-9 statistic-right">
                         <p class="statistic-title"> Lượt xem </p>
-                        <p class="statistic-number"> 32.054.988 </p>
+                        <p class="statistic-number"> {{viewvalue}} </p>
                     </div>
                 </div>
             </div>
@@ -335,11 +224,14 @@
                     </div>
                     <div class="col-md-9 statistic-right">
                         <p class="statistic-title"> Bài viết </p>
-                        <p class="statistic-number"> 687.213 </p>
+                        <p class="statistic-number"> {{postvalue}} </p>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
+
+        <div class="row ctn-line-under" style="margin-bottom: 50px !important;"></div>
 
         <div class="position-fixed rscr-btn">
             <img src="/img/scrollbar/rscr-btn.png">
@@ -425,7 +317,7 @@
 
             $(".rscr-btn").hide();
             $(window).scroll(function () {
-                if ($(window).scrollTop() > 400) {
+                if ($(window).scrollTop() > 500) {
                     $(".rscr-btn").show();
                 }
                 else {
@@ -479,14 +371,48 @@
             });
 
             $(window).scroll(function () {
-                if ($(window).scrollTop() > 432) {
+                if ($(window).scrollTop() > 389 && $(window).scrollTop() < 2380) {
+                    var x = $(".lscr-bar").children(".lscr-checked").children("img").attr("src");
+                    var y = x.substr(-12, 12);
+                    var z = x.replace(y, '.png');
+                    $(".lscr-bar").children(".lscr-checked").children("img").attr("src", z);
+                    $(".lscr-bar").children(".lscr-checked").removeClass("lscr-checked");
 
-                } else if ($(window).scrollTop() > 1073) {
+                    $(".lscr-new").children("img").attr("src", "/img/scrollbar/lscr-new-checked.png");
+                    $(".lscr-new").addClass("lscr-checked");
+                }
 
-                } else if ($(window).scrollTop() > 1480) {
+                if ($(window).scrollTop() > 2380 && $(window).scrollTop() < 4390) {
+                    var x = $(".lscr-bar").children(".lscr-checked").children("img").attr("src");
+                    var y = x.substr(-12, 12);
+                    var z = x.replace(y, '.png');
+                    $(".lscr-bar").children(".lscr-checked").children("img").attr("src", z);
+                    $(".lscr-bar").children(".lscr-checked").removeClass("lscr-checked");
 
-                } else {
+                    $(".lscr-view").children("img").attr("src", "/img/scrollbar/lscr-view-checked.png");
+                    $(".lscr-view").addClass("lscr-checked");
+                }
 
+                if ($(window).scrollTop() > 4390) {
+                    var x = $(".lscr-bar").children(".lscr-checked").children("img").attr("src");
+                    var y = x.substr(-12, 12);
+                    var z = x.replace(y, '.png');
+                    $(".lscr-bar").children(".lscr-checked").children("img").attr("src", z);
+                    $(".lscr-bar").children(".lscr-checked").removeClass("lscr-checked");
+
+                    $(".lscr-category").children("img").attr("src", "/img/scrollbar/lscr-category-checked.png");
+                    $(".lscr-category").addClass("lscr-checked");
+                }
+
+                if ($(window).scrollTop() < 180) {
+                    var x = $(".lscr-bar").children(".lscr-checked").children("img").attr("src");
+                    var y = x.substr(-12, 12);
+                    var z = x.replace(y, '.png');
+                    $(".lscr-bar").children(".lscr-checked").children("img").attr("src", z);
+                    $(".lscr-bar").children(".lscr-checked").removeClass("lscr-checked");
+
+                    $(".lscr-best").children("img").attr("src", "/img/scrollbar/lscr-best-checked.png");
+                    $(".lscr-best").addClass("lscr-checked");
                 }
             });
         })

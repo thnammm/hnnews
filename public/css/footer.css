@@ -14,12 +14,13 @@
 }
 
 .footer-text-small {
+    margin-top: 10px;
     font-size: 8pt;
     font-weight: 300;
 }
 
 .footer-content {
-    margin: 10px 130px;
+    margin: 10px 50px;
 }
 
 .resize-col-footer {

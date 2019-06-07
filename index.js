@@ -24,6 +24,8 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 
+var indexmodel = require('./models/index.model.js');
+
 // app.use(bodyParser());
 // app.use(morgan());
 // app.use(bodyParser.json());
@@ -37,7 +39,28 @@ app.engine('hbs', hbs({
 }));
 
 app.get('/', (req, res) => {
-    res.render('pages/index');
+    var bestpost = indexmodel.best();
+    var bestofbestpost = indexmodel.bestofbest();
+    var newpost = indexmodel.newest();
+    var viewpost = indexmodel.viewest();
+    var top10post = indexmodel.top10posts();
+    var top10tag = indexmodel.top10tags();
+    var statistic = indexmodel.statistic();
+    Promise.all([
+        bestpost, bestofbestpost, newpost, viewpost, top10post, top10tag, statistic])
+        .then(([best, bobest, newest, viewest, top10post, top10tag, statistic]) => {
+            res.render('pages/index', {
+                bestpost: best,
+                bestofbestpost: bobest,
+                newpost: newest,
+                viewpost: viewest,
+                top10post: top10post,
+                top10tag: top10tag,
+                statistic: statistic
+            });
+        }).catch(err => {
+            console.log(err);
+        })
 })
 
 app.use(login)

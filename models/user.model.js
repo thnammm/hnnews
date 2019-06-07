@@ -2,22 +2,22 @@ var db = require('../utils/db');
 
 module.exports = {
     all: () => {
-        return db.load('select * from USER');
+        return db.load('select * from user');
     },
 
     single: id => {
-        return db.load(`select * from USER where UserID = ${id}`)
+        return db.load(`select * from user where id = ${id}`)
     },
 
     add: entity => {
-        return db.add('USER', entity);
+        return db.add('user', entity);
     },
 
     update: entity => {
-        return db.update('USER', 'UserID', entity);
+        return db.update('user', 'id', entity);
     },
 
     delete: id => {
-        return db.delete('USER', 'UserID', id);
+        return db.delete('user', 'id', id);
     }
 };

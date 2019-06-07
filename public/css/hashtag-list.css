@@ -1,15 +1,15 @@
 * {
-    font-family: "Comfortaa", cursive;
-  }
+  font-family: "Comfortaa", cursive;
+}
 
-.nav-search{
+.nav-search {
   margin-top: 30px;
   background-image: linear-gradient(to right, rgba(224, 195, 252, 0.2) 30%, rgba(141, 176, 247, 0.2));
   width: 100%;
   text-align: center;
 }
 
-.title-nav-search{
+.title-nav-search {
   font-weight: 700;
   font-size: 20px;
   padding: 20px 0px;
@@ -25,29 +25,29 @@
   margin-bottom: 20px;
 }
 
-.container{
+.container {
   margin: 0;
   padding: 0;
   max-width: 100%;
 }
 
-.row-margin{
+.row-margin {
   margin: 0 !important;
 }
 
-.hasgtag-img{
+.hashtag-img {
   border: 10px;
 }
 
-.img{
+.img {
   width: 100%;
 }
 
-.title-img{
+.title-img {
   font-size: 11pt;
 }
 
-.row-hasgtag{
+.row-hashtag {
   margin-top: 30px !important;
 }
 
@@ -80,4 +80,14 @@
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   border: none;
+}
+
+.tag-name {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.tag-value {
+  text-align: right;
+  padding-right: 20px;
 }
