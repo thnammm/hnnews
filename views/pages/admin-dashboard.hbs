@@ -235,70 +235,50 @@
                                 <div class="col-md-12 account-page">
                                     {{!-- Form --}}
                                     <form method="POST" style="height: initial;">
-                                        <button type="submit" class="btn btn-outline-danger"> Xóa </button>
-                                        <button type="button" class="btn btn-outline-warning"> Chỉnh sửa </button>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th> Chọn </th>
-                                                    <th> ID </th>
-                                                    <th> Tiêu đề bài viết </th>
-                                                    <th> Chuyên mục </th>
-                                                    <th> Phóng viên viết bài </th>
-                                                    <th> Trạng thái </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="01"></td>
-                                                    <td>01</td>
-                                                    <td>Ùn túc giao thông tại giao...</td>
-                                                    <td>Giao thông</td>
-                                                    <td>Nguyễn Văn A</td>
-                                                    <td class="publish">Đã xuất bản</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="02"></td>
-                                                    <td>02</td>
-                                                    <td>Mua iPhone 5 với giá...</td>
-                                                    <td>Công nghệ</td>
-                                                    <td>Lương Thị B</td>
-                                                    <td class="not-approve">Chưa được duyệt</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="03"></td>
-                                                    <td>03</td>
-                                                    <td>Marvel phá sản, Disney lỗ...</td>
-                                                    <td>Điện ảnh</td>
-                                                    <td>Jamies Lannister</td>
-                                                    <td class="approved">Đã được duyệt và chờ xuất bản</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="04"></td>
-                                                    <td>04</td>
-                                                    <td>Mercesdes Benz tung ra..</td>
-                                                    <td>Xe cộ</td>
-                                                    <td>Chợ Thị Lớn</td>
-                                                    <td class="refuse">Bị từ chối</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="01"></td>
-                                                    <td>05</td>
-                                                    <td>Ùn túc giao thông tại giao...</td>
-                                                    <td>Giao thông</td>
-                                                    <td>Nguyễn Văn A</td>
-                                                    <td class="publish">Đã xuất bản</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="02"></td>
-                                                    <td>06</td>
-                                                    <td>Mua iPhone 5 với giá...</td>
-                                                    <td>Công nghệ</td>
-                                                    <td>Lương Thị B</td>
-                                                    <td class="not-approve">Chưa được duyệt</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th> ID </th>
+                                                        <th> Tiêu đề bài viết </th>
+                                                        <th> Chuyên mục </th>
+                                                        <th> Phóng viên viết bài </th>
+                                                        <th> Trạng thái </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each postlist.[0]}}
+                                                    <tr style="border-top: 1px solid #dee2e6;">
+                                                        <td class="td-noborder">{{inc @index}}</td>
+                                                        <td class="td-noborder td-textoverflow">{{title}}</td>
+                                                        <td class="td-noborder">{{category_name}} - {{subcategory_name}}
+                                                        </td>
+                                                        <td class="td-noborder">{{full_name}}</td>
+                                                        {{#ifEquals status_post "1"}}
+                                                        <td class="publish td-noborder">Đã xuất bản</td>
+                                                        {{/ifEquals}}
+                                                        {{#ifEquals status_post "2"}}
+                                                        <td class="approved td-noborder">Đã được duyệt và chờ xuất bản
+                                                        </td>
+                                                        {{/ifEquals}}
+                                                        {{#ifEquals status_post "3"}}
+                                                        <td class="not-approve td-noborder">Chưa được duyệt</td>
+                                                        {{/ifEquals}}
+                                                        {{#ifEquals status_post "4"}}
+                                                        <td class="refuse td-noborder">Bị từ chối</td>
+                                                        {{/ifEquals}}
+                                                        <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                            <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
+                                                                href="javascript:''" role="button">
+                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </form>
 
                                     {{!-- Pagination --}}
@@ -410,12 +390,12 @@
                                 </div>
                             </div>
                             <div class="row popup-background">
-                                <div class="col-md-12 add-category-popup">
+                                <div class="col-md-12 add-popup">
                                     <p class="popup-title"> THÊM CHUYÊN MỤC </p>
                                     <p class="popup-describe"> <span style="color: red;">(*) Chỉ có thể thêm chuyên mục
                                             con.</span> Trước tiên chọn chuyên mục cha. Sau đó nhập tên chuyên mục mong
                                         muốn ở ô chuyên mục con để tiến hành thêm dữ liệu chuyên mục mới. </p>
-                                    <form class="row" method="POST" action="/admin-dashboard/add">
+                                    <form class="row" method="POST" action="/admin-dashboard/addcategory">
                                         <div class="col-md-6 form-group">
                                             <label class="label-popup" for="category-dad"> Chuyên mục cha </label>
                                             <select class="form-control" id="category-dad" name="categorydad">
@@ -442,8 +422,7 @@
                                         </div>
                                         <div class="col-md-12 form-group" style="text-align: right;">
                                             <button type="submit" class="btn btn-success">Thêm </button>
-                                            <button type="button" class="btn btn-dark close-add-category"> Đóng
-                                            </button>
+                                            <button type="button" class="btn btn-dark close-add"> Đóng </button>
                                         </div>
                                     </form>
                                 </div>
@@ -476,56 +455,32 @@
                                 <div class="col-md-12 tag-page">
                                     {{!-- Form --}}
                                     <form method="POST" style="height: initial;">
-                                        <button type="button" class="btn btn-outline-success" data-toggle="collapse">
-                                            Thêm
-                                        </button>
-                                        <button type="submit" class="btn btn-outline-danger"> Xóa </button>
-                                        <table class="table">
+                                        <a class="btn btn-outline-success add-tag-main-btn" role="button">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Thêm
+                                        </a>
+                                        <table class="table" style="margin-top: 20px;">
                                             <thead>
                                                 <tr>
-                                                    <th> Chọn </th>
                                                     <th> ID </th>
                                                     <th> Nhãn dán </th>
                                                     <th> Số lượng bài viết </th>
+                                                    <th> </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {{#each taglist.[0]}}
                                                 <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="01"></td>
-                                                    <td>01</td>
-                                                    <td>#marvel</td>
-                                                    <td>14</td>
+                                                    <td>{{inc @index}}</td>
+                                                    <td>{{tag_name}}</td>
+                                                    <td>{{postvalue}}</td>
+                                                    <td style="text-align: right;">
+                                                        <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
+                                                            href="javascript:''" role="button">
+                                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="02"></td>
-                                                    <td>02</td>
-                                                    <td>#justinbeiber</td>
-                                                    <td>521</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="03"></td>
-                                                    <td>03</td>
-                                                    <td>#iphone</td>
-                                                    <td>214</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="04"></td>
-                                                    <td>04</td>
-                                                    <td>#housestark</td>
-                                                    <td>189</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="03"></td>
-                                                    <td>05</td>
-                                                    <td>#samsung</td>
-                                                    <td>253</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" name="tagselected" value="04"></td>
-                                                    <td>06</td>
-                                                    <td>#coffeehouse</td>
-                                                    <td>65</td>
-                                                </tr>
+                                                {{/each}}
                                             </tbody>
                                         </table>
                                     </form>
@@ -552,6 +507,23 @@
                                             </li>
                                         </ul>
                                     </nav>
+                                </div>
+                            </div>
+                            <div class="row popup-background">
+                                <div class="col-md-12 add-popup">
+                                    <p class="popup-title"> THÊM NHÃN DÁN </p>
+                                    <form class="row" method="POST" action="/admin-dashboard/addtag">
+                                        <div class="col-md-12 form-group">
+                                            <label class="label-popup" for="tag-name"> Nhãn dán </label>
+                                            <input type="text" class="form-control popup-input" id="tag-name"
+                                                name="tagname" placeholder="Nhập tên nhãn dán">
+                                        </div>
+                                        <div class="col-md-12 form-group" style="text-align: right;">
+                                            <button type="submit" class="btn btn-success">Thêm </button>
+                                            <button type="button" class="btn btn-dark close-add"> Đóng
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -590,7 +562,15 @@
                 $(".popup-background").show();
             });
 
-            $(".close-add-category").click(function () {
+            $(".close-add").click(function () {
+                $(".popup-background").hide();
+            });
+
+            $(".add-tag-main-btn").click(function () {
+                $(".popup-background").show();
+            });
+
+            $(".close-add").click(function () {
                 $(".popup-background").hide();
             });
         })

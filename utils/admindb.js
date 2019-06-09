@@ -29,7 +29,24 @@ module.exports = {
 
     addcategory: (dad, son, editor) => {
         return new Promise((resolve, reject) => {
-            var sql = `call AdminAddCategory('${dad}', ${son}, ${editor})`;
+            var sql = `call AdminAddCategory('${dad}', '${son}', '${editor}')`;
+            var connection = createConnection();
+
+            connection.connect();
+            connection.query(sql, entity, (error, value) => {
+                if (error)
+                    reject(error);
+                else {
+                    resolve(value.insertId);
+                }
+                connection.end();
+            });
+        });
+    },
+
+    addtag: tagname => {
+        return new Promise((resolve, reject) => {
+            var sql = `call AdminAddTag('${tagname}')`;
             var connection = createConnection();
 
             connection.connect();
