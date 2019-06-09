@@ -15,7 +15,6 @@ var hashtaglist = require('./routers/hashtag-list');
 var hashtagdetail = require('./routers/hashtag-detail');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
-var adminmenu = require('./routers/admin-menu');
 var user = require('./routers/user');
 var detaileachpost = require('./routers/detail-eachpost');
 var editpost = require('./routers/edit-post');
@@ -26,10 +25,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 var indexmodel = require('./models/index.model.js');
 
-// app.use(bodyParser());
-// app.use(morgan());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded());
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+// app.use(morgan('dev'));
+// app.use(express.json());
+// app.use(express.urlencoded());
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -71,7 +73,6 @@ app.use(categorypostlist)
 app.use(hashtaglist)
 app.use(admin)
 app.use(admindashboard)
-app.use(adminmenu)
 app.use(user)
 app.use(detaileachpost)
 app.use(hashtagdetail);

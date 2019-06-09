@@ -43,46 +43,29 @@
                                             <th> ID </th>
                                             <th> Chuyên mục </th>
                                             <th> Số lượng bài viết </th>
-                                            <th> Số biên tập viên phụ trách </th>
+                                            <th> Biên tập viên phụ trách </th>
+                                            <th style="text-align: right;">
+                                                <a class="btn btn-outline-success" href="javascript:''" role="button">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i> Thêm
+                                                </a>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{#each category.[0]}}
                                         <tr>
-                                            <td>01</td>
-                                            <td>Giáo dục</td>
-                                            <td>12.069</td>
-                                            <td>14</td>
+                                            <td>{{id}}</td>
+                                            <td>{{subcategory_name}}</td>
+                                            <td>{{postvalue}}</td>
+                                            <td>{{full_name}}</td>
+                                            <td style="text-align: right;">
+                                                <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
+                                                    href="javascript:''" role="button">
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>02</td>
-                                            <td>Giải trí</td>
-                                            <td>23.666</td>
-                                            <td>85</td>
-                                        </tr>
-                                        <tr>
-                                            <td>03</td>
-                                            <td>Giao thông</td>
-                                            <td>269</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>04</td>
-                                            <td>Du lịch</td>
-                                            <td>4.368</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>05</td>
-                                            <td>Đời sống</td>
-                                            <td>1.022</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>06</td>
-                                            <td>Công nghệ</td>
-                                            <td>203.613</td>
-                                            <td>230</td>
-                                        </tr>
+                                        {{/each}}
                                     </tbody>
                                 </table>
                             </form>
@@ -128,6 +111,18 @@
 
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- Script --}}
+    <script>
+        $(document).ready(function () {
+            $(".img-click").click(function () {
+                if ($(this).children(".menu-icon").hasClass("active") === false) {
+                    $(".row-img").children("a").children(".active").removeClass("active");
+                    $(this).addClass("active");
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
