@@ -29,7 +29,7 @@ module.exports = {
 
     addcategory: (dad, son, editor) => {
         return new Promise((resolve, reject) => {
-            var sql = `call AdminAddCategory('${dad}', '${son}', '${editor}')`;
+            var sql = `call AdminAddCategory('${dad}', '${son}', '${editor}', @counts)`;
             var connection = createConnection();
 
             connection.connect();
@@ -46,7 +46,7 @@ module.exports = {
 
     addtag: tagname => {
         return new Promise((resolve, reject) => {
-            var sql = `call AdminAddTag('${tagname}')`;
+            var sql = `call AdminAddTag('${tagname}', @counts)`;
             var connection = createConnection();
 
             connection.connect();

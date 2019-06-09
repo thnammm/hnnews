@@ -1,4 +1,4 @@
-var db = require('../utils/db');
+var db = require('../utils/admindb');
 
 module.exports = {
     allpost: () => {

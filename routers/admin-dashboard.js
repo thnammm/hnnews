@@ -51,7 +51,7 @@ app.post('/admin-dashboard/addcategory', function (req, res) {
     admin.addcategory(entity)
         .then(id => {
             console.log(id);
-            res.render('pages/admin-dashboard');
+            res.redirect('/admin-dashboard');
         })
         .catch(err => {
             console.log(err);
@@ -64,7 +64,7 @@ app.post('/admin-dashboard/addtag', function (req, res) {
     admin.addtag(entity)
         .then(id => {
             console.log(id);
-            res.render('pages/admin-dashboard');
+            res.redirect('/admin-dashboard');
         })
         .catch(err => {
             console.log(err);
