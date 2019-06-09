@@ -151,7 +151,21 @@ thead, tbody, tr, th, td {
     border: none;
 }
 
-/* Add Category Popup */
+/* View Post */
+
+.td-noborder {
+    border: none !important;
+}
+
+.td-textoverflow {
+    display: inline-block;
+    white-space: nowrap;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Add Popup */
 
 .popup-background {
     height: initial;
@@ -170,7 +184,7 @@ thead, tbody, tr, th, td {
     display: none;
 }
 
-.add-category-popup {
+.add-popup {
     height: initial;
     position: absolute;
     -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
