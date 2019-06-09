@@ -48,7 +48,7 @@ app.post('/admin-dashboard/addcategory', function (req, res) {
         editor: req.body.categoryeditor
     }
 
-    admin.add(entity)
+    admin.addcategory(entity)
         .then(id => {
             console.log(id);
             res.render('pages/admin-dashboard');
@@ -61,7 +61,7 @@ app.post('/admin-dashboard/addcategory', function (req, res) {
 app.post('/admin-dashboard/addtag', function (req, res) {
     var entity = req.body.tagname;
 
-    admin.add(entity)
+    admin.addtag(entity)
         .then(id => {
             console.log(id);
             res.render('pages/admin-dashboard');
