@@ -33,7 +33,7 @@ module.exports = {
             var connection = createConnection();
 
             connection.connect();
-            connection.query(sql, entity, (error, value) => {
+            connection.query(sql, dad, son, editor, (error, value) => {
                 if (error)
                     reject(error);
                 else {
@@ -50,7 +50,7 @@ module.exports = {
             var connection = createConnection();
 
             connection.connect();
-            connection.query(sql, entity, (error, value) => {
+            connection.query(sql, tagname, (error, value) => {
                 if (error)
                     reject(error);
                 else {
