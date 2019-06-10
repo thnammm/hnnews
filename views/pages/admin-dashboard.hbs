@@ -104,22 +104,30 @@
 
                         {{!-- Content inside --}}
                         <div class="container-content-here mt-1">
-                            <div class="row list-style">
-                                <div class="col-md-3 list-style-flex list-style-active">
+                            <div class="row list-style user-part">
+                                <div class="col-md-3 manage-user-part list-style-flex list-style-active part-active">
+                                    {{#with numberaccount.[0].[3]}}
                                     <div class="ls-title"> TẤT CẢ </div>
-                                    <div class="count"> SL: <strong class="count-bold">60</strong></div>
+                                    <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
+                                    {{/with}}
                                 </div>
-                                <div class="col-md-3 list-style-flex">
+                                <div class="col-md-3 manage-user-part list-style-flex">
+                                    {{#with numberaccount.[0].[1]}}
                                     <div class="ls-title"> ĐỘC GIẢ </div>
-                                    <div class="count"> SL: <strong class="count-bold">14</strong></div>
+                                    <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
+                                    {{/with}}
                                 </div>
-                                <div class="col-md-3 list-style-flex">
+                                <div class="col-md-3 manage-user-part list-style-flex">
+                                    {{#with numberaccount.[0].[2]}}
                                     <div class="ls-title"> PHÓNG VIÊN </div>
-                                    <div class="count"> SL: <strong class="count-bold">4</strong></div>
+                                    <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
+                                    {{/with}}
                                 </div>
-                                <div class="col-md-3 list-style-flex">
+                                <div class="col-md-3 manage-user-part list-style-flex">
+                                    {{#with numberaccount.[0].[0]}}
                                     <div class="ls-title"> BIÊN TẬP VIÊN </div>
-                                    <div class="count"> SL: <strong class="count-bold">15</strong></div>
+                                    <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
+                                    {{/with}}
                                 </div>
                             </div>
                         </div>
@@ -128,58 +136,37 @@
                                 <div class="col-md-12 account-page">
                                     {{!-- Form --}}
                                     <form method="POST" style="height: initial;">
-                                        <table class="table">
+                                        <a class="btn btn-outline-success add-account-main-btn" role="button">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Thêm
+                                        </a>
+                                        <table class="table" style="margin-top: 20px;">
                                             <thead>
                                                 <tr>
                                                     <th> ID </th>
                                                     <th> Tên đăng nhập </th>
                                                     <th> Họ và tên </th>
                                                     <th> Email </th>
-                                                    <th> NTNS </th>
                                                     <th> Vai trò </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {{#each accountlist.[0]}}
                                                 <tr>
-                                                    <td>01</td>
-                                                    <td>thnam.itus</td>
-                                                    <td>Trần Hạo Nam</td>
-                                                    <td>thnam.itus@gmailcom</td>
-                                                    <td>29/12/1997</td>
+                                                    <td>{{inc @index}}</td>
+                                                    <td>{{user_name}}</td>
+                                                    <td>{{full_name}}</td>
+                                                    <td>{{email}}</td>
+                                                    {{#ifEquals role_name "user"}}
                                                     <td>Độc giả</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>02</td>
-                                                    <td>thuynhien0302</td>
-                                                    <td>Nguyễn Thùy Nhiên</td>
-                                                    <td>thuynhien0302@gmailcom</td>
-                                                    <td>03/02/1997</td>
+                                                    {{/ifEquals}}
+                                                    {{#ifEquals role_name "writer"}}
                                                     <td>Phóng viên</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>03</td>
-                                                    <td>buidoi22</td>
-                                                    <td>Bụi Thị Chợ</td>
-                                                    <td>buidoi22@gmailcom</td>
-                                                    <td>15/08/2000</td>
+                                                    {{/ifEquals}}
+                                                    {{#ifEquals role_name "editor"}}
                                                     <td>Biên tập viên</td>
+                                                    {{/ifEquals}}
                                                 </tr>
-                                                <tr>
-                                                    <td>04</td>
-                                                    <td>thnam.itus</td>
-                                                    <td>Trần Hạo Nam</td>
-                                                    <td>thnam.itus@gmailcom</td>
-                                                    <td>29/12/1997</td>
-                                                    <td>Độc giả</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>05</td>
-                                                    <td>thuynhien0302</td>
-                                                    <td>Nguyễn Thùy Nhiên</td>
-                                                    <td>thuynhien0302@gmailcom</td>
-                                                    <td>03/02/1997</td>
-                                                    <td>Phóng viên</td>
-                                                </tr>
+                                                {{/each}}
                                             </tbody>
                                         </table>
                                     </form>
@@ -207,6 +194,25 @@
                                             </li>
                                         </ul>
                                     </nav>
+                                </div>
+                            </div>
+                            <div class="row popup-background">
+                                <div class="col-md-12 add-popup">
+                                    <p class="popup-title"> THÊM NHÃN DÁN </p>
+                                    <p class="popup-describe"> <span style="color: red;">(*) Lưu ý bắt buộc</span> phải
+                                        nhập nhãn có kí tự <span style="color: red; font-weight: 700;">#</span> trong
+                                        tên. <span style="text-decoration: underline;">Ví dụ</span>: #test.
+                                    </p>
+                                    <div class="form-group">
+                                        <label class="label-popup" for="tag-name"> Nhãn dán </label>
+                                        <input type="text" class="form-control popup-input" id="tag-name" name="tagname"
+                                            placeholder="Nhập tên nhãn dán">
+                                    </div>
+                                    <div class="form-group" style="text-align: right;">
+                                        <button type="submit" class="btn btn-success" id="btn-add-tag">Thêm </button>
+                                        <button type="button" class="btn btn-dark close-btn"> Đóng
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -611,6 +617,25 @@
                 }
             });
 
+            $(".manage-user-part").hover(function () {
+                if ($(this).hasClass("list-style-active") === false) {
+                    $(this).addClass("list-style-active");
+                }
+            }, function () {
+                if ($(this).hasClass("part-active") === false) {
+                    $(this).removeClass("list-style-active");
+                }
+            });
+
+            $(".manage-user-part").click(function () {
+                if ($(this).hasClass("part-active") === false) {
+                    $(".user-part").children(".part-active").removeClass("list-style-active");
+                    $(".user-part").children(".part-active").removeClass("part-active");
+                    $(this).addClass("part-active");
+                    $(this).addClass("list-style-active");
+                }
+            })
+
             $(".add-category-main-btn").click(function () {
                 $(".popup-background").show();
             });
@@ -618,6 +643,10 @@
             $(".add-tag-main-btn").click(function () {
                 $(".popup-background").show();
             });
+
+            $(".add-account-main-btn").click(function () {
+                $(".popup-background").show();
+            })
 
             $(".close-btn").click(function () {
                 $(".popup-background").hide();

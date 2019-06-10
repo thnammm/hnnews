@@ -4,6 +4,10 @@ var admin = require('../models/admin.model.js');
 module.exports = app;
 
 app.get('/admin-dashboard', function (req, res) {
+    //Account
+    var numberaccount = admin.numberaccount();
+    var adminaccount = admin.allaccount();
+
     // Post
     var adminpost = admin.allpost();
 
@@ -27,14 +31,16 @@ app.get('/admin-dashboard', function (req, res) {
     });
 
     // Promise.then.catch and Render pages
-    Promise.all([admincategory, categorydad, editor, admintag, adminpost])
-        .then(([admincategory, categorydad, editor, admintag, adminpost]) => {
+    Promise.all([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount])
+        .then(([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount]) => {
             res.render('pages/admin-dashboard', {
                 categorylist: admincategory,
                 categorydad: categorydad,
                 editorlist: editor,
                 taglist: admintag,
-                postlist: adminpost
+                postlist: adminpost,
+                numberaccount: numberaccount,
+                accountlist: adminaccount
             });
         }).catch(err => {
             console.log(err);

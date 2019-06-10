@@ -1,6 +1,15 @@
 var db = require('../utils/admindb');
 
 module.exports = {
+    // Account
+    numberaccount: () => {
+        return db.load('call AdminCountAccount()');
+    },
+
+    allaccount: () => {
+        return db.load('call AdminGetAccount()');
+    },
+
     // Post
     allpost: () => {
         return db.load('call AdminGetPost()');
