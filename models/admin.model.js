@@ -1,8 +1,21 @@
 var db = require('../utils/admindb');
 
 module.exports = {
+    // Post
     allpost: () => {
         return db.load('call AdminGetPost()');
+    },
+
+    singlepost: id => {
+        return db.load(`call AdminGetOnePost(${id})`);
+    },
+
+    updatepost: (id, poststatus) => {
+        return db.load(`call AdminUpdateStatusPost(${id}, '${poststatus}')`);
+    },
+
+    deletepost: id => {
+        return db.load(`call AdminDeleteOnePost(${id})`);
     },
 
     // Category

@@ -41,6 +41,71 @@ app.get('/admin-dashboard', function (req, res) {
         })
 })
 
+// Post
+
+app.get('/admin-editpost/:id', function (req, res) {
+    var id = req.params.id;
+
+    // If Equals Handlebars
+    var Handlebars = require('handlebars');
+    Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    });
+
+    if (isNaN(id)) {
+        res.render('pages/admin-editpost', {
+            error: true
+        });
+    }
+
+    admin.singlepost(id).then(rows => {
+        if (rows.length > 0) {
+            if (rows[0][0].count === '0') {
+                res.render('pages/admin-editpost', {
+                    error: true
+                });
+            } else {
+                res.render('pages/admin-editpost', {
+                    post: rows[0],
+                    error: false
+                });
+            }
+        }
+    }).catch(err => {
+        console.log(err);
+        res.render('pages/admin-editpost', {
+            error: true
+        });
+    })
+})
+
+app.post('/admin-dashboard/updatepost', function (req, res) {
+    var entity = {
+        id: req.body.id,
+        poststatus: req.body.poststatus
+    }
+
+    admin.updatepost(entity.id, entity.poststatus)
+        .then(id => {
+            res.send("Success");
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
+app.post('/admin-dashboard/deletepost', function (req, res) {
+    var id = req.body.postid;
+
+    admin.deletepost(id)
+        .then(id => {
+            res.redirect('/admin-dashboard');
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
 // Category
 
 app.post('/admin-dashboard/addcategory', function (req, res) {
