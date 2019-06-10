@@ -29,6 +29,7 @@ app.get('/admin-dashboard', function (req, res) {
     // Promise.then.catch and Render pages
     Promise.all([admincategory, categorydad, editor, admintag, adminpost])
         .then(([admincategory, categorydad, editor, admintag, adminpost]) => {
+            console.log(admintag);
             res.render('pages/admin-dashboard', {
                 categorylist: admincategory,
                 categorydad: categorydad,
