@@ -5,6 +5,7 @@ module.exports = {
         return db.load('call AdminGetPost()');
     },
 
+    // Category
     allcategory: () => {
         return db.load('call AdminGetCategory()');
     },
@@ -18,9 +19,22 @@ module.exports = {
     },
 
     addcategory: entity => {
-        return db.addcategory(entity.son, entity.dad, entity.editor);
+        return db.addcategory(entity);
     },
 
+    singlecategory: id => {
+        return db.load(`call AdminGetOneCategory(${id})`);
+    },
+
+    updatecategory: (id, catname) => {
+        return db.load(`call AdminUpdateOneCategory(${id}, '${catname}')`);
+    },
+
+    deletecategory: id => {
+        return db.load(`call AdminDeleteOneCategory(${id})`);
+    },
+
+    // Tag
     alltag: () => {
         return db.load('call AdminGetTag()');
     },
@@ -31,5 +45,13 @@ module.exports = {
 
     singletag: id => {
         return db.load(`call AdminGetOneTag(${id})`);
+    },
+
+    updatetag: (id, tagname) => {
+        return db.load(`call AdminUpdateTag(${id}, '${tagname}')`);
+    },
+
+    deletetag: id => {
+        return db.load(`call AdminDeleteOneTag(${id})`);
     }
 };

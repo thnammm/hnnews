@@ -27,17 +27,17 @@ module.exports = {
         });
     },
 
-    addcategory: (son, dad, editor) => {
+    addcategory: entity => {
         return new Promise((resolve, reject) => {
-            var sql = `call AdminAddCategory('${son}', '${dad}', '${editor}')`;
+            var sql = `call AdminAddCategory('${entity.subcat}', ${entity.cat}, ${entity.editor})`;
             var connection = createConnection();
 
             connection.connect();
-            connection.query(sql, son, dad, editor, (error, value) => {
+            connection.query(sql, entity, (error, value) => {
                 if (error)
                     reject(error);
                 else {
-                    resolve(value.insertId);
+                    resolve(value);
                 }
                 connection.end();
             });
@@ -60,4 +60,6 @@ module.exports = {
             });
         });
     },
+
+    
 };

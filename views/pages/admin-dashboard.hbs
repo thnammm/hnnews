@@ -357,7 +357,7 @@
                                                     <td>{{full_name}}</td>
                                                     <td style="text-align: right;">
                                                         <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
-                                                            href="javascript:''" role="button">
+                                                            href="/admin-editcategory/{{id}}" role="button">
                                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                                         </a>
                                                     </td>
@@ -397,13 +397,13 @@
                                     <p class="popup-describe"> <span style="color: red;">(*) Chỉ có thể thêm chuyên mục
                                             con.</span> Trước tiên chọn chuyên mục cha. Sau đó nhập tên chuyên mục mong
                                         muốn ở ô chuyên mục con để tiến hành thêm dữ liệu chuyên mục mới. </p>
-                                    <form class="row" method="POST" action="/admin-dashboard/addcategory">
+                                    <form class="row" method="POST" action="">
                                         <div class="col-md-6 form-group">
                                             <label class="label-popup" for="category-dad"> Chuyên mục cha </label>
                                             <select class="form-control" id="category-dad" name="categorydad">
                                                 <option value="" disabled selected> Chọn chuyên mục </option>
                                                 {{#each categorydad}}
-                                                <option class="popup-input">{{category_name}}</option>
+                                                <option class="popup-input" value="{{id}}">{{category_name}}</option>
                                                 {{/each}}
                                             </select>
                                         </div>
@@ -413,7 +413,7 @@
                                             <select class="form-control" id="category-editor" name="categoryeditor">
                                                 <option value="" disabled selected> Chọn Biên tập viên </option>
                                                 {{#each editorlist}}
-                                                <option class="popup-input">{{full_name}}</option>
+                                                <option class="popup-input" value="{{id}}">{{full_name}}</option>
                                                 {{/each}}
                                             </select>
                                         </div>
@@ -423,10 +423,35 @@
                                                 name="categoryson" placeholder="Nhập tên chuyên mục con">
                                         </div>
                                         <div class="col-md-12 form-group" style="text-align: right;">
-                                            <button type="submit" class="btn btn-success">Thêm </button>
+                                            <a role="button" class="btn btn-success" id="btn-add-category"> Thêm </a>
                                             <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationSuccess">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO </p>
+                                    <p class="popup-content"> Bạn đã thêm <span style="color: rgb(40, 200, 0)">thành
+                                            công</span> chuyên mục mới.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailSame">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Thêm chuyên mục <span style="color: red">thất bại</span>
+                                        do tên chuyên mục đã tồn tại.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailNotEnough">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Thêm chuyên mục <span style="color: red">thất bại</span>
+                                        do nhập thiếu thông tin (<span style="font-weight: 700;">chưa chọn</span> tên
+                                        Chuyên mục cha hay tên Biên tập viên).</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
                         </div>
@@ -555,36 +580,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row popup-detailtag">
-                            <div class="col-md-12 tag-popup">
-                                <p class="popup-title"> THÔNG TIN CHI TIẾT </p>
-                                <form class="row" style="margin: 15px 60px;" method="POST"
-                                    action="/admin-dashboard/updatetag">
-                                    {{#each rows}}
-                                    <div class="col-md-4 form-group">
-                                        <label class="label-popup" for="tag-id"> #ID </label>
-                                        <input readonly type="text" class="form-control popup-input" id="tag-id"
-                                            name="tagid" value="{{id}}">
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <label class="label-popup" for="tag-name"> Tên nhãn dán </label>
-                                        <input type="text" class="form-control popup-input" id="tag-name" name="tagname"
-                                            value="{{tag_name}}">
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <label class="label-popup" for="tag-postvalue"> Số bài viết </label>
-                                        <input readonly type="text" class="form-control popup-input" id="tag-postvalue"
-                                            name="tagpostvalue" value="{{postvalue}}">
-                                    </div>
-                                    <div class="col-md-12 form-group" style="text-align: center;">
-                                        <button type="submit" class="btn btn-success" id="btn-add-tag"> Lưu </button>
-                                        <button type="submit" class="btn btn-danger" id="btn-add-tag"> Xóa </button>
-                                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
-                                    </div>
-                                    {{/each}}
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -628,8 +623,39 @@
                 $(".popup-background").hide();
                 $(".popup-notificationFailSame").hide();
                 $(".popup-notificationFailTyping").hide();
+                $(".popup-notificationFailNotEnough").hide();
                 $(".popup-notificationSuccess").hide();
             });
+
+            // Add Category Click
+            function btnaddcategoryClick() {
+                // Create parameter
+                var categorydad = $("select[name=categorydad]").val();
+                var categoryeditor = $("select[name=categoryeditor]").val();
+                var categoryson = $("#category-son").val();
+
+                // Final action
+                $.post("/admin-dashboard/addcategory",
+                    {
+                        subcat: categoryson,
+                        cat: categorydad,
+                        editor: categoryeditor
+                    },
+                    function (result) {
+                        if (result === "Success") {
+                            $(".popup-notificationSuccess").show();
+                        } else if (result === "FailNotEnough") {
+                            $(".popup-notificationFailNotEnough").show();
+                        } else {
+                            $(".popup-notificationFailSame").show();
+                        }
+                    });
+            }
+
+            $("#btn-add-category").click(function () {
+                $(".popup-background").hide();
+                btnaddcategoryClick();
+            })
 
             // Add Tag Click
             function btnaddtagClick() {

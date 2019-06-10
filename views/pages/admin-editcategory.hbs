@@ -22,7 +22,7 @@
                             <div class="row menu-bar">
                                 <div class="col-md-12 row-img">
                                     <a class="img-click" href="">
-                                        <img class="menu-icon active" src="/img/admin-menuicon/tag.png"></a>
+                                        <img class="menu-icon active" src="/img/admin-menuicon/category.png"></a>
                                 </div>
                             </div>
                         </div>
@@ -42,14 +42,14 @@
             {{!-- Content --}}
             <div class="col-md-11 content-here">
 
-                {{!-- Tag --}}
-                <div class="row content" id="admin-tag" style="margin: 0;">
+                {{!-- Category --}}
+                <div class="row content" id="admin-category" style="margin: 0;">
                     <div class="col-md-12" style="padding: 0;">
                         {{!-- Topbar --}}
                         <div class="row top-bar">
                             <div class="col-md-8 topbar-title">
                                 <div class="topbar-title-text-1"> QUẢN LÝ </div>
-                                <div class="topbar-title-text-2"> DANH SÁCH NHÃN DÁN </div>
+                                <div class="topbar-title-text-2"> DANH SÁCH CHUYÊN MỤC </div>
                             </div>
                             <div class="col-md-3 topbar-account">
                                 <div class="topbar-account-text-1"> TRẦN HẠO NAM </div>
@@ -64,41 +64,52 @@
                         <div class="container-content-here">
                             {{!-- View --}}
                             <div class="row content-inside">
-                                <div class="col-md-12 tag-page">
-                                    <div class="row tag-page-title">
+                                <div class="col-md-12 category-page">
+                                    <div class="row category-page-title">
                                         <p class="page-title"> THÔNG TIN CHI TIẾT </p>
                                     </div>
                                     {{#if error}}
                                     <div class="row alert alert-danger" style="height: initial; margin: 20px 0px;"
                                         role="alert">
-                                        Không tìm thấy dữ liệu, lỗi ID nhãn dán. <a href="/admin-dashboard"
-                                            class="alert-link"> &nbsp; Quay trở
-                                            về</a>
+                                        Không tìm thấy dữ liệu, lỗi ID chuyên mục. <a href="/admin-dashboard"
+                                            class="alert-link"> &nbsp; Quay trở về</a>
                                     </div>
                                     {{else}}
-                                    <form class="row" method="POST" style="height: initial;" action="/admin-dashboard/deletetag">
-                                        {{#each tag}}
-                                        <div class="col-md-4 form-group">
-                                            <label class="label-page" for="tag-id"> #ID </label>
-                                            <input readonly type="text" class="form-control page-input" id="tag-id"
-                                                name="tagid" value="{{id}}">
+                                    <form class="row" method="POST" style="height: initial;"
+                                        action="/admin-dashboard/deletecategory">
+                                        {{#each category}}
+                                        <div class="col-md-6 form-group">
+                                            <label class="label-page" for="cat-name"> Chuyên mục cha </label>
+                                            <input readonly type="text" class="form-control page-input" id="cat-name"
+                                                name="catname" value="{{category_name}}">
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="label-page" for="editor"> Biên tập viên </label>
+                                            <input readonly type="text" class="form-control page-input" id="editor"
+                                                name="editor" value="{{full_name}}">
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label class="label-page" for="tag-name"> Tên nhãn dán </label>
-                                            <input type="text" class="form-control page-input" id="tag-name"
-                                                name="tagname" value="{{tag_name}}">
+                                            <label class="label-page" for="subcat-id"> #ID </label>
+                                            <input readonly type="text" class="form-control page-input" id="subcat-id"
+                                                name="subcatid" value="{{sub_id}}">
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label class="label-page" for="tag-postvalue"> Số bài viết </label>
+                                            <label class="label-page" for="subcat-name"> Tên chuyên mục </label>
+                                            <input type="text" class="form-control page-input" id="subcat-name"
+                                                name="subcatname" value="{{subcategory_name}}">
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label class="label-page" for="subcat-postvalue"> Số bài viết </label>
                                             <input readonly type="text" class="form-control page-input"
-                                                id="tag-postvalue" name="tagpostvalue" value="{{postvalue}}">
+                                                id="subcat-postvalue" name="subcatpostvalue" value="{{postvalue}}">
                                         </div>
                                         <div class="col-md-12 form-group" style="text-align: right;">
-                                            <a role="button" class="btn btn-outline-success" id="btn-update-tag">
+                                            <a role="button" class="btn btn-outline-success" id="btn-update-category">
                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                                 Lưu
                                             </a>
-                                            <button type="submit" class="btn btn-outline-danger" id="btn-delete-tag">
+                                            <button type="submit" class="btn btn-outline-danger"
+                                                id="btn-delete-category">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                 Xóa
                                             </button>
@@ -137,32 +148,24 @@
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Bạn đã cập nhật <span style="color: rgb(40, 200, 0)">thành
-                                            công</span> tên nhãn dán mới.</p>
+                                            công</span> tên chuyên mục mới.</p>
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
                             <div class="row popup-notificationFailSame">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO LỖI </p>
-                                    <p class="popup-content"> Cập nhật nhãn dán <span style="color: red">thất bại</span> do
-                                        tên đã tồn tại.</p>
+                                    <p class="popup-content"> Cập nhật chuyên mục <span style="color: red">thất
+                                            bại</span> do tên đã tồn tại.</p>
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
-                            <div class="row popup-notificationFailTyping">
-                                <div class="col-md-12 noti-popup">
-                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
-                                    <p class="popup-content"> Cập nhật nhãn dán <span style="color: red">thất bại</span> do
-                                        nhập sai cấu trúc tên nhãn dán.</p>
-                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
-                                </div>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 
@@ -193,34 +196,31 @@
 
             $(".close-btn").click(function () {
                 $(".popup-notificationFailSame").hide();
-                $(".popup-notificationFailTyping").hide();
                 $(".popup-notificationSuccess").hide();
             });
 
-            function btnupdatetagClick() {
+            function btnupdatecategoryClick() {
                 // Create parameter
-                var id = $("#tag-id").val();
-                var newtagname = $("#tag-name").val();
+                var id = $("#subcat-id").val();
+                var newcatname = $("#subcat-name").val();
 
                 // Final action
-                $.post("/admin-dashboard/updatetag",
+                $.post("/admin-dashboard/updatecategory",
                     {
                         id: id,
-                        newtagname: newtagname
+                        newcatname: newcatname
                     },
                     function (result) {
                         if (result === "Success") {
                             $(".popup-notificationSuccess").show();
-                        } else if (result === "FailTyping") {
-                            $(".popup-notificationFailTyping").show();
                         } else {
                             $(".popup-notificationFailSame").show();
                         }
                     });
             }
 
-            $("#btn-update-tag").click(function () {
-                btnupdatetagClick();
+            $("#btn-update-category").click(function () {
+                btnupdatecategoryClick();
             })
 
         })

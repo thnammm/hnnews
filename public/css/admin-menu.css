@@ -225,11 +225,13 @@ thead, tbody, tr, th, td {
 }
 
 .btn-success {
-    background-color: rgb(40, 200, 0);
+    background-color: rgb(40, 200, 0) !important;
+    color: white !important;
 }
 
 .btn-success:hover {
-    background-color: rgb(32, 160, 0);
+    background-color: rgb(32, 160, 0) !important;
+    cursor: pointer !important;
 }
 
 /* Notification Popup */
@@ -269,6 +271,23 @@ thead, tbody, tr, th, td {
 }
 
 .popup-notificationFailTyping {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailNotEnough {
     height: initial;
     position: relative;
     background-color: rgba(255, 255, 255, 0.692);

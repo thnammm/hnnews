@@ -252,3 +252,126 @@
     color: black;
     font-size: 16pt;
 }
+
+/* Tag Page */
+
+.category-page {
+    text-align: right;
+    padding: 0px 40px;
+    height: initial;
+}
+
+.category-page-title {
+    margin: 20px 0px;
+    height: initial;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-title {
+    font-size: 24pt;
+    font-weight: 700;
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.page-describe {
+    font-size: 14pt;
+}
+
+.label-page {
+    font-weight: 700;
+    font-size: 14pt;
+}
+
+.page-input {
+    color: black;
+    font-size: 16pt;
+}
+
+/* Notification Popup */
+
+.popup-notificationSuccess {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailSame {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailTyping {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.noti-popup {
+    height: initial;
+    position: absolute;
+    -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+    border-radius: 10px;
+    background-color: white;
+    background-position: center;
+    top: 150px;
+    left: 400px;
+    right: 300px;
+    padding: 20px 20px;
+    font-size: 12pt;
+    text-align: center;
+    width: unset;
+}
+
+.noti-popup>button {
+    text-align: center;
+}
+
+.popup-title {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: 700;
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
