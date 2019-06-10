@@ -5,7 +5,7 @@ var createConnection = () => {
         host: 'localhost',
         port: '3306',
         user: 'root',
-        password: 'thuynhien0302',
+        password: 'root',
         database: 'hnnews'
     });
 }
@@ -27,13 +27,13 @@ module.exports = {
         });
     },
 
-    addcategory: (dad, son, editor) => {
+    addcategory: (son, dad, editor) => {
         return new Promise((resolve, reject) => {
-            var sql = `call AdminAddCategory('${dad}', '${son}', '${editor}', @counts)`;
+            var sql = `call AdminAddCategory('${son}', '${dad}', '${editor}')`;
             var connection = createConnection();
 
             connection.connect();
-            connection.query(sql, dad, son, editor, (error, value) => {
+            connection.query(sql, son, dad, editor, (error, value) => {
                 if (error)
                     reject(error);
                 else {
@@ -46,7 +46,7 @@ module.exports = {
 
     addtag: tagname => {
         return new Promise((resolve, reject) => {
-            var sql = `call AdminAddTag('${tagname}', @counts)`;
+            var sql = `call AdminAddTag('${tagname}')`;
             var connection = createConnection();
 
             connection.connect();
@@ -54,7 +54,7 @@ module.exports = {
                 if (error)
                     reject(error);
                 else {
-                    resolve(value.insertId);
+                    resolve(value);
                 }
                 connection.end();
             });

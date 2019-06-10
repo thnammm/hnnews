@@ -231,3 +231,115 @@ thead, tbody, tr, th, td {
 .btn-success:hover {
     background-color: rgb(32, 160, 0);
 }
+
+/* Notification Popup */
+
+.popup-notificationSuccess {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailSame {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailTyping {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.noti-popup {
+    height: initial;
+    position: absolute;
+    -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+    border-radius: 10px;
+    background-color: white;
+    background-position: center;
+    top: 150px;
+    left: 400px;
+    right: 300px;
+    padding: 20px 20px;
+    font-size: 12pt;
+    text-align: center;
+    width: unset;
+}
+
+.noti-popup>button {
+    text-align: center;
+}
+
+/* Detail Tag */
+
+.popup-detailtag {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.tag-popup {
+    height: initial;
+    position: absolute;
+    -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+    border-radius: 10px;
+    background-color: white;
+    background-position: center;
+    top: 150px;
+    left: 400px;
+    right: 300px;
+    padding: 20px 20px;
+    font-size: 12pt;
+    text-align: center;
+    width: unset;
+}

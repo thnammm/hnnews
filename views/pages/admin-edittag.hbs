@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> header}}
+    <link rel="stylesheet" type="text/css" href="/css/admin-edit.css">
+    <title> HNNews :: QTV :: Trang chủ </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin: 0;">
+            {{!-- Navbar of Admin --}}
+            <div class="col-md-1" style="padding: 0;">
+                <div class="row admin-nav">
+                    <div class="col-md-11 nav-col-1st">
+                        <div class="nav-top">
+                            <a href="/admin-dashboard">
+                                <img class="img-logo" src="/img/general/logo.png" alt="HN News">
+                            </a>
+                            <div class="line-support"></div>
+                            <div class="row menu-bar">
+                                <div class="col-md-12 row-img">
+                                    <a class="img-click" href="">
+                                        <img class="menu-icon active" src="/img/admin-menuicon/tag.png"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-bottom">
+                            <div class="line-support"></div>
+                            <div style="height: initial;">
+                                ADMIN PAGE
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 nav-col-2nd">
+                        <div class="shadowbox-admin-nav"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Content --}}
+            <div class="col-md-11 content-here">
+
+                {{!-- Tag --}}
+                <div class="row content" id="admin-tag" style="margin: 0;">
+                    <div class="col-md-12" style="padding: 0;">
+                        {{!-- Topbar --}}
+                        <div class="row top-bar">
+                            <div class="col-md-8 topbar-title">
+                                <div class="topbar-title-text-1"> QUẢN LÝ </div>
+                                <div class="topbar-title-text-2"> DANH SÁCH NHÃN DÁN </div>
+                            </div>
+                            <div class="col-md-3 topbar-account">
+                                <div class="topbar-account-text-1"> TRẦN HẠO NAM </div>
+                                <div class="topbar-account-text-2"> Quản trị viên </div>
+                            </div>
+                            <div class="col-md-1 topbar-avatar">
+                                <img class="topbar-avatar-img" src="/img/general/admin-avatar.png">
+                            </div>
+                        </div>
+
+                        {{!-- Content inside --}}
+                        <div class="container-content-here">
+                            {{!-- View --}}
+                            <div class="row content-inside">
+                                <div class="col-md-12 tag-page">
+                                    <div class="row tag-page-title">
+                                        <p class="page-title"> THÔNG TIN CHI TIẾT </p>
+                                    </div>
+                                    {{#if error}}
+                                    <div class="row alert alert-danger" style="height: initial; margin: 20px 0px;"
+                                        role="alert">
+                                        Không tìm thấy dữ liệu, lỗi ID nhãn dán. <a href="/admin-dashboard" class="alert-link"> &nbsp; Quay trở
+                                            về</a>
+                                    </div>
+                                    {{else}}
+                                    <form class="row" method="POST" style="height: initial;"
+                                        action="/admin-dashboard/updatetag">
+                                        {{#each tag}}
+                                        <div class="col-md-4 form-group">
+                                            <label class="label-page" for="tag-id"> #ID </label>
+                                            <input readonly type="text" class="form-control page-input" id="tag-id"
+                                                name="tagid" value="{{id}}">
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label class="label-page" for="tag-name"> Tên nhãn dán </label>
+                                            <input type="text" class="form-control page-input" id="tag-name"
+                                                name="tagname" value="{{tag_name}}">
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label class="label-page" for="tag-postvalue"> Số bài viết </label>
+                                            <input readonly type="text" class="form-control page-input"
+                                                id="tag-postvalue" name="tagpostvalue" value="{{postvalue}}">
+                                        </div>
+                                        <div class="col-md-12 form-group" style="text-align: right;">
+                                            <button type="submit" class="btn btn-outline-success" id="btn-add-tag">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                                Lưu
+                                            </button>
+                                            <button type="submit" class="btn btn-outline-danger" id="btn-add-tag">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                Xóa
+                                            </button>
+                                            <button type="button" class="btn btn-outline-dark close-btn">
+                                                <i class="fa fa-backward" aria-hidden="true"></i>
+                                                Quay lại
+                                            </button>
+                                        </div>
+                                        {{/each}}
+                                    </form>
+                                    {{/if}}
+                                </div>
+                            </div>
+
+                            {{!-- Popup --}}
+                            {{!-- <div class="row popup-background">
+                                <div class="col-md-12 add-popup">
+                                    <p class="popup-title"> THÊM NHÃN DÁN </p>
+                                    <p class="popup-describe"> <span style="color: red;">(*) Lưu ý bắt buộc</span> phải
+                                        nhập nhãn có kí tự <span style="color: red; font-weight: 700;">#</span> trong
+                                        tên. <span style="text-decoration: underline;">Ví dụ</span>: #test.
+                                    </p>
+                                    <div class="form-group">
+                                        <label class="label-popup" for="tag-name"> Nhãn dán </label>
+                                        <input type="text" class="form-control popup-input" id="tag-name" name="tagname"
+                                            placeholder="Nhập tên nhãn dán">
+                                    </div>
+                                    <div class="form-group" style="text-align: right;">
+                                        <button type="submit" class="btn btn-success" id="btn-add-tag">Thêm </button>
+                                        <button type="button" class="btn btn-dark close-btn"> Đóng
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationSuccess">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO </p>
+                                    <p class="popup-content"> Bạn đã thêm <span style="color: rgb(40, 200, 0)">thành
+                                            công</span> nhãn dán mới.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailSame">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Thêm nhãn dán <span style="color: red">thất bại</span> do
+                                        tên đã tồn tại.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailTyping">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Thêm nhãn dán <span style="color: red">thất bại</span> do
+                                        nhập sai cấu trúc tên nhãn dán.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row popup-detailtag">
+                            <div class="col-md-12 tag-popup">
+                                <p class="popup-title"> THÔNG TIN CHI TIẾT </p>
+                                <form class="row" style="margin: 15px 60px;" method="POST"
+                                    action="/admin-dashboard/updatetag">
+                                    #each rows
+                                    <div class="col-md-4 form-group">
+                                        <label class="label-popup" for="tag-id"> #ID </label>
+                                        <input readonly type="text" class="form-control popup-input" id="tag-id"
+                                            name="tagid" value="id">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="label-popup" for="tag-name"> Tên nhãn dán </label>
+                                        <input type="text" class="form-control popup-input" id="tag-name" name="tagname"
+                                            value="tag_name">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label class="label-popup" for="tag-postvalue"> Số bài viết </label>
+                                        <input readonly type="text" class="form-control popup-input" id="tag-postvalue"
+                                            name="tagpostvalue" value="postvalue">
+                                    </div>
+                                    <div class="col-md-12 form-group" style="text-align: center;">
+                                        <button type="submit" class="btn btn-success" id="btn-add-tag"> Lưu </button>
+                                        <button type="submit" class="btn btn-danger" id="btn-add-tag"> Xóa </button>
+                                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                    </div>
+                                    /each
+                                </form>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {{!-- Bootstrap 4.3.1 --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    {{!-- JQuery 3.3.1 --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- Script --}}
+    <script>
+        $(document).ready(function () {
+            /* $(".add-category-main-btn").click(function () {
+                $(".popup-background").show();
+            });
+
+            $(".add-tag-main-btn").click(function () {
+                $(".popup-background").show();
+            });
+
+            $(".close-btn").click(function () {
+                $(".popup-background").hide();
+                $(".popup-notificationFailSame").hide();
+                $(".popup-notificationFailTyping").hide();
+                $(".popup-notificationSuccess").hide();
+            }); */
+
+
+        })
+    </script>
+</body>
+
+</html>

@@ -18,7 +18,7 @@ module.exports = {
     },
 
     addcategory: entity => {
-        return db.addcategory(entity.dad, entity.son, entity.editor);
+        return db.addcategory(entity.son, entity.dad, entity.editor);
     },
 
     alltag: () => {
@@ -27,5 +27,9 @@ module.exports = {
 
     addtag: entity => {
         return db.addtag(entity);
+    },
+
+    singletag: id => {
+        return db.load(`call AdminGetOneTag(${id})`);
     }
 };

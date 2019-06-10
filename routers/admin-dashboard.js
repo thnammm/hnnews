@@ -43,8 +43,8 @@ app.get('/admin-dashboard', function (req, res) {
 
 app.post('/admin-dashboard/addcategory', function (req, res) {
     var entity = {
-        dad: req.body.categorydad,
         son: req.body.categoryson,
+        dad: req.body.categorydad,
         editor: req.body.categoryeditor
     }
 
@@ -59,14 +59,41 @@ app.post('/admin-dashboard/addcategory', function (req, res) {
 })
 
 app.post('/admin-dashboard/addtag', function (req, res) {
-    var entity = req.body.tagname;
+    var entity = req.body.newtag;
 
     admin.addtag(entity)
         .then(id => {
-            console.log(id);
-            res.redirect('/admin-dashboard');
+            if (id[0][0].count === '1') {
+                res.send("FailTyping");
+            } else if (id[0][0].count === '0') {
+                res.send("FailSame");
+            } else {
+                res.send("Success");
+            }
         })
         .catch(err => {
             console.log(err);
         })
+})
+
+app.get('/admin-edittag/:id', function (req, res) {
+    var id = req.params.id;
+
+    admin.singletag(id).then(rows => {
+        if (rows.length > 0) {
+            if (rows[0][0].count === '0') {
+                res.render('pages/admin-edittag', {
+                    error: true
+                });
+            } else {
+                res.render('pages/admin-edittag', {
+                    tag: rows[0],
+                    error: false
+                });
+            }
+        }
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured');
+    })
 })
