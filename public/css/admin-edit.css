@@ -1,0 +1,254 @@
+* {
+    font-family: 'Comfortaa', cursive;
+    height: 100%;
+}
+
+/* admin nav */
+
+.admin-nav {
+    margin: 0;
+    height: 100vh;
+    padding: 0;
+}
+
+.line-support {
+    height: 2px;
+    padding: 0px 5px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 3px 0px;
+}
+
+.menu-bar {
+    margin: 20px 0px;
+    text-align: center;
+    height: initial;
+}
+
+.row-img {
+    height: initial;
+    margin: 0;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.menu-icon {
+    width: 60%;
+    height: initial;
+    opacity: 0.6;
+}
+
+.menu-icon:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.active {
+    opacity: 1;
+}
+
+.shadowbox-admin-nav {
+    height: 100%;
+    width: 9px;
+    background-image: linear-gradient(to right, rgba(224, 195, 252, 0.5) 30%, rgba(141, 176, 247, 0.5));
+    margin: 0;
+}
+
+.img-logo {
+    width: 100%;
+    height: initial;
+    margin: 5px 0px;
+}
+
+.nav-top {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nav-bottom {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 700;
+    font-size: 12pt;
+    height: initial;
+}
+
+.nav-col-1st {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-col-2nd {
+    padding: 0px;
+}
+
+/* container */
+
+.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+
+.content-here {
+    text-align: center;
+    padding: 0;
+    height: initial;
+}
+
+.content-undraw {
+    margin: 20px 0px;
+    height: initial;
+}
+
+.top-bar {
+    height: initial;
+    margin: 0;
+    padding: 10px 0px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.topbar-title {
+    height: initial;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.topbar-title-text-1 {
+    height: initial;
+    text-align: left;
+    font-size: 10pt;
+    font-weight: 300;
+    color: black;
+}
+
+.topbar-title-text-2 {
+    height: initial;
+    text-align: left;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #8DB1F7;
+}
+
+.topbar-account {
+    height: initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 0;
+}
+
+.topbar-account-text-1 {
+    height: initial;
+    text-align: right;
+    font-size: 14pt;
+    font-weight: 700;
+    color: black;
+}
+
+.topbar-account-text-2 {
+    height: initial;
+    text-align: right;
+    font-size: 10pt;
+    font-weight: 300;
+    color: #868686;
+}
+
+.topbar-avatar {
+    height: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+}
+
+.topbar-avatar-img {
+    height: initial;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid #deac27;
+}
+
+/* container */
+
+.content-inside {
+    height: initial;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.container-content-here {
+    padding: 0;
+    margin: 0;
+    height: initial;
+    max-width: 100%;
+}
+
+.btn {
+    margin: 0px 5px;
+    height: initial;
+}
+
+.btn-outline-success {
+    color: rgb(40, 200, 0) !important;
+    border: 1px solid rgb(40, 200, 0);
+}
+
+.btn-outline-success:hover {
+    background-color: rgb(40, 200, 0);
+    border: 1px solid rgb(40, 200, 0);
+    color: white !important;
+    cursor: pointer;
+}
+
+.form-group {
+    text-align: left;
+    font-size: 18pt;
+}
+
+/* Tag Page */
+
+.tag-page {
+    text-align: right;
+    padding: 0px 40px;
+    height: initial;
+}
+
+.tag-page-title {
+    margin: 20px 0px;
+    height: initial;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-title {
+    font-size: 24pt;
+    font-weight: 700;
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.page-describe {
+    font-size: 14pt;
+}
+
+.label-page {
+    font-weight: 700;
+    font-size: 14pt;
+}
+
+.page-input {
+    color: black;
+    font-size: 16pt;
+}
