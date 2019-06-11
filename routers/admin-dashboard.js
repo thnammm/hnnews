@@ -7,6 +7,9 @@ app.get('/admin-dashboard', function (req, res) {
     //Account
     var numberaccount = admin.numberaccount();
     var adminaccount = admin.allaccount();
+    var adminuser = admin.alluser();
+    var adminwriter = admin.allwriter();
+    var admineditor = admin.alleditor();
 
     // Post
     var adminpost = admin.allpost();
@@ -31,8 +34,8 @@ app.get('/admin-dashboard', function (req, res) {
     });
 
     // Promise.then.catch and Render pages
-    Promise.all([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount])
-        .then(([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount]) => {
+    Promise.all([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount, adminuser, adminwriter, admineditor])
+        .then(([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount, adminuser, adminwriter, admineditor]) => {
             res.render('pages/admin-dashboard', {
                 categorylist: admincategory,
                 categorydad: categorydad,
@@ -40,7 +43,10 @@ app.get('/admin-dashboard', function (req, res) {
                 taglist: admintag,
                 postlist: adminpost,
                 numberaccount: numberaccount,
-                accountlist: adminaccount
+                accountlist: adminaccount,
+                userlist: adminuser,
+                writerlist: adminwriter,
+                editorlist: admineditor
             });
         }).catch(err => {
             console.log(err);
@@ -71,10 +77,30 @@ app.get('/admin-editpost/:id', function (req, res) {
                     error: true
                 });
             } else {
-                res.render('pages/admin-editpost', {
-                    post: rows[0],
-                    error: false
-                });
+                admin.tagofpost(id).then(ids => {
+                    var tagString = { data: "", length: 0 };
+                    for (var i = 0; i < ids[0].length; i++) {
+                        if (i === ids[0].length - 1) {
+                            tagString.data += ids[0][i].tag_name;
+                            tagString.length += 1;
+                        } else {
+                            tagString.data += ids[0][i].tag_name + ", ";
+                            tagString.length += 1;
+                        }
+                    }
+                    rows[0][0].tagpost = tagString;
+
+                    res.render('pages/admin-editpost', {
+                        post: rows[0],
+                        error: false
+                    });
+                })
+                    .catch(err => {
+                        console.log(err);
+                        res.render('pages/admin-editpost', {
+                            error: true
+                        });
+                    })
             }
         }
     }).catch(err => {

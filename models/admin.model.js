@@ -10,9 +10,25 @@ module.exports = {
         return db.load('call AdminGetAccount()');
     },
 
+    alluser: () => {
+        return db.load('call AdminGetUser()');
+    },
+
+    allwriter: () => {
+        return db.load('call AdminGetWriter()');
+    },
+
+    alleditor: () => {
+        return db.load('call AdminGetEditor()');
+    },
+
     // Post
     allpost: () => {
         return db.load('call AdminGetPost()');
+    },
+
+    tagofpost: id => {
+        return db.load(`call AdminGetTagOfPost(${id})`);
     },
 
     singlepost: id => {

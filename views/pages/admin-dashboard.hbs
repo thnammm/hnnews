@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row" style="margin: 0;">
             {{!-- Navbar of Admin --}}
-            <div class="col-md-1" style="padding: 0;">
+            <div class="col-md-1" style="padding: 0; height: initial;">
                 <div class="row admin-nav">
                     <div class="col-md-11 nav-col-1st">
                         <div class="nav-top">
@@ -105,25 +105,26 @@
                         {{!-- Content inside --}}
                         <div class="container-content-here mt-1">
                             <div class="row list-style user-part">
-                                <div class="col-md-3 manage-user-part list-style-flex list-style-active part-active">
+                                <div
+                                    class="col-md-3 manage-user-part list-style-flex list-style-active part-active account-page-account">
                                     {{#with numberaccount.[0].[3]}}
                                     <div class="ls-title"> TẤT CẢ </div>
                                     <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
                                     {{/with}}
                                 </div>
-                                <div class="col-md-3 manage-user-part list-style-flex">
+                                <div class="col-md-3 manage-user-part list-style-flex account-page-user">
                                     {{#with numberaccount.[0].[1]}}
                                     <div class="ls-title"> ĐỘC GIẢ </div>
                                     <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
                                     {{/with}}
                                 </div>
-                                <div class="col-md-3 manage-user-part list-style-flex">
+                                <div class="col-md-3 manage-user-part list-style-flex account-page-writer">
                                     {{#with numberaccount.[0].[2]}}
                                     <div class="ls-title"> PHÓNG VIÊN </div>
                                     <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
                                     {{/with}}
                                 </div>
-                                <div class="col-md-3 manage-user-part list-style-flex">
+                                <div class="col-md-3 manage-user-part list-style-flex account-page-editor">
                                     {{#with numberaccount.[0].[0]}}
                                     <div class="ls-title"> BIÊN TẬP VIÊN </div>
                                     <div class="count"> SL: <strong class="count-bold">{{count_value}}</strong></div>
@@ -135,7 +136,8 @@
                             <div class="row content-inside">
                                 <div class="col-md-12 account-page">
                                     {{!-- Form --}}
-                                    <form method="POST" style="height: initial;">
+                                    {{!-- All Account --}}
+                                    <form method="POST" class="account-page-here acc-here acc-active">
                                         <a class="btn btn-outline-success add-account-main-btn" role="button">
                                             <i class="fa fa-plus" aria-hidden="true"></i> Thêm
                                         </a>
@@ -165,6 +167,109 @@
                                                     {{#ifEquals role_name "editor"}}
                                                     <td>Biên tập viên</td>
                                                     {{/ifEquals}}
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </form>
+
+                                    {{!-- All User --}}
+                                    <form method="POST" class="account-page-here user-here">
+                                        <table class="table" style="margin-top: 20px;">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID </th>
+                                                    <th> Họ và tên </th>
+                                                    <th> Email </th>
+                                                    <th> NTNS </th>
+                                                    <th> Ngày tạo </th>
+                                                    <th> Ngày hết hạn </th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each userlist.[0]}}
+                                                <tr>
+                                                    <td>{{inc @index}}</td>
+                                                    <td>{{full_name}}</td>
+                                                    <td>{{email}}</td>
+                                                    <td>{{dob}}</td>
+                                                    <td>{{create_date}}</td>
+                                                    <td>{{end_date}}</td>
+                                                    <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                        <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
+                                                            href="/admin-editaccount/{{user_id}}" role="button">
+                                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </form>
+
+                                    {{!-- All Writer --}}
+                                    <form method="POST" class="account-page-here writer-here">
+                                        <table class="table" style="margin-top: 20px;">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID </th>
+                                                    <th> Họ và tên </th>
+                                                    <th> Email </th>
+                                                    <th> NTNS </th>
+                                                    <th> Bút danh </th>
+                                                    <th> Số lượng bài viết </th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each writerlist.[0]}}
+                                                <tr>
+                                                    <td>{{inc @index}}</td>
+                                                    <td>{{full_name}}</td>
+                                                    <td>{{email}}</td>
+                                                    <td>{{dob}}</td>
+                                                    <td>{{pen_name}}</td>
+                                                    <td>{{postvalue}}</td>
+                                                    <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                        <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
+                                                            href="/admin-editaccount/{{writer_id}}" role="button">
+                                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </form>
+
+                                    {{!-- All Editor --}}
+                                    <form method="POST" class="account-page-here editor-here">
+                                        <table class="table" style="margin-top: 20px;">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID </th>
+                                                    <th> Họ và tên </th>
+                                                    <th> Email </th>
+                                                    <th> NTNS </th>
+                                                    <th> Số chuyên mục phụ trách </th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each editorlist.[0]}}
+                                                <tr>
+                                                    <td>{{inc @index}}</td>
+                                                    <td>{{full_name}}</td>
+                                                    <td>{{email}}</td>
+                                                    <td>{{dob}}</td>
+                                                    <td>{{categoryvalue}}</td>
+                                                    <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                        <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
+                                                            href="/admin-editaccount/{{editor_id}}" role="button">
+                                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 {{/each}}
                                             </tbody>
@@ -633,6 +738,28 @@
                     $(".user-part").children(".part-active").removeClass("part-active");
                     $(this).addClass("part-active");
                     $(this).addClass("list-style-active");
+
+                    if ($(this).hasClass("account-page-account")) {
+                        if (!$(".acc-here").hasClass("acc-active")) {
+                            $(".account-page").children(".acc-active").removeClass("acc-active");
+                            $(".acc-here").addClass("acc-active");
+                        }
+                    } else if ($(this).hasClass("account-page-user")) {
+                        if (!$(".user-here").hasClass("acc-active")) {
+                            $(".account-page").children(".acc-active").removeClass("acc-active");
+                            $(".user-here").addClass("acc-active");
+                        }
+                    } else if ($(this).hasClass("account-page-writer")) {
+                        if (!$(".writer-here").hasClass("acc-active")) {
+                            $(".account-page").children(".acc-active").removeClass("acc-active");
+                            $(".writer-here").addClass("acc-active");
+                        }
+                    } else if ($(this).hasClass("account-page-editor")) {
+                        if (!$(".editor-here").hasClass("acc-active")) {
+                            $(".account-page").children(".acc-active").removeClass("acc-active");
+                            $(".editor-here").addClass("acc-active");
+                        }
+                    }
                 }
             })
 

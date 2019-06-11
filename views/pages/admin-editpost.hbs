@@ -77,50 +77,55 @@
                                     <form class="row" method="POST" style="height: initial;"
                                         action="/admin-dashboard/deletepost">
                                         {{#each post}}
-                                        <div class="col-md-1 form-group">
-                                            <label class="label-page-post" for="post-id"> #ID </label>
-                                            <input readonly type="text" class="form-control post-page-input" id="post-id"
+                                        <div class="col-md-2 form-group">
+                                            <label class="label-page" for="post-id"> #ID </label>
+                                            <input readonly type="text" class="form-control page-input" id="post-id"
                                                 name="postid" value="{{post_id}}">
                                         </div>
                                         <div class="col-md-7 form-group">
-                                            <label class="label-page-post" for="post-title"> Tiêu đề bài viết </label>
-                                            <input readonly type="text" class="form-control post-page-input" id="post-title"
+                                            <label class="label-page" for="post-title"> Tiêu đề bài viết </label>
+                                            <input readonly type="text" class="form-control page-input" id="post-title"
                                                 name="posttitle" value="{{title}}">
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label class="label-page-post" for="post-date"> Ngày đăng </label>
-                                            <input readonly type="text" class="form-control post-page-input" id="post-date"
+                                        <div class="col-md-3 form-group">
+                                            <label class="label-page" for="post-date"> Ngày đăng </label>
+                                            <input readonly type="text" class="form-control page-input" id="post-date"
                                                 name="postdate" value="{{finaldate}}">
                                         </div>
                                         <div class="col-md-12 form-group">
-                                            <label class="label-page-post" for="post-summary"> Nội dung tóm tắt </label>
-                                            <textarea readonly type="text" class="form-control post-page-input"
+                                            <label class="label-page" for="post-summary"> Nội dung tóm tắt </label>
+                                            <textarea readonly type="text" class="form-control page-input"
                                                 id="post-summary" name="postsummary"> {{summary}} </textarea>
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label class="label-page-post" for="post-category"> Chuyên mục cha </label>
-                                            <input readonly type="text" class="form-control post-page-input"
+                                        <div class="col-md-3 form-group">
+                                            <label class="label-page" for="post-category"> Chuyên mục cha </label>
+                                            <input readonly type="text" class="form-control page-input"
                                                 id="post-category" name="postcategory" value="{{category_name}}">
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label class="label-page-post" for="post-subcategory"> Chuyên mục con </label>
-                                            <input readonly type="text" class="form-control post-page-input"
+                                        <div class="col-md-3 form-group">
+                                            <label class="label-page" for="post-subcategory"> Chuyên mục con </label>
+                                            <input readonly type="text" class="form-control page-input"
                                                 id="post-subcategory" name="postsubcategory"
                                                 value="{{subcategory_name}}">
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label class="label-page-post" for="post-view"> Lượt xem </label>
-                                            <input readonly type="text" class="form-control post-page-input" id="post-view"
+                                        <div class="col-md-3 form-group">
+                                            <label class="label-page" for="post-view"> Lượt xem </label>
+                                            <input readonly type="text" class="form-control page-input" id="post-view"
                                                 name="postview" value="{{views}}">
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label class="label-page-post" for="post-writer"> Phóng viên </label>
-                                            <input readonly type="text" class="form-control post-page-input" id="post-writer"
+                                        <div class="col-md-3 form-group">
+                                            <label class="label-page" for="post-writer"> Phóng viên </label>
+                                            <input readonly type="text" class="form-control page-input" id="post-writer"
                                                 name="postwriter" value="{{full_name}}">
                                         </div>
-                                        <div class="col-md-8 form-group">
-                                            <label class="label-page-post" for="post-status"> Trạng thái </label>
-                                            <select class="form-control post-page-input" id="post-status" name="poststatus">
+                                        <div class="col-md-9 form-group">
+                                            <label class="label-page" for="post-tag"> Nhãn dán </label>
+                                            <input readonly type="text" class="form-control page-input" id="post-tag"
+                                                name="posttag" value="{{tagpost.data}}">
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label class="label-page" for="post-status"> Trạng thái </label>
+                                            <select class="form-control page-input" id="post-status" name="poststatus">
                                                 {{#ifEquals status_post "1"}}
                                                 <option class="popup-input" value="1" selected> Đã xuất bản </option>
                                                 <option class="popup-input" value="2"> Đã được duyệt và chờ xuất bản
@@ -154,9 +159,9 @@
                                         </div>
 
                                         <div class="col-md-12 form-group post-content-here">
-                                            <label class="label-page-post" for="post-content"> Nội dung chi tiết bài viết
+                                            <label class="label-page" for="post-content"> Nội dung chi tiết bài viết
                                             </label>
-                                            <div readonly class="row form-control post-page-input" id="post-content">
+                                            <div readonly class="row form-control page-input" id="post-content">
                                                 <div class="col-md-12 eachpost-content">
                                                     {{{content}}}
                                                 </div>
@@ -259,12 +264,16 @@
 
             $("#btn-show-content-post").click(function () {
                 $(".post-content-here").show();
+                $(".post-content-here").css("visibility", "visible");
+                $(".post-content-here").css("opacity", "1");
                 $("#btn-show-content-post").css("display", "none");
                 $("#btn-hide-content-post").css("display", "inline-block");
             })
 
             $("#btn-hide-content-post").click(function () {
                 $(".post-content-here").hide();
+                $(".post-content-here").css("visibility", "hidden");
+                $(".post-content-here").css("opacity", "0");
                 $("#btn-show-content-post").css("display", "inline-block");
                 $("#btn-hide-content-post").css("display", "none");
             })

@@ -13,6 +13,19 @@
   padding: 0px 40px;
 }
 
+.account-page-here {
+  opacity: 0;
+  height: 0;
+  transition: opacity 1s ease-in-out;
+  overflow: hidden;
+}
+
+.acc-active {
+  opacity: 1;
+  height: auto;
+  transition: opacity 1s ease-in-out;
+}
+
 .list-style {
   margin: 0;
   background-color: white;
@@ -116,11 +129,7 @@
   font-size: 12pt;
 }
 
-thead,
-tbody,
-tr,
-th,
-td {
+thead, tbody, tr, th, td {
   text-align: left;
   height: initial;
 }
@@ -330,7 +339,7 @@ td {
   width: unset;
 }
 
-.noti-popup > button {
+.noti-popup>button {
   text-align: center;
 }
 
