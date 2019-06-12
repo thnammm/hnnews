@@ -386,6 +386,111 @@
   cursor: pointer;
 }
 
+/* Account */
+
+.account-page {
+  text-align: right;
+  padding: 0px 40px;
+  height: initial;
+}
+
+.account-page-title {
+  margin: 20px 0px;
+  height: initial;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 24pt;
+  font-weight: 700;
+  background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.page-describe {
+  font-size: 14pt;
+}
+
+.label-page {
+  font-weight: 700;
+  font-size: 11pt;
+}
+
+.page-input {
+  color: black;
+  font-size: 12pt;
+  height: initial;
+}
+
+.update-enddate-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+#btn-off-update-enddate {
+  display: none;
+}
+
+#btn-update-date-user {
+  display: none;
+}
+
+.editor-remove-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.editor-add-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+#btn-save-remove-subcat {
+  display: none;
+}
+
+#btn-save-add-subcat {
+  display: none;
+}
+
+#btn-backto-remove-add {
+  display: none;
+}
+
+.btn-outline-info {
+  color: rgb(176, 57, 255) !important;
+  border-color: rgb(176, 57, 255) !important;
+}
+
+.btn-outline-info:hover {
+  color: white !important;
+  background-color: rgb(176, 57, 255) !important;
+  cursor: pointer;
+}
+
+.btn-outline-warning {
+  color: #ffc107 !important;
+}
+
+.btn-outline-warning:hover {
+  color: white !important;
+  background-color: #ffc107 !important;
+  cursor: pointer;
+}
+
 /* Notification Popup */
 
 .popup-notificationSuccess {
@@ -468,4 +573,157 @@
   background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.popup-notificationremoveSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationaddSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationduedateSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationpennameSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailNotChoose {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailAddNotChoose {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailSetDate {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailSetPenName {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailNotTyping {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
 }

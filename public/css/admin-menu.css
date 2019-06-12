@@ -247,7 +247,7 @@ thead, tbody, tr, th, td {
 }
 
 .btn-success:hover {
-  background-color: rgb(32, 160, 0) !important;
+  background-color: rgb(54, 177, 23) !important;
   cursor: pointer !important;
 }
 
@@ -321,6 +321,96 @@ thead, tbody, tr, th, td {
   display: none;
 }
 
+.popup-notificationFailUserName {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailEmail {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailBoth {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailFull {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.addaccount-popup {
+  height: initial;
+  position: absolute;
+  -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+  -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+  box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+  border-radius: 10px;
+  background-color: white;
+  background-position: center;
+  top: 80px;
+  left: 300px;
+  right: 200px;
+  padding: 20px 20px;
+  font-size: 12pt;
+  text-align: justify;
+  width: unset;
+}
+
+.addaccount-popup>button {
+  text-align: center;
+}
+
 .noti-popup {
   height: initial;
   position: absolute;
@@ -378,4 +468,8 @@ thead, tbody, tr, th, td {
   font-size: 12pt;
   text-align: center;
   width: unset;
+}
+
+.xdsoft_datetimepicker, .xdsoft_datepicker, .xdsoft_monthpicker, .xdsoft_label, .xdsoft_monthselect, .xdsoft_yearselect, .xdsoft_calendar {
+  height: initial;
 }

@@ -2,6 +2,7 @@ var express = require('express');
 var hbs = require('express-handlebars');
 var path = require('path');
 var morgan = require('morgan');
+var hbs_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
 
 var app = express();
@@ -37,7 +38,8 @@ app.engine('hbs', hbs({
     extname: 'hbs',
     defaultView: 'default',
     layoutsDir: __dirname + '/views/pages/',
-    partialsDir: __dirname + '/views/partials/'
+    partialsDir: __dirname + '/views/partials/',
+    section: hbs_sections()
 }));
 
 app.get('/', (req, res) => {

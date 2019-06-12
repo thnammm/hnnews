@@ -5,6 +5,8 @@
     {{> header}}
     <link rel="stylesheet" type="text/css" href="/css/admin-dashboard.css">
     <link rel="stylesheet" type="text/css" href="/css/admin-menu.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
     <title> HNNews :: QTV :: Trang chủ </title>
 </head>
 
@@ -38,7 +40,8 @@
                                         <img class="menu-icon" src="/img/admin-menuicon/category.png"></a>
                                 </div>
                                 <div class="col-md-12 row-img">
-                                    <a class="img-click" href="" data-target="#admin-tag" data-toggle="collapse">
+                                    <a class="img-click" id="admin-tag" href="" data-target="#admin-tag"
+                                        data-toggle="collapse">
                                         <img class="menu-icon" src="/img/admin-menuicon/tag.png"></a>
                                 </div>
                             </div>
@@ -91,7 +94,7 @@
                         <div class="row top-bar">
                             <div class="col-md-8 topbar-title">
                                 <div class="topbar-title-text-1"> QUẢN LÝ </div>
-                                <div class="topbar-title-text-2"> DANH SÁCH NGƯỜI DÙNG </div>
+                                <div class="topbar-title-text-2"> DANH SÁCH TÀI KHOẢN </div>
                             </div>
                             <div class="col-md-3 topbar-account">
                                 <div class="topbar-account-text-1"> TRẦN HẠO NAM </div>
@@ -196,9 +199,10 @@
                                                     <td>{{dob}}</td>
                                                     <td>{{create_date}}</td>
                                                     <td>{{end_date}}</td>
-                                                    <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                    <td style="text-align: right;">
                                                         <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
-                                                            href="/admin-editaccount/{{user_id}}" role="button">
+                                                            href="/admin-editaccount/{{role_name}}/{{user_id}}"
+                                                            role="button">
                                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                                         </a>
                                                     </td>
@@ -231,9 +235,10 @@
                                                     <td>{{dob}}</td>
                                                     <td>{{pen_name}}</td>
                                                     <td>{{postvalue}}</td>
-                                                    <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                    <td style="text-align: right;">
                                                         <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
-                                                            href="/admin-editaccount/{{writer_id}}" role="button">
+                                                            href="/admin-editaccount/{{role_name}}/{{writer_id}}"
+                                                            role="button">
                                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                                         </a>
                                                     </td>
@@ -264,9 +269,10 @@
                                                     <td>{{email}}</td>
                                                     <td>{{dob}}</td>
                                                     <td>{{categoryvalue}}</td>
-                                                    <td class="td-noborder" style="text-align: right; width: 50px;">
+                                                    <td style="text-align: right;">
                                                         <a class="btn btn-primary btn-sm" style="font-size: 7pt;"
-                                                            href="/admin-editaccount/{{editor_id}}" role="button">
+                                                            href="/admin-editaccount/{{role_name}}/{{editor_id}}"
+                                                            role="button">
                                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                                         </a>
                                                     </td>
@@ -302,22 +308,119 @@
                                 </div>
                             </div>
                             <div class="row popup-background">
-                                <div class="col-md-12 add-popup">
-                                    <p class="popup-title"> THÊM NHÃN DÁN </p>
+                                <div class="col-md-12 addaccount-popup">
+                                    <p class="popup-title"> TẠO TÀI KHOẢN </p>
                                     <p class="popup-describe"> <span style="color: red;">(*) Lưu ý bắt buộc</span> phải
-                                        nhập nhãn có kí tự <span style="color: red; font-weight: 700;">#</span> trong
-                                        tên. <span style="text-decoration: underline;">Ví dụ</span>: #test.
+                                        nhập đầy đủ thông tin được yêu cầu.
                                     </p>
-                                    <div class="form-group">
-                                        <label class="label-popup" for="tag-name"> Nhãn dán </label>
-                                        <input type="text" class="form-control popup-input" id="tag-name" name="tagname"
-                                            placeholder="Nhập tên nhãn dán">
-                                    </div>
-                                    <div class="form-group" style="text-align: right;">
-                                        <button type="submit" class="btn btn-success" id="btn-add-tag">Thêm </button>
-                                        <button type="button" class="btn btn-dark close-btn"> Đóng
-                                        </button>
-                                    </div>
+                                    <form class="row" method="POST" action="" id="adminAddAccountForm">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-popup" for="account-username"> Tên tài khoản
+                                                </label>
+                                                <input type="text" class="form-control popup-input"
+                                                    id="account-username" name="accountusername"
+                                                    placeholder="Nhập tên tài khoản" autofocus>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-popup" for="account-password"> Mật khẩu </label>
+                                                <input type="password" class="form-control popup-input"
+                                                    id="account-password" name="accountpassword"
+                                                    placeholder="Nhập mật khẩu">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-popup" for="account-email"> Email </label>
+                                                <input type="email" class="form-control popup-input" id="account-email"
+                                                    name="accountemail" placeholder="Nhập email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-popup" for="account-fullname"> Họ và tên </label>
+                                                <input type="text" class="form-control popup-input"
+                                                    id="account-fullname" name="accountfullname"
+                                                    placeholder="Nhập họ tên">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-popup" for="account-dob"> NTNS </label>
+                                                <input type="text" class="form-control popup-input" id="account-dob"
+                                                    name="accountdob" placeholder="Nhập NTNS">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="label-page" for="account-role"> Vai trò </label>
+                                                <select class="form-control" id="account-role" name="accountrole">
+                                                    <option value="" disabled selected> Chọn phân hệ tài khoản </option>
+                                                    <option class="popup-input" value="1"> Độc giả </option>
+                                                    <option class="popup-input" value="2"> Phóng viên </option>
+                                                    <option class="popup-input" value="3"> Biên tập viên </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 form-group acc-penname">
+                                            <label class="label-popup" for="account-penname"> Bút danh </label>
+                                            <input type="text" class="form-control popup-input" id="account-penname"
+                                                name="accountpenname" placeholder="Nhập bút danh" disabled>
+                                        </div>
+                                        <div class="col-md-4 form-group acc-startdate">
+                                            <label class="label-popup" for="account-startdate"> Ngày bắt đầu </label>
+                                            <input type="text" class="form-control popup-input" id="account-startdate"
+                                                name="accountstartdate" placeholder="Nhập ngày bắt đầu" disabled>
+                                        </div>
+                                        <div class="col-md-4 form-group acc-enddate">
+                                            <label class="label-popup" for="account-enddate"> Ngày hết hạn </label>
+                                            <input type="text" class="form-control popup-input" id="account-enddate"
+                                                name="accountenddate" placeholder="Nhập ngày hết hạn" disabled>
+                                        </div>
+                                        <div class="col-md-12 form-group" style="text-align: center;">
+                                            <button type="button" class="btn btn-success" id="btn-add-account"> Tạo tài
+                                                khoản </button>
+                                            <button type="button" class="btn btn-dark close-btn"> Đóng
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationSuccess">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO </p>
+                                    <p class="popup-content"> Tạo <span style="color: rgb(40, 200, 0)">thành
+                                            công</span> tài khoản mới.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailBoth">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                                        do
+                                        username và email đã tồn tại.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailUserName">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                                        do
+                                        username đã tồn tại.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailEmail">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                                        do
+                                        email đã tồn tại.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                </div>
+                            </div>
+                            <div class="row popup-notificationFailFull">
+                                <div class="col-md-12 noti-popup">
+                                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                                        do chưa nhập đầy đủ thông tin.</p>
+                                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
                         </div>
@@ -523,7 +626,7 @@
                                                 trách </label>
                                             <select class="form-control" id="category-editor" name="categoryeditor">
                                                 <option value="" disabled selected> Chọn Biên tập viên </option>
-                                                {{#each editorlist}}
+                                                {{#each editorsubcatlist}}
                                                 <option class="popup-input" value="{{id}}">{{full_name}}</option>
                                                 {{/each}}
                                             </select>
@@ -531,7 +634,7 @@
                                         <div class="col-md-12 form-group">
                                             <label class="label-popup" for="category-son"> Chuyên mục con </label>
                                             <input type="text" class="form-control popup-input" id="category-son"
-                                                name="categoryson" placeholder="Nhập tên chuyên mục con">
+                                                name="categoryson" placeholder="Nhập tên chuyên mục con" autofocus>
                                         </div>
                                         <div class="col-md-12 form-group" style="text-align: right;">
                                             <a role="button" class="btn btn-success" id="btn-add-category"> Thêm </a>
@@ -657,10 +760,10 @@
                                     <div class="form-group">
                                         <label class="label-popup" for="tag-name"> Nhãn dán </label>
                                         <input type="text" class="form-control popup-input" id="tag-name" name="tagname"
-                                            placeholder="Nhập tên nhãn dán">
+                                            placeholder="Nhập tên nhãn dán" autofocus>
                                     </div>
                                     <div class="form-group" style="text-align: right;">
-                                        <button type="submit" class="btn btn-success" id="btn-add-tag">Thêm </button>
+                                        <button type="button" class="btn btn-success" id="btn-add-tag">Thêm </button>
                                         <button type="button" class="btn btn-dark close-btn"> Đóng
                                         </button>
                                     </div>
@@ -711,6 +814,13 @@
 
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- JQuery Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    {{!-- JQuery DateTimePicker --}}
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 
     {{!-- Script --}}
     <script>
@@ -781,6 +891,10 @@
                 $(".popup-notificationFailTyping").hide();
                 $(".popup-notificationFailNotEnough").hide();
                 $(".popup-notificationSuccess").hide();
+                $(".popup-notificationFailBoth").hide();
+                $(".popup-notificationFailEmail").hide();
+                $(".popup-notificationFailUserName").hide();
+                $(".popup-notificationFailFull").hide();
             });
 
             // Add Category Click
@@ -798,12 +912,12 @@
                         editor: categoryeditor
                     },
                     function (result) {
-                        if (result === "Success") {
-                            $(".popup-notificationSuccess").show();
-                        } else if (result === "FailNotEnough") {
+                        if (result === "FailNotEnough") {
                             $(".popup-notificationFailNotEnough").show();
-                        } else {
+                        } else if (result === "FailSame") {
                             $(".popup-notificationFailSame").show();
+                        } else {
+                            $(".popup-notificationSuccess").show();
                         }
                     });
             }
@@ -822,12 +936,12 @@
                 $.post("/admin-dashboard/addtag",
                     { newtag: newtag },
                     function (result) {
-                        if (result === "Success") {
-                            $(".popup-notificationSuccess").show();
-                        } else if (result === "FailTyping") {
+                        if (result === "FailTyping") {
                             $(".popup-notificationFailTyping").show();
-                        } else {
+                        } else if (result === "FailSame") {
                             $(".popup-notificationFailSame").show();
+                        } else {
+                            $(".popup-notificationSuccess").show();
                         }
                     });
             }
@@ -835,6 +949,260 @@
             $("#btn-add-tag").click(function () {
                 $(".popup-background").hide();
                 btnaddtagClick();
+            })
+
+            $("#account-dob").datetimepicker({
+                format: 'd/m/Y',
+                timepicker: false,
+                mask: false,
+                maxDate: 0
+            });
+
+            $("#adminAddAccountForm").validate({
+                rules: {
+                    accountusername: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    accountpassword: {
+                        required: true,
+                        minlength: 6
+                    },
+                    accountemail: {
+                        required: true,
+                        email: true,
+                        maxlength: 100
+                    },
+                    accountfullname: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    accountdob: {
+                        required: true,
+                    },
+                    accountrole: {
+                        required: true,
+                    },
+                    accountpenname: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 50
+                    },
+                    accountstartdate: {
+                        required: true
+                    },
+                    accountenddate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    accountusername: {
+                        required: 'Không được để trống tên đăng nhập',
+                        maxlength: 'Tên đăng nhập chỉ tối đa 50 kí tự'
+                    },
+                    accountpassword: {
+                        required: 'Không được để trống mật khẩu',
+                        minlength: 'Mật khẩu phải có ít nhất 6 kí tự'
+                    },
+                    accountemail: {
+                        required: 'Không được để trống email',
+                        email: 'Email phải nhập đúng cấu trúc',
+                        maxlength: 'Email chỉ tối đa 100 kí tự'
+                    },
+                    accountfullname: {
+                        required: 'Không được để trống họ tên',
+                        maxlength: 'Họ tên chỉ tối đa 100 kí tự'
+                    },
+                    accountdob: {
+                        required: 'Không được để trống NTNS',
+                    },
+                    accountrole: {
+                        required: 'Không được để trống vai trò',
+                    },
+                    accountpenname: {
+                        required: 'Không được để trống bút danh',
+                        minlength: 'Bút danh phải có ít nhất 6 kí tự',
+                        maxlength: 'Bút danh chỉ tối đa 50 kí tự'
+                    },
+                    accountstartdate: {
+                        required: 'Không được để trống Ngày bắt đầu'
+                    },
+                    accountenddate: {
+                        required: 'Không được để trống Ngày hết hạn'
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+
+            $("#account-startdate").click(function () {
+                $("#account-startdate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            maxDate: $('#account-enddate').val() ? $('#account-enddate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+
+                $("#account-enddate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            minDate: $('#account-startdate').val() ? $('#account-startdate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+            })
+
+            $("#account-enddate").click(function () {
+                $("#account-startdate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            maxDate: $('#account-enddate').val() ? $('#account-enddate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+
+                $("#account-enddate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            minDate: $('#account-startdate').val() ? $('#account-startdate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+            })
+
+            $("#account-role").click(function () {
+                if ($("select[name=accountrole]").val() === "") {
+                    $(".acc-startdate").children("input").prop('disabled', true);
+                    $(".acc-enddate").children("input").prop('disabled', true);
+                    $(".acc-penname").children("input").prop('disabled', true);
+                } else if ($("select[name=accountrole]").val() === "1") {
+                    $(".acc-startdate").children("input").prop('disabled', false);
+                    $(".acc-enddate").children("input").prop('disabled', false);
+                    $(".acc-penname").children("input").prop('disabled', true);
+                } else if ($("select[name=accountrole]").val() === "2") {
+                    $(".acc-startdate").children("input").prop('disabled', true);
+                    $(".acc-enddate").children("input").prop('disabled', true);
+                    $(".acc-penname").children("input").prop('disabled', false);
+                } else if ($("select[name=accountrole]").val() === "3") {
+                    $(".acc-startdate").children("input").prop('disabled', true);
+                    $(".acc-enddate").children("input").prop('disabled', true);
+                    $(".acc-penname").children("input").prop('disabled', true);
+                }
+            });
+
+            $("#account-startdate").click(function () {
+                $("#account-startdate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            maxDate: $('#account-enddate').val() ? $('#account-enddate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+
+                $("#account-enddate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            minDate: $('#account-startdate').val() ? $('#account-startdate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+            });
+
+            $("#account-enddate").click(function () {
+                $("#account-startdate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            maxDate: $('#account-enddate').val() ? $('#account-enddate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+
+                $("#account-enddate").datetimepicker({
+                    format: 'd/m/Y',
+                    onShow: function (ct) {
+                        this.setOptions({
+                            minDate: $('#account-startdate').val() ? $('#account-startdate').val() : false
+                        })
+                    },
+                    timepicker: false,
+                    mask: false
+                });
+            });
+
+            // Add Account Click
+            function btnaddaccountClick() {
+                // Create parameter
+                var username = $("#account-username").val();
+                var pass = $("#account-password").val();
+                var roleid = parseInt($("select[name=accountrole]").val());
+                var fullname = $("#account-fullname").val();
+                var email = $("#account-email").val();
+                var penname = $("#account-penname").val();
+                var dob = $("#account-dob").val();
+                var start = $("#account-startdate").val();
+                var end = $("#account-enddate").val();
+
+                // Final action
+                $.post("/admin-dashboard/addaccount",
+                    {
+                        username: username,
+                        pass: pass,
+                        roleid: roleid,
+                        fullname: fullname,
+                        email: email,
+                        penname: penname,
+                        dob: dob,
+                        start: start,
+                        end: end
+                    },
+                    function (result) {
+                        if (result === "FailBoth") {
+                            $(".popup-background").hide();
+                            $(".popup-notificationFailBoth").show();
+                        } else if (result === "FailEmail") {
+                            $(".popup-background").hide();
+                            $(".popup-notificationFailEmail").show();
+                        } else if (result === "FailUserName") {
+                            $(".popup-background").hide();
+                            $(".popup-notificationFailUserName").show();
+                        } else if (result === "FailFull") {
+                        } else {
+                            $(".popup-background").hide();
+                            $(".popup-notificationSuccess").show();
+                        }
+                    });
+            }
+
+            $("#btn-add-account").click(function () {
+                btnaddaccountClick();
             })
         })
     </script>
