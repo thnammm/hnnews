@@ -1,0 +1,729 @@
+* {
+  font-family: "Comfortaa", cursive;
+  height: 100%;
+}
+
+/* admin nav */
+
+.admin-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.line-support {
+  height: 2px;
+  padding: 0px 5px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 3px 0px;
+}
+
+.menu-bar {
+  margin: 20px 0px;
+  text-align: center;
+  height: initial;
+}
+
+.row-img {
+  height: initial;
+  margin: 0;
+  text-align: center;
+  margin: 15px 0px;
+}
+
+.menu-icon {
+  width: 60%;
+  height: initial;
+  opacity: 0.6;
+}
+
+.menu-icon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.active {
+  opacity: 1;
+}
+
+.shadowbox-admin-nav {
+  height: 100%;
+  width: 9px;
+  background-image: linear-gradient(to right, rgba(224, 195, 252, 0.5) 30%, rgba(141, 176, 247, 0.5));
+  margin: 0;
+}
+
+.img-logo {
+  width: 100%;
+  height: initial;
+  margin: 5px 0px;
+}
+
+.nav-top {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.nav-bottom {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 12pt;
+  height: initial;
+}
+
+.nav-col-1st {
+  background-image: linear-gradient(to right, #e0c3fc 30%, #8db1f7);
+  padding: 0px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-col-2nd {
+  padding: 0px;
+}
+
+/* container */
+
+.container {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+.content-here {
+  text-align: center;
+  padding: 0;
+  height: initial;
+}
+
+.content-undraw {
+  margin: 20px 0px;
+  height: initial;
+}
+
+.top-bar {
+  height: initial;
+  margin: 0;
+  padding: 10px 0px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.topbar-title {
+  height: initial;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.topbar-title-text-1 {
+  height: initial;
+  text-align: left;
+  font-size: 10pt;
+  font-weight: 300;
+  color: black;
+}
+
+.topbar-title-text-2 {
+  height: initial;
+  text-align: left;
+  font-size: 16pt;
+  font-weight: 700;
+  color: #8db1f7;
+}
+
+.topbar-account {
+  height: initial;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 0;
+}
+
+.topbar-account-text-1 {
+  height: initial;
+  text-align: right;
+  font-size: 14pt;
+  font-weight: 700;
+  color: black;
+}
+
+.topbar-account-text-2 {
+  height: initial;
+  text-align: right;
+  font-size: 10pt;
+  font-weight: 300;
+  color: #868686;
+}
+
+.topbar-avatar {
+  height: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+}
+
+.topbar-avatar-img {
+  height: initial;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid #deac27;
+}
+
+/* container */
+
+.content-inside {
+  height: initial;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.container-content-here {
+  padding: 0;
+  margin: 0;
+  height: initial;
+  max-width: 100%;
+}
+
+.btn {
+  margin: 0px 5px;
+  height: initial;
+}
+
+.btn-outline-success {
+  color: rgb(40, 200, 0) !important;
+  border: 1px solid rgb(40, 200, 0);
+}
+
+.btn-outline-success:hover {
+  background-color: rgb(40, 200, 0);
+  border: 1px solid rgb(40, 200, 0);
+  color: white !important;
+  cursor: pointer;
+}
+
+.form-group {
+  text-align: left;
+  font-size: 12pt;
+}
+
+/* Tag Page */
+
+.tag-page {
+  text-align: right;
+  padding: 0px 40px;
+  height: initial;
+}
+
+.tag-page-title {
+  margin: 20px 0px;
+  height: initial;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 24pt;
+  font-weight: 700;
+  background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.page-describe {
+  font-size: 14pt;
+}
+
+.label-page {
+  font-weight: 700;
+  font-size: 11pt;
+}
+
+.page-input {
+  color: black;
+  font-size: 12pt;
+}
+
+/* Category Page */
+
+.category-page {
+  text-align: right;
+  padding: 0px 40px;
+  height: initial;
+}
+
+.category-page-title {
+  margin: 20px 0px;
+  height: initial;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 24pt;
+  font-weight: 700;
+  background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.page-describe {
+  font-size: 14pt;
+}
+
+.label-page {
+  font-weight: 700;
+  font-size: 11pt;
+}
+
+.page-input {
+  color: black;
+  font-size: 12pt;
+}
+
+/* Post Page */
+
+.post-page {
+  text-align: right;
+  padding: 0px 40px;
+  height: initial;
+}
+
+.post-page-title {
+  margin: 20px 0px;
+  height: initial;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 24pt;
+  font-weight: 700;
+  background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.page-describe {
+  font-size: 14pt;
+}
+
+.label-page {
+  font-weight: 700;
+  font-size: 11pt;
+}
+
+.page-input {
+  color: black;
+  font-size: 12pt;
+  height: initial;
+}
+
+#post-content {
+  margin: 0;
+}
+
+#btn-hide-content-post {
+  display: none;
+}
+
+.post-content-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.eachpost-content {
+  text-align: justify;
+  font-size: 11pt;
+  font-weight: 500;
+  color: black;
+  height: initial;
+  margin-top: 20px;
+}
+
+.row-margin {
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+}
+
+.eachpost-content-img {
+  width: 30%;
+  text-align: center;
+}
+
+.style-default {
+  margin-bottom: 20px;
+}
+
+.style-bold {
+  font-weight: 700;
+}
+
+.btn-outline-primary {
+  color: rgb(0, 174, 255) !important;
+  border-color: rgb(0, 174, 255) !important;
+}
+
+.btn-outline-primary:hover {
+  color: white !important;
+  background-color: rgb(0, 174, 255) !important;
+  cursor: pointer;
+}
+
+/* Account */
+
+.account-page {
+  text-align: right;
+  padding: 0px 40px;
+  height: initial;
+}
+
+.account-page-title {
+  margin: 20px 0px;
+  height: initial;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 24pt;
+  font-weight: 700;
+  background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.page-describe {
+  font-size: 14pt;
+}
+
+.label-page {
+  font-weight: 700;
+  font-size: 11pt;
+}
+
+.page-input {
+  color: black;
+  font-size: 12pt;
+  height: initial;
+}
+
+.update-enddate-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+#btn-off-update-enddate {
+  display: none;
+}
+
+#btn-update-date-user {
+  display: none;
+}
+
+.editor-remove-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.editor-add-here {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s ease-in-out;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+#btn-save-remove-subcat {
+  display: none;
+}
+
+#btn-save-add-subcat {
+  display: none;
+}
+
+#btn-backto-remove-add {
+  display: none;
+}
+
+.btn-outline-info {
+  color: rgb(176, 57, 255) !important;
+  border-color: rgb(176, 57, 255) !important;
+}
+
+.btn-outline-info:hover {
+  color: white !important;
+  background-color: rgb(176, 57, 255) !important;
+  cursor: pointer;
+}
+
+.btn-outline-warning {
+  color: #ffc107 !important;
+}
+
+.btn-outline-warning:hover {
+  color: white !important;
+  background-color: #ffc107 !important;
+  cursor: pointer;
+}
+
+/* Notification Popup */
+
+.popup-notificationSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailSame {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailTyping {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.noti-popup {
+  height: initial;
+  position: absolute;
+  -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+  -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+  box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+  border-radius: 10px;
+  background-color: white;
+  background-position: center;
+  top: 150px;
+  left: 400px;
+  right: 300px;
+  padding: 20px 20px;
+  font-size: 12pt;
+  text-align: center;
+  width: unset;
+}
+
+.noti-popup>button {
+  text-align: center;
+}
+
+.popup-title {
+  text-align: center;
+  font-size: 18pt;
+  font-weight: 700;
+  background: -webkit-linear-gradient(left, #e0c3fc 30%, #8db1f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.popup-notificationremoveSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationaddSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationduedateSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationpennameSuccess {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailNotChoose {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailAddNotChoose {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailSetDate {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailSetPenName {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.popup-notificationFailNotTyping {
+  height: initial;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.692);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}

@@ -1,0 +1,121 @@
+.row {
+    margin: 0px 130px;
+}
+
+.up-nav {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 14pt;
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#phone-contact {
+    text-align: right;
+    font-size: 11pt;
+    line-height: 27px;
+}
+
+#login-register-area {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.choice-here {
+    font-size: 11pt;
+    color: black;
+    text-decoration: none;
+}
+
+.choice-here:hover {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#register-choice {
+    margin-right: 20px;
+}
+
+.nav-main {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    margin: 0;
+    font-size: 14pt;
+}
+
+.nav-logo {
+    margin: 10px 0px;
+}
+
+.nav-container {
+    text-align: right;
+    line-height: 80px !important;
+}
+
+.text-search {
+    min-width: 350px;
+    display: inline-block;
+}
+
+.icon-search {
+    position: absolute;
+    top: 32px;
+    right: 332px;
+    color: #D9D9D9;
+}
+
+.search-box {
+    border-radius: 20px;
+    padding: 3px 5px 3px 40px;
+    color: black;
+    font-size: 12pt;
+    font-weight: 400;
+    border: none;
+}
+
+.shadowbox-nav {
+    height: 5px;
+    background-image: linear-gradient(to right, rgba(224, 195, 252, 0.5) 30%, rgba(141, 176, 247, 0.5));
+    margin: 0;
+}
+
+.profile-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-avatar {
+    max-width: 100%;
+    width: 70%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.nav-avatar:hover {
+    -moz-box-shadow: 1px 2px 5px white;
+    -webkit-box-shadow: 1px 2px 5px white;
+    box-shadow: 0px 0px 10px white;
+}
+
+#scroll-nav {
+    width: 100%;
+}
+
+.bootstrap-position-fixed {
+    top: 0;
+    z-index: 100;
+}

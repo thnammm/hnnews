@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> header}}
+    <link rel="stylesheet" type="text/css" href="/css/admin.css">
+    <title> HNNews :: Quản trị viên </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin: 0;">
+            <div class="col-md-1" style="padding: 0;">
+                {{> admin-nav}}
+            </div>
+            <div class="col-md-11 content-here">
+                <div class="row content-undraw">
+                    <div class="col-md-6 pic-left">
+                        <img class="content-img" src="/img/undraw/undraw-admin1.png">
+                    </div>
+                    <div class="col-md-6 pic-right">
+                        <img class="content-img" src="/img/undraw/undraw-admin2.png">
+                    </div>
+                </div>
+                <div class="content-form">
+                    <div class="form-title"> QUẢN TRỊ VIÊN </div>
+                    <div class="line-below-contentform"></div>
+                    <div class="note-for-title"> Chỉ có <strong style="font-weight: 700; color: black;  ">quản trị
+                            viên</strong> mới có thể đăng nhập </div>
+                    <form class="login-form">
+                        <div class="group">
+                            <input type="text" name="id-admin" id="id-admin" required>
+                            <span class="bar"></span>
+                            <label><span class="span-input"> Tên đăng nhập </span></label>
+                        </div>
+
+                        <div class="group">
+                            <input type="password" name="password-admin" id="password-admin" required>
+                            <span class="bar"></span>
+                            <label><span class="span-input"> Mật khẩu </span></label>
+                        </div>
+
+                        <div id="login-button" class="login-btn"> Đăng nhập </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Bootstrap 4.3.1 --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    {{!-- JQuery 3.3.1 --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        function loginBtn() {
+            var idadmin = $("#id-admin").val();
+            var passwordadmin = $("#password-admin").val();
+
+            $.post("/admin/admin-login",
+                {
+                    id: idadmin,
+                    password: passwordadmin
+                }, function (result) {
+                    if (result === "wrong id") {
+                        alert("Sai rồi haha!");
+                    }
+                })
+        }
+
+        $(document).ready(function () {
+            $("#login-button").click(function () {
+                window.location.href = "localhost:3000/admin-dashboard";
+            })
+        })
+    </script>
+</body>
+
+</html>

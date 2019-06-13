@@ -1,0 +1,38 @@
+.menu {
+    font-weight: 500;
+    font-size: 14pt;
+    margin-top: 6px;
+    margin-bottom: 3px;
+}
+
+.line-under-menu {
+    height: 2px;
+    margin: 0px 145px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+}
+
+.resize-col-menu {
+    padding: 0px 5px;
+    width: fit-content;
+    text-align: center;
+}
+
+.menu-link {
+    color: rgb(86, 86, 86);
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    text-decoration: none;
+    font-weight: 700;
+    color: black;
+}
+
+.menu-scroll {
+    margin: 0;
+    padding: 6px 130px 3px 130px;
+    background-color: white;
+    z-index: 100;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}

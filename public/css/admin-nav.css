@@ -1,0 +1,79 @@
+.admin-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.line-support {
+    height: 2px;
+    padding: 0px 5px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 3px 0px;
+}
+
+.menu-bar {
+    margin: 20px 0px;
+    text-align: center;
+    height: initial;
+}
+
+.row-img {
+    height: initial;
+    margin: 0;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.menu-icon {
+    width: 60%;
+    height: initial;
+    opacity: 0.6;
+}
+
+.menu-icon:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.active {
+    opacity: 1;
+}
+
+.shadowbox-admin-nav {
+    height: 100%;
+    width: 9px;
+    background-image: linear-gradient(to right,rgba(224, 195, 252, 0.5) 30%, rgba(141, 176, 247, 0.5));
+    margin: 0;
+}
+
+.img-logo {
+    width: 100%;
+    height: initial;
+    margin: 5px 0px;
+}
+
+.nav-top {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nav-bottom {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 700;
+    font-size: 12pt;
+    height: initial;
+}
+
+.nav-col-1st {
+    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-col-2nd {
+    padding: 0px;
+}

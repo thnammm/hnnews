@@ -9,3 +9,6 @@ Work with git:
  - Pull: git pull
  - Create new branch: git checkout <branch name>
  - Check branch: git status
+
+ - Fetch: git fetch
+ - Mergr: git merge origin/branch
