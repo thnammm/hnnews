@@ -230,6 +230,18 @@ app.get('/admin-editaccount/:rolename/:id', function (req, res) {
 
     if (rolename === 'editor') {
         admin.singleeditor(id).then(rows => {
+            var catString = { data: "", length: 0 };
+            for (var i = 0; i < rows[0].length; i++) {
+                if (i === rows[0].length - 1) {
+                    catString.data += rows[0][i].subcategory_name;
+                    catString.length += 1;
+                } else {
+                    catString.data += rows[0][i].subcategory_name + ", ";
+                    catString.length += 1;
+                }
+            }
+            rows[0][0].editor_subcat = catString;
+
             if (rows.length > 0) {
                 if (rows[0][0].count === '0') {
                     res.render('pages/admin-editaccount', {

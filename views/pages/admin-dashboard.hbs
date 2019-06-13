@@ -380,7 +380,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="row popup-notificationSuccess">
+                            <div class="row popup-notificationSuccess" id="addaccountSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Tạo <span style="color: rgb(40, 200, 0)">thành
@@ -643,7 +643,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="row popup-notificationSuccess">
+                            <div class="row popup-notificationSuccess" id="addcategorySuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Bạn đã thêm <span style="color: rgb(40, 200, 0)">thành
@@ -769,7 +769,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row popup-notificationSuccess">
+                            <div class="row popup-notificationSuccess" id="addtagSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Bạn đã thêm <span style="color: rgb(40, 200, 0)">thành
@@ -890,12 +890,16 @@
                 $(".popup-notificationFailSame").hide();
                 $(".popup-notificationFailTyping").hide();
                 $(".popup-notificationFailNotEnough").hide();
-                $(".popup-notificationSuccess").hide();
                 $(".popup-notificationFailBoth").hide();
                 $(".popup-notificationFailEmail").hide();
                 $(".popup-notificationFailUserName").hide();
                 $(".popup-notificationFailFull").hide();
             });
+
+            $(".popup-notificationSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
 
             // Add Category Click
             function btnaddcategoryClick() {

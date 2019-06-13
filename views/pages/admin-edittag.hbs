@@ -76,7 +76,8 @@
                                             về</a>
                                     </div>
                                     {{else}}
-                                    <form class="row" method="POST" style="height: initial;" action="/admin-dashboard/deletetag">
+                                    <form class="row" method="POST" style="height: initial;"
+                                        action="/admin-dashboard/deletetag">
                                         {{#each tag}}
                                         <div class="col-md-4 form-group">
                                             <label class="label-page" for="tag-id"> #ID </label>
@@ -133,7 +134,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            <div class="row popup-notificationSuccess">
+                            <div class="row popup-notificationSuccess" id="editSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Bạn đã cập nhật <span style="color: rgb(40, 200, 0)">thành
@@ -144,7 +145,8 @@
                             <div class="row popup-notificationFailSame">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO LỖI </p>
-                                    <p class="popup-content"> Cập nhật nhãn dán <span style="color: red">thất bại</span> do
+                                    <p class="popup-content"> Cập nhật nhãn dán <span style="color: red">thất bại</span>
+                                        do
                                         tên đã tồn tại.</p>
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
@@ -152,17 +154,18 @@
                             <div class="row popup-notificationFailTyping">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO LỖI </p>
-                                    <p class="popup-content"> Cập nhật nhãn dán <span style="color: red">thất bại</span> do
+                                    <p class="popup-content"> Cập nhật nhãn dán <span style="color: red">thất bại</span>
+                                        do
                                         nhập sai cấu trúc tên nhãn dán.</p>
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 
@@ -194,8 +197,12 @@
             $(".close-btn").click(function () {
                 $(".popup-notificationFailSame").hide();
                 $(".popup-notificationFailTyping").hide();
-                $(".popup-notificationSuccess").hide();
             });
+
+            $("#editSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
 
             function btnupdatetagClick() {
                 // Create parameter

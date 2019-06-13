@@ -216,7 +216,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            <div class="row popup-notificationSuccess">
+                            <div class="row popup-notificationSuccess" id="editSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Bạn đã cập nhật <span style="color: rgb(40, 200, 0)">thành
@@ -261,6 +261,11 @@
             $(".close-btn").click(function () {
                 $(".popup-notificationSuccess").hide();
             });
+
+            $("#editSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
 
             $("#btn-show-content-post").click(function () {
                 $(".post-content-here").show();

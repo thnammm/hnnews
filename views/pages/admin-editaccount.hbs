@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="col-md-12 form-group" style="text-align: right;">
                                             <a role="button" class="btn btn-outline-primary" id="btn-on-update-enddate">
-                                                <i class="fa fa-money" aria-hidden="true"></i>
+                                                <i class="fas fa-money-bill-alt" aria-hidden="true"></i>
                                                 Gia hạn
                                             </a>
                                             <a role="button" class="btn btn-outline-primary"
@@ -212,7 +212,7 @@
                                             <input readonly type="text" class="form-control page-input" id="editor-dob"
                                                 name="editordob" value="{{dob}}">
                                         </div>
-                                        <div class="col-md-4 form-group">
+                                        <div class="col-md-3 form-group">
                                             <label class="label-page" for="editor-email"> Email </label>
                                             <input readonly type="text" class="form-control page-input"
                                                 id="editor-email" name="editoremail" value="{{email}}">
@@ -223,11 +223,11 @@
                                                 id="editor-categoryvalue" name="editorcategoryvalue"
                                                 value="{{categoryvalue}}">
                                         </div>
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-7 form-group">
                                             <label class="label-page" for="editor-subcat"> Các chuyên mục phụ trách
                                             </label>
                                             <input readonly type="text" class="form-control page-input"
-                                                id="editor-subcat" name="editorsubcat" value="{{editor_subcat}}">
+                                                id="editor-subcat" name="editorsubcat" value="{{editor_subcat.data}}">
                                         </div>
                                         {{/with}}
 
@@ -315,7 +315,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            <div class="row popup-notificationduedateSuccess">
+                            <div class="row popup-notificationduedateSuccess" id="duedateSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Thay đổi <span style="color: rgb(40, 200, 0)">thành
@@ -323,7 +323,7 @@
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
-                            <div class="row popup-notificationpennameSuccess">
+                            <div class="row popup-notificationpennameSuccess" id="pennameSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Thay đổi <span style="color: rgb(40, 200, 0)">thành
@@ -331,7 +331,7 @@
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
-                            <div class="row popup-notificationremoveSuccess">
+                            <div class="row popup-notificationremoveSuccess" id="removeSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Gỡ <span style="color: rgb(40, 200, 0)">thành
@@ -339,7 +339,7 @@
                                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                                 </div>
                             </div>
-                            <div class="row popup-notificationaddSuccess">
+                            <div class="row popup-notificationaddSuccess" id="addSuccess">
                                 <div class="col-md-12 noti-popup">
                                     <p class="popup-title"> THÔNG BÁO </p>
                                     <p class="popup-content"> Phân quyền phụ trách <span
@@ -423,15 +423,28 @@
             }); */
 
             $(".close-btn").click(function () {
-                $(".popup-notificationremoveSuccess").hide();
-                $(".popup-notificationaddSuccess").hide();
-                $(".popup-notificationduedateSuccess").hide();
-                $(".popup-notificationpennameSuccess").hide();
                 $(".popup-notificationFailNotChoose").hide();
                 $(".popup-notificationFailAddNotChoose").hide();
                 $(".popup-notificationFailSetDate").hide();
                 $(".popup-notificationFailSetPenName").hide();
                 $(".popup-notificationFailNotTyping").hide();
+            });
+
+            $("#removeSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationremoveSuccess").hide();
+                window.location.reload();
+            });
+            $("#addSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationaddSuccess").hide();
+                window.location.reload();
+            });
+            $("#pennameSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationpennameSuccess").hide();
+                window.location.reload();
+            });
+            $("#duedateSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationduedateSuccess").hide();
+                window.location.reload();
             });
 
             $("#btn-on-update-enddate").click(function () {
