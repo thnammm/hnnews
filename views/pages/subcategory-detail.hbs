@@ -3,55 +3,54 @@
 
 <head>
     {{> header}}
-    <link rel="stylesheet" type="text/css" href="/css/hashtag-detail.css">
+    <link rel="stylesheet" type="text/css" href="/css/category-subcategory-detail.css">
     <title> HNNews </title>
 </head>
 
 <body>
     {{>nav}}
+
     <div class="content">
         <div id="scroll-smooth"></div>
-
         <div class="row row-margin">
             {{#if error}}
             <div class="col-md-12 alert alert-danger" style="height: initial; margin: 20px 0px; text-align: center"
                 role="alert">
                 <p style="margin: 20px 0px;"> <i class="fas fa-sad-tear"
                         style="color: rgb(235, 129, 129); font-size: 200px;"></i> </p>
-                <p style="margin: 20px 0px;"> Không tìm thấy dữ liệu nhãn dán, lỗi ID truy cập.<a href="/nhandan"
-                        class="alert-link"> Quay
-                        trở về</a> </p>
+                <p style="margin: 20px 0px;"> Không tìm thấy dữ liệu chuyên mục, lỗi ID truy cập.<a href="/"
+                        class="alert-link"> Quay về trang chủ </a> </p>
             </div>
             {{else}}
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="row text-row row-margin" style="padding: 8px 0px">
-                    {{#with postvalue.[0]}}
+                    {{#with subcatvalue.[0]}}
                     <div class="col-md-6 text-left">
                         <div class="line-left"></div>
                         <div style="font-weight:700; line-height: 24px; text-transform: uppercase;">
-                            {{tag_name}}
+                            {{subcategory_name}}
                         </div>
                     </div>
-                    <div class="col-md-6 text-right" style="font-size: 11pt; line-height: 24px">{{tagvalue}} kết quả
+                    <div class="col-md-6 text-right" style="font-size: 11pt; line-height: 24px">{{postvalue}} kết quả
                     </div>
                     {{/with}}
                 </div>
 
-                {{#each singletag}}
+                {{#each singlesubcat}}
                 <div class="row row-margin something" style="margin-top: 35px !important">
-                    <div class="col-md-5 img-postoftag" style="padding: 0">
-                        <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}">
-                            <img src="{{link_image}}" alt="{{link_name}}" class="postoftag-style">
+                    <div class="col-md-5 img-postofcat" style="padding: 0">
+                        <a href="">
+                            <img src="{{link_image}}" alt="{{link_name}}" class="postofcat-style">
                         </a>
                     </div>
                     <div class="col-md-7 post-flex">
                         <div>
                             <div class="title-post text-left">
-                                <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}" class="title-postoftag">{{title}}</a>
+                                <a href="" class="title-postofcat">{{title}}</a>
                             </div>
                             <div class="post-date text-left">
                                 {{finaldate}} - {{views}} lượt xem - <a href="/chuyenmuc/{{cat_id}}/{{subcat_id}}"
-                                    class="subname-posttag">{{subcategory_name}}</a>
+                                    class="subname-postcat">{{subcategory_name}}</a>
                             </div>
                             <div class="post-summary text-left">
                                 {{summary}}
@@ -90,25 +89,24 @@
                 </nav>
             </div>
 
-            <div class="col-md-3">
-                <div class="row row-margin content-right" style="padding-bottom: 20px;">
+            <div class="col-md-4">
+                <div class="row row-margin content-right">
                     <div class="col-md-12 line-top"></div>
-                    <div class="col-md-12 title-left">NHÃN DÁN KHÁC</div>
+                    <div class="col-md-12 title-left">XEM NHIỀU</div>
                     <div class="col-md-12 line-bottom-title"></div>
-                    {{#each othertag}}
-                    <div class="col-md-6 img-hash">
-                        <a class="othertag" href="/nhandan/{{tag_id}}">
-                            <img src="/img/hashtag-pic.png" class="img-othertag">
-                            <div class="text-hash">{{tag_name}}</div>
-                        </a>
-                    </div>
+                    {{#each viewmuch}}
+                    <a href="" class="row row-margin viewmuch" style="margin-top: 15px !important">
+                        <div class="col-md-6" style="padding-right: 7px"><img class="viewmuch-pic" src="{{link_image}}"
+                                alt="{{link_name}}"></div>
+                        <div class="col-md-6" style="padding-left: 7px; font-size: 10pt;">{{title}}</div>
+                    </a>
                     {{/each}}
-                    <a href="/nhandan" class="giris-yap-buton"> XEM TẤT CẢ </a>
                 </div>
             </div>
             {{/if}}
         </div>
     </div>
+
     <img src="/img/scrollbar/rscr-btn.png" alt="" class="rscr-btn scroll-to-top">
     {{!-- Footer --}}
     {{>footer}}

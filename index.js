@@ -7,13 +7,11 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+var main = require('./routers/main');
 var login = require('./routers/login');
 var register = require('./routers/register');
 var forgetpassword = require('./routers/forget-password');
 var resultsearch = require('./routers/result-search');
-var categorypostlist = require('./routers/category-post-list');
-var hashtaglist = require('./routers/hashtag-list');
-var hashtagdetail = require('./routers/hashtag-detail');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
 var user = require('./routers/user');
@@ -24,15 +22,11 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 
-var indexmodel = require('./models/index.model.js');
+var indexModel = require('./models/index.model.js');
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-// app.use(morgan('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -43,22 +37,21 @@ app.engine('hbs', hbs({
 }));
 
 app.get('/', (req, res) => {
-    var bestpost = indexmodel.best();
-    var bestofbestpost = indexmodel.bestofbest();
-    var newpost = indexmodel.newest();
-    var viewpost = indexmodel.viewest();
-    var top10post = indexmodel.top10posts();
-    var top10tag = indexmodel.top10tags();
-    var statistic = indexmodel.statistic();
-    Promise.all([
-        bestpost, bestofbestpost, newpost, viewpost, top10post, top10tag, statistic])
-        .then(([best, bobest, newest, viewest, top10post, top10tag, statistic]) => {
+    var bestpost = indexModel.bestpost();
+    var newpost = indexModel.newpost();
+    var viewpost = indexModel.viewpost();
+    var top8post = indexModel.top8post();
+    var top10tag = indexModel.top10tag();
+    var statistic = indexModel.statistic();
+
+    Promise.all(
+        [bestpost, newpost, viewpost, top8post, top10tag, statistic])
+        .then(([bestpost, newpost, viewpost, top8post, top10tag, statistic]) => {
             res.render('pages/index', {
-                bestpost: best,
-                bestofbestpost: bobest,
-                newpost: newest,
-                viewpost: viewest,
-                top10post: top10post,
+                bestpost: bestpost,
+                newpost: newpost,
+                viewpost: viewpost,
+                top8post: top8post,
                 top10tag: top10tag,
                 statistic: statistic
             });
@@ -67,17 +60,16 @@ app.get('/', (req, res) => {
         })
 })
 
+
+app.use(main)
 app.use(login)
 app.use(register)
 app.use(forgetpassword)
 app.use(resultsearch)
-app.use(categorypostlist)
-app.use(hashtaglist)
 app.use(admin)
 app.use(admindashboard)
 app.use(user)
 app.use(detaileachpost)
-app.use(hashtagdetail);
 app.use(editpost);
 
 app.listen(3000, () => {

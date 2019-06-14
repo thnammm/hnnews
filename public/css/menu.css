@@ -9,7 +9,7 @@
     height: 2px;
     margin: 0px 145px;
     border-radius: 20px;
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
 }
 
 .resize-col-menu {
@@ -35,4 +35,14 @@
     background-color: white;
     z-index: 100;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-item:hover {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    color: white;
+    font-weight: 700;
 }

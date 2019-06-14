@@ -1,11 +1,15 @@
 var db = require('../utils/db');
 
 module.exports = {
-    all: () => {
-        return db.load('select * from post');
+    singlepost: (catid, subcatid, postid) => {
+        return db.load(`call IndexGetDetailPost(${catid}, ${subcatid}, ${postid})`);
     },
 
-    best: () => {
-        return db.load(`select * from post where id = '1'`);
+    commentofpost: id => {
+        return db.load(`call IndexGetCommentDetailPost(${id})`);
+    },
+
+    otherpostsamecategory: id => {
+        return db.load(`call IndexGetSameCategoryPost(${id})`);
     }
 };

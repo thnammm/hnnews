@@ -4,12 +4,15 @@
 <head>
     {{> header}}
     <link rel="stylesheet" type="text/css" href="/css/hashtag-list.css">
-    <title> HNNews - Danh sách nhãn dán </title>
+    <title> HNNews </title>
 </head>
 
 <body>
+    {{>nav}}
+
     <div class="container">
-        {{>nav}}
+        <div id="scroll-smooth"></div>
+
         <div class="nav-search">
             <div class="title-nav-search">DANH SÁCH NHÃN DÁN</div>
             <form class="col-md-12" style="padding: 0">
@@ -19,7 +22,7 @@
         <div style="margin: 0px 130px 30px 130px">
             <div class="row row-margin row-hashtag">
                 {{#each alltag.[0]}}
-                <div class="col-md-3" style="margin-bottom: 20px;">
+                <a href="/nhandan/{{tag_id}}" class="col-md-3 singletag">
                     <div class="row row-margin hashtag-img">
                         <div class="col-md-12">
                             <img class="img" src="/img/hashtag-pic.png">
@@ -29,7 +32,7 @@
                         <div class="col-md-6 tag-name">{{tag_name}}</div>
                         <div class="col-md-6 tag-value">{{tagvalue}} bài</div>
                     </div>
-                </div>
+                </a>
                 {{/each}}
             </div>
         </div>
@@ -74,6 +77,28 @@
 
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Auto scroll to top
+            $(window).scrollTop(0);
+            $(".menu").hide();
+            $(".line-under-menu").hide();
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 27) {
+                    $("#scroll-smooth").css("display", "block");
+                    $("#scroll-nav").addClass("position-fixed");
+                    $("#scroll-nav").addClass("bootstrap-position-fixed");
+                }
+                else {
+                    $("#scroll-smooth").css("display", "none");
+                    $("#scroll-nav").removeClass("position-fixed");
+                    $("#scroll-nav").removeClass("bootstrap-position-fixed");
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>

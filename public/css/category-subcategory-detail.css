@@ -8,6 +8,7 @@
 
 .content {
   margin: 25px 130px;
+  margin-bottom: 35px;
 }
 
 .text-row {
@@ -41,6 +42,7 @@
   font-size: 9pt;
   color: #868686;
   font-weight: 300;
+  margin: 5px 0px;
 }
 
 .post-summary {
@@ -49,10 +51,13 @@
   font-size: 11pt;
 }
 
-.post-hastag {
+.post-hashtag {
   font-weight: 700;
   font-size: 9pt;
   margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .post-flex {
@@ -66,6 +71,7 @@
   border-radius: 5px;
   box-shadow: 0px 0px 3px #8db1f7;
   border-top: 5px;
+  padding-bottom: 25px !important;
 }
 
 .line-top {
@@ -81,7 +87,7 @@
 .title-left {
   font-size: 15pt;
   font-weight: 700;
-  padding: 5px 0px 0px 10px;
+  padding: 10px 0px 0px 10px;
   line-height: 40px;
 }
 
@@ -124,7 +130,7 @@ input[type=radio] {
 .scroll-to-top {
   position: fixed;
   right: 50px;
-  bottom: 50px;
+  bottom: 150px;
   width: 35px;
   height: 35px;
   cursor: pointer;
@@ -159,4 +165,100 @@ input[type=radio] {
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   border: none;
+}
+
+#scroll-smooth {
+  width: 100%;
+  height: 116px;
+  background-color: white;
+  display: none;
+}
+
+.rscr-btn {
+  bottom: 150px;
+  right: 50px;
+  cursor: pointer;
+}
+
+.postofcat-style {
+  border-radius: 5px;
+  width: 328px;
+  height: 176px;
+  overflow: hidden;
+  transition: 1s ease-in-out 0s;
+  -webkit-transition: 1s ease-in-out 0s;
+}
+
+.subname-postcat {
+  font-weight: 700;
+  font-size: 11pt;
+  color: black;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+.subname-postcat:hover {
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #8DB1F7;
+}
+
+.img-postofcat {
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.img-postofcat:hover img {
+  transform: scale(1.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.something:hover img {
+  transform: scale(1.2);
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.title-post:hover {
+  cursor: pointer;
+}
+
+.title-postofcat {
+  color: black;
+}
+
+.title-postofcat:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+.viewmuch {
+  color: black;
+}
+
+.viewmuch:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+.viewmuch-pic {
+  width: 145px;
+  height: 75px;
+  border-radius: 5px;
+}
+
+.a-tag-specialstyle {
+  color: black;
+  padding: 5px;
+}
+
+.a-tag-specialstyle:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #E0C3FC;
+  font-weight: 700;
+  border-radius: 5px;
 }

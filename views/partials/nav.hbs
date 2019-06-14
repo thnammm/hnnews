@@ -69,31 +69,104 @@
 
     {{!-- Menu category --}}
     <div class="row menu">
-        <div class="col-md" style="padding-right: 5px;">
-            <a href="#" class="menu-link"> GIẢI TRÍ </a>
+        <div class="col-md menu-drop" style="padding-right: 5px;">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-entertainment" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                GIẢI TRÍ
+            </a>
+            <div class="dropdown-menu" id="entertainment" aria-labelledby="catbtn-entertainment">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md resize-col-menu">
-            <a href="#" class="menu-link"> GIÁO DỤC </a>
+        <div class="col-md resize-col-menu menu-drop">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-education" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                GIÁO DỤC
+            </a>
+            <div class="dropdown-menu" id="education" aria-labelledby="catbtn-education">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md-2 resize-col-menu">
-            <a href="#" class="menu-link"> GIAO THÔNG </a>
+        <div class="col-md-2 resize-col-menu menu-drop">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-traffic" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                GIAO THÔNG
+            </a>
+            <div class="dropdown-menu" id="traffic" aria-labelledby="catbtn-traffic">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md resize-col-menu">
-            <a href="#" class="menu-link"> DU LỊCH </a>
+        <div class="col-md resize-col-menu menu-drop">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-travel" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                DU LỊCH
+            </a>
+            <div class="dropdown-menu" id="travel" aria-labelledby="catbtn-travel">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md resize-col-menu">
-            <a href="#" class="menu-link"> ĐỜI SỐNG </a>
+        <div class="col-md resize-col-menu menu-drop">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-life" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                ĐỜI SỐNG
+            </a>
+            <div class="dropdown-menu" id="life" aria-labelledby="catbtn-life">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md-2 resize-col-menu">
-            <a href="#" class="menu-link"> CÔNG NGHỆ </a>
+        <div class="col-md-2 resize-col-menu menu-drop">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-technology" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                CÔNG NGHỆ
+            </a>
+            <div class="dropdown-menu" id="technology" aria-labelledby="catbtn-technology">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md resize-col-menu">
-            <a href="#" class="menu-link"> XE CỘ </a>
+        <div class="col-md resize-col-menu menu-drop">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-transport" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                XE CỘ
+            </a>
+            <div class="dropdown-menu" id="transport" aria-labelledby="catbtn-transport">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
-        <div class="col-md" style="padding-left: 5px; text-align: right;">
-            <a href="#" class="menu-link"> THẾ GIỚI </a>
+        <div class="col-md menu-drop" style="padding-left: 5px; text-align: right;">
+            <a class="dropdown-toggle menu-link" href="#" id="catbtn-world" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                THẾ GIỚI
+            </a>
+            <div class="dropdown-menu" id="world" aria-labelledby="catbtn-transport">
+                <a class="dropdown-item" href="#">Lọn làu</a>
+                <a class="dropdown-item" href="#">Another action</a>
+            </div>
         </div>
     </div>
 
     <div class="line-under-menu"></div>
 </div>
+
+{{!-- JQuery 3.3.1 --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".menu-drop").hover(function () {
+            $(this).children(".dropdown-menu").css("display", "block");
+            $(this).children(".menu-link").css("font-weight", "700");
+            $(this).children(".menu-link").css("color", "black");
+        }, function () {
+            $(this).children(".dropdown-menu").css("display", "none");
+            $(this).children(".menu-link").css("font-weight", "500");
+            $(this).children(".menu-link").css("color", "rgb(86, 86, 86)");
+        });
+    })
+</script>

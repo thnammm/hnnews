@@ -1,31 +1,31 @@
 var db = require('../utils/db');
 
 module.exports = {
-    bestofbest: () => {
-        return db.load('call GetBestOfBestPosts()');
+    bestpost: () => {
+        return db.load('call IndexGetBestPost()');
     },
 
-    best: () => {
-        return db.load('call GetBestPosts()');
+    newpost: () => {
+        return db.load('call IndexGetNewPost()');
     },
 
-    newest: () => {
-        return db.load('call GetNewestPosts()');
+    viewpost: () => {
+        return db.load('call IndexGetViewPost()');
     },
 
-    viewest: () => {
-        return db.load('call GetViewestPosts()');
+    top8post: () => {
+        return db.load('call IndexGetTop8Post()');
     },
 
-    top10posts: () => {
-        return db.load('call GetTop10Posts()');
+    top10tag: () => {
+        return db.load('call IndexGetTop10Tag()');
     },
 
-    top10tags: () => {
-        return db.load('call GetTop10Tags()');
+    catmenu: id => {
+        return db.load(`call IndexGetSubCatofCat(${id})`);
     },
 
     statistic: () => {
-        return db.load('call GetStatistic()');
+        return db.load('call IndexGetStatistic()');
     }
 };

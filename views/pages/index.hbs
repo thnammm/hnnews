@@ -35,7 +35,7 @@
                         <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        {{#each bestofbestpost.[0]}}
+                        {{#each bestpost.[0]}}
                         <div class="carousel-item active">
                             <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         {{/each}}
-                        {{#each bestpost.[0]}}
+                        {{#each bestpost.[1]}}
                         <div class="carousel-item">
                             <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
@@ -133,7 +133,7 @@
                 </div>
                 {{/each}}
 
-                {{!-- Top 10 posts --}}
+                {{!-- Top 8 posts --}}
                 <div id="id-top10-post" class="row row-margin top10-post">
                     <div class="col-md-5 newest-post-title">
                         <p class="top10-post-title-text"> TOP 8 CHUYÊN MỤC </p>
@@ -144,20 +144,20 @@
                 </div>
 
                 <div class="row row-margin top10-post-content">
-                    {{#each top10post.[0]}}
+                    {{#each top8post.[0]}}
                     <div class="col-md-6 top10-post-content-detail">
                         <div class="row row-margin top10-post-content-part">
                             <div class="line-left"></div>
                             <div class="top10-post-content-title">
-                                {{category_name}}
+                                {{catname}}
                             </div>
                         </div>
                         <div class="row row-margin top10-post-content-part">
-                            <img class="top10-post-content-pic" src="{{link_image}}" alt="{{link_name}}">
+                            <img class="top10-post-content-pic" src="{{link}}" alt="">
                             <div class="top10-post-content-transparent"></div>
                             <div class="col-md-12">
-                                <p class="top10-post-content-category"> Chuyên mục: {{category_name}} -
-                                    {{subcategory_name}} </p>
+                                <p class="top10-post-content-category"> Chuyên mục: {{catname}} -
+                                    {{subname}} </p>
                             </div>
                         </div>
                         <div class="row row-margin top10-post-content-part">
@@ -174,19 +174,19 @@
                 <div class="row row-margin content-right">
                     <div class="col-md-12 line-top"></div>
                     <div class="col-md-12 title-left">
-                        <a href="/hashtag-list" class="title-left-hyperlink"> CÁC NHÃN DÁN </a>
+                        <a href="/nhandan" class="title-left-hyperlink"> CÁC NHÃN DÁN </a>
                     </div>
                     <div class="col-md-12 line-bottom-title"></div>
                     <div class="row row-margin" style="margin-top: 15px !important">
                         {{#each top10tag.[0]}}
-                        <div class="col-md-6 img-hash">
-                            <img src="img/hashtag-pic.png" width="90%" style="border-radius: 5px">
+                        <a href="/nhandan/{{tag_id}}" class="col-md-6 img-hash">
+                            <img class="img-hash-src-style" src="/img/hashtag-pic.png">
                             <div class="text-hash">{{tag_name}}</div>
                             <div class="text2-hash">{{tagvalue}} bài viết</div>
-                        </div>
+                        </a>
                         {{/each}}
                     </div>
-                    <a href="/hashtag-list" class="giris-yap-buton"> XEM TẤT CẢ </a>
+                    <a href="/nhandan" class="giris-yap-buton"> XEM TẤT CẢ </a>
                 </div>
             </div>
         </div>
