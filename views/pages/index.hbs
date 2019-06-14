@@ -36,7 +36,7 @@
                     </ol>
                     <div class="carousel-inner">
                         {{#each bestpost.[0]}}
-                        <div class="carousel-item active">
+                        <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}" class="carousel-item active">
                             <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
                             <div class="carousel-caption d-none d-md-block top">
@@ -48,10 +48,10 @@
                             <div class="carousel-caption d-none d-md-block bottom">
                                 <p>{{finaldate}}</p>
                             </div>
-                        </div>
+                        </a>
                         {{/each}}
                         {{#each bestpost.[1]}}
-                        <div class="carousel-item">
+                        <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}" class="carousel-item">
                             <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
                             <div class="carousel-caption d-none d-md-block top">
@@ -63,7 +63,7 @@
                             <div class="carousel-caption d-none d-md-block bottom">
                                 <p>{{finaldate}}</p>
                             </div>
-                        </div>
+                        </a>
                         {{/each}}
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -99,10 +99,12 @@
                         <img class="content-pic-pic" src="{{link_image}}" alt="{{link_name}}">
                         <div class="content-pic-transparent"></div>
                         <p class="content-pic-category"> Chuyên mục: {{category_name}} - {{subcategory_name}} </p>
-                        <a class="content-pic-info" href=""> Xem chi tiết </a>
+                        <a class="content-pic-info" href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}"> Xem chi tiết
+                        </a>
                     </div>
                     <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> {{title}} </p>
+                        <p class="content-detail-title"> <a class="a-tag-specialstyle"
+                                href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}"> {{title}} </a> </p>
                         <p class="content-detail-number"> {{finaldate}} - {{views}} lượt xem </p>
                     </div>
                 </div>
@@ -124,10 +126,12 @@
                         <img class="content-pic-pic" src="{{link_image}}" alt="{{link_name}}">
                         <div class="content-pic-transparent"></div>
                         <p class="content-pic-category"> Chuyên mục: {{category_name}} - {{subcategory_name}} </p>
-                        <a class="content-pic-info" href=""> Xem chi tiết </a>
+                        <a class="content-pic-info" href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}"> Xem chi tiết
+                        </a>
                     </div>
                     <div class="col-md-7 newest-post-content-detail">
-                        <p class="content-detail-title"> {{title}} </p>
+                        <p class="content-detail-title"> <a class="a-tag-specialstyle"
+                                href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}"> {{title}} </a> </p>
                         <p class="content-detail-number"> {{finaldate}} - {{views}} lượt xem </p>
                     </div>
                 </div>
@@ -153,15 +157,18 @@
                             </div>
                         </div>
                         <div class="row row-margin top10-post-content-part">
-                            <img class="top10-post-content-pic" src="{{link}}" alt="">
-                            <div class="top10-post-content-transparent"></div>
-                            <div class="col-md-12">
-                                <p class="top10-post-content-category"> Chuyên mục: {{catname}} -
-                                    {{subname}} </p>
-                            </div>
+                            <a class="a-tag-specialstyle" href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}">
+                                <img class="top10-post-content-pic" src="{{link}}" alt="">
+                                <div class="top10-post-content-transparent"></div>
+                                <div class="col-md-12">
+                                    <p class="top10-post-content-category"> Chuyên mục: {{catname}} -
+                                        {{subname}} </p>
+                                </div>
+                            </a>
                         </div>
                         <div class="row row-margin top10-post-content-part">
-                            <p class="top10-post-content-text"> {{title}} </p>
+                            <p class="top10-post-content-text"> <a class="a-tag-specialstyle"
+                                    href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}"> {{title}} </a> </p>
                             <p class="top10-post-content-number"> {{finaldate}} - {{views}} lượt xem </p>
                         </div>
                     </div>

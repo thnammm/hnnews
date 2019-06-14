@@ -78,6 +78,8 @@
     font-size: 20pt;
     font-weight: 700;
     color: white;
+    transition: 1s all ease-in-out;
+    -webkit-transition: 1s all ease-in-out;
 }
 
 .bottom {
@@ -238,6 +240,7 @@
     width: 378.38px;
     height: 188px;
     position: absolute;
+    top: 40px;
     left: 0;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.3);
@@ -480,7 +483,7 @@
     font-weight: 700;
 }
 
-.newest-post-content:hover .content-detail-title {
+.newest-post-content:hover .content-detail-title .a-tag-specialstyle {
     color: blue !important;
 }
 
@@ -507,7 +510,7 @@
     overflow: hidden;
 }
 
-.top10-post-content-detail:hover .top10-post-content-text {
+.top10-post-content-detail:hover .top10-post-content-text .a-tag-specialstyle {
     color: blue !important;
 }
 
@@ -569,4 +572,19 @@
     background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.carousel-item:hover>.center {
+    color: black;
+    text-shadow: 0px 0px 5px white;
+    transform: scale(1.05);
+}
+
+.a-tag-specialstyle {
+    color: black;
+}
+
+.a-tag-specialstyle:hover {
+    color: blue;
+    text-decoration: none;
 }
