@@ -63,17 +63,20 @@
                                 <div class="col-md-9">
                                     <form role="form" method="POST" action="">
                                         <!-- Name -->
+                                        {{#with vm}}
+
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Họ và tên
                                             </label>
                                             <input name="name" class="col-md-10 form-control form-text-size" type="text"
-                                                placeholder="Nhập họ và tên của bạn">
+                                                placeholder="Nhập họ và tên của bạn" value="{{fullname}}">
                                         </div>
+                                       
                                         <!-- Email -->
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Email </label>
                                             <input name="email" class="col-md-10 form-control form-text-size"
-                                                type="email" placeholder="Nhập email của bạn">
+                                                type="email" placeholder="Nhập email của bạn" value="{{email}}" >
                                         </div>
                                         <!-- Day of birth -->
                                         <div class="form-group">
@@ -81,25 +84,7 @@
                                                 sinh
                                             </label>
                                             <input name="dob" class="col-md-10 form-control form-text-size" type="date"
-                                                value="2019-01-01">
-                                        </div>
-                                        <!-- Gender -->
-                                        <div class="form-group">
-                                            <label class="col-md-6 col-form-label form-control-label"> Giới tính
-                                            </label>
-                                            <div class="col-md-10">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="radio-inline form-text-size" style="margin: 0;"><input
-                                                            class="form-check-input" type="radio" name="gender"
-                                                            value="Nam" checked> Nam
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="radio-inline form-text-size" style="margin: 0;"><input
-                                                            class="form-check-input" type="radio" name="gender"
-                                                            value="Nữ"> Nữ </label>
-                                                </div>
-                                            </div>
+                                                value="{{dob}}">
                                         </div>
                                         <!-- Writer name -->
                                         <div class="form-group">
@@ -112,7 +97,9 @@
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-primary col-md-3" value="Cập nhật">
                                         </div>
+                                         {{/with}}
                                     </form>
+
                                 </div>
                             </div>
                         </div>

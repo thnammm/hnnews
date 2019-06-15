@@ -19,5 +19,9 @@ module.exports = {
 
     delete: id => {
         return db.delete('user', 'id', id);
+    },
+
+    load: id => {
+        return db.load(`call UserGetInfo(${id})`);
     }
 };
