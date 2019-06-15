@@ -7,19 +7,35 @@ module.exports = {
     },
 
     allaccount: () => {
-        return db.load('call AdminGetAccount()');
+        return db.load(`call AdminGetAccount()`);
+    },
+
+    countallaccount: () => {
+        return db.load(`select count(*) as accountvalue from account where status = 1`);
     },
 
     alluser: () => {
-        return db.load('call AdminGetUser()');
+        return db.load(`call AdminGetUser()`);
+    },
+
+    countalluser: () => {
+        return db.load(`select count(*) as uservalue from user where status = 1`);
     },
 
     allwriter: () => {
-        return db.load('call AdminGetWriter()');
+        return db.load(`call AdminGetWriter()`);
+    },
+
+    countallwriter: () => {
+        return db.load(`select count(*) as writervalue from writer where status = 1`);
     },
 
     alleditor: () => {
-        return db.load('call AdminGetEditor()');
+        return db.load(`call AdminGetEditor()`);
+    },
+
+    countalleditor: () => {
+        return db.load(`select count(*) as editorvalue from editor where status = 1`);
     },
 
     singleuser: id => {
@@ -72,7 +88,11 @@ module.exports = {
 
     // Post
     allpost: () => {
-        return db.load('call AdminGetPost()');
+        return db.load(`call AdminGetPost()`);
+    },
+
+    countallpost: () => {
+        return db.load(`select count(*) as postvalue from post where status = 1`);
     },
 
     tagofpost: id => {
@@ -93,7 +113,11 @@ module.exports = {
 
     // Category
     allcategory: () => {
-        return db.load('call AdminGetCategory()');
+        return db.load(`call AdminGetCategory()`);
+    },
+
+    countallcategory: () => {
+        return db.load(`select count(*) as categoryvalue from subcategory where status = 1`);
     },
 
     category: () => {
@@ -122,7 +146,11 @@ module.exports = {
 
     // Tag
     alltag: () => {
-        return db.load('call AdminGetTag()');
+        return db.load(`call AdminGetTag()`);
+    },
+
+    countalltag: () => {
+        return db.load(`select count(*) as tagvalue from tag where status = 1`);
     },
 
     addtag: entity => {

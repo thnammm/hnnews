@@ -174,6 +174,47 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
+                                        {{!-- Pagination --}}
+                                        <!--
+                                        <nav class="col-md- 12 nav-pagination" aria-label="...">
+                                            <ul class="pagination">
+                                                {{#with btnaccPrevious}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+
+                                                {{#each accountpagination}}
+                                                {{#if active}}
+                                                <li class="page-item active"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{else}}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{/if}}
+                                                {{/each}}
+
+                                                {{#with btnaccNext}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+                                            </ul>
+                                        </nav> -->
                                     </form>
 
                                     {{!-- All User --}}
@@ -210,6 +251,46 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
+                                        <!--
+                                        <nav class="col-md- 12 nav-pagination" aria-label="...">
+                                            <ul class="pagination">
+                                                {{#with btnuserPrevious}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+
+                                                {{#each userpagination}}
+                                                {{#if active}}
+                                                <li class="page-item active"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{else}}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{/if}}
+                                                {{/each}}
+
+                                                {{#with btnuserNext}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+                                            </ul>
+                                        </nav> -->
                                     </form>
 
                                     {{!-- All Writer --}}
@@ -246,6 +327,46 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
+                                        <!--
+                                        <nav class="col-md- 12 nav-pagination" aria-label="...">
+                                            <ul class="pagination">
+                                                {{#with btnwriterPrevious}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+
+                                                {{#each writerpagination}}
+                                                {{#if active}}
+                                                <li class="page-item active"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{else}}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{/if}}
+                                                {{/each}}
+
+                                                {{#with btnwriterNext}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+                                            </ul>
+                                        </nav> -->
                                     </form>
 
                                     {{!-- All Editor --}}
@@ -280,31 +401,48 @@
                                                 {{/each}}
                                             </tbody>
                                         </table>
+                                        <!--
+                                        <nav class="col-md- 12 nav-pagination" aria-label="...">
+                                            <ul class="pagination">
+                                                {{#with btneditorPrevious}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+
+                                                {{#each editorpagination}}
+                                                {{#if active}}
+                                                <li class="page-item active"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{else}}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="?page={{value}}">{{value}}</a></li>
+                                                {{/if}}
+                                                {{/each}}
+
+                                                {{#with btneditorNext}}
+                                                {{#if disable}}
+                                                <li class="page-item disabled">
+                                                    {{else}}
+                                                <li class="page-item">
+                                                    {{/if}}
+                                                    <a class="page-link" href="?page={{value}}" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                                {{/with}}
+                                            </ul>
+                                        </nav> -->
                                     </form>
 
-                                    {{!-- Pagination --}}
-                                    <nav class="nav-pagination" aria-label="..." style="height: initial;">
-                                        <ul class="pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
                             </div>
                             <div class="row popup-background">
@@ -498,27 +636,46 @@
                                     </form>
 
                                     {{!-- Pagination --}}
-                                    <nav class="nav-pagination" aria-label="..." style="height: initial;">
+                                    <!--
+                                    <nav class="nav-pagination" aria-label="...">
                                         <ul class="pagination">
+                                            {{#with btnpostPrevious}}
+                                            {{#if disable}}
+                                            <li class="page-item disabled">
+                                                {{else}}
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                                {{/if}}
+                                                <a class="page-link" href="?page={{value}}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            {{/with}}
+
+                                            {{#each postpagination}}
+                                            {{#if active}}
+                                            <li class="page-item active"><a class="page-link"
+                                                    href="?page={{value}}">{{value}}</a></li>
+                                            {{else}}
+                                            <li class="page-item"><a class="page-link"
+                                                    href="?page={{value}}">{{value}}</a></li>
+                                            {{/if}}
+                                            {{/each}}
+
+                                            {{#with btnpostNext}}
+                                            {{#if disable}}
+                                            <li class="page-item disabled">
+                                                {{else}}
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                {{/if}}
+                                                <a class="page-link" href="?page={{value}}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </li>
+                                            {{/with}}
                                         </ul>
-                                    </nav>
+                                    </nav> -->
                                 </div>
                             </div>
                         </div>
@@ -582,27 +739,46 @@
                                     </form>
 
                                     {{!-- Pagination --}}
-                                    <nav class="nav-pagination" aria-label="..." style="height: initial;">
+                                    <!--
+                                    <nav class="nav-pagination" aria-label="...">
                                         <ul class="pagination">
+                                            {{#with btncategoryPrevious}}
+                                            {{#if disable}}
+                                            <li class="page-item disabled">
+                                                {{else}}
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                                {{/if}}
+                                                <a class="page-link" href="?page={{value}}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            {{/with}}
+
+                                            {{#each categorypagination}}
+                                            {{#if active}}
+                                            <li class="page-item active"><a class="page-link"
+                                                    href="?page={{value}}">{{value}}</a></li>
+                                            {{else}}
+                                            <li class="page-item"><a class="page-link"
+                                                    href="?page={{value}}">{{value}}</a></li>
+                                            {{/if}}
+                                            {{/each}}
+
+                                            {{#with btncategoryNext}}
+                                            {{#if disable}}
+                                            <li class="page-item disabled">
+                                                {{else}}
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                {{/if}}
+                                                <a class="page-link" href="?page={{value}}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </li>
+                                            {{/with}}
                                         </ul>
-                                    </nav>
+                                    </nav> -->
                                 </div>
                             </div>
                             <div class="row popup-background">
@@ -727,27 +903,46 @@
                                     </form>
 
                                     {{!-- Pagination --}}
-                                    <nav class="nav-pagination" aria-label="..." style="height: initial;">
+                                    <!--
+                                    <nav class="nav-pagination" aria-label="...">
                                         <ul class="pagination">
+                                            {{#with btntagPrevious}}
+                                            {{#if disable}}
+                                            <li class="page-item disabled">
+                                                {{else}}
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                                {{/if}}
+                                                <a class="page-link" href="?page={{value}}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            {{/with}}
+
+                                            {{#each tagpagination}}
+                                            {{#if active}}
+                                            <li class="page-item active"><a class="page-link"
+                                                    href="?page={{value}}">{{value}}</a></li>
+                                            {{else}}
+                                            <li class="page-item"><a class="page-link"
+                                                    href="?page={{value}}">{{value}}</a></li>
+                                            {{/if}}
+                                            {{/each}}
+
+                                            {{#with btntagNext}}
+                                            {{#if disable}}
+                                            <li class="page-item disabled">
+                                                {{else}}
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                {{/if}}
+                                                <a class="page-link" href="?page={{value}}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </li>
+                                            {{/with}}
                                         </ul>
-                                    </nav>
+                                    </nav> -->
                                 </div>
                             </div>
                             <div class="row popup-background">

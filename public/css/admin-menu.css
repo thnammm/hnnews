@@ -142,10 +142,15 @@ thead, tbody, tr, th, td {
 .nav-pagination {
   display: flex;
   justify-content: flex-end;
+  height: initial;
 }
 
 .pagination {
   text-align: center;
+}
+
+.page-item {
+  width: 34px;
 }
 
 .page-link {

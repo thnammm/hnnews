@@ -70,83 +70,139 @@
     {{!-- Menu category --}}
     <div class="row menu">
         <div class="col-md menu-drop" style="padding-right: 5px;">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-entertainment" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "1"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-entertainment" aria-haspopup="true"
+                aria-expanded="false">
                 GIẢI TRÍ
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="entertainment" aria-labelledby="catbtn-entertainment">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "1"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md resize-col-menu menu-drop">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-education" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "2"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-education" aria-haspopup="true"
+                aria-expanded="false">
                 GIÁO DỤC
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="education" aria-labelledby="catbtn-education">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "2"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md-2 resize-col-menu menu-drop">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-traffic" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "3"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-traffic" aria-haspopup="true"
+                aria-expanded="false">
                 GIAO THÔNG
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="traffic" aria-labelledby="catbtn-traffic">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "3"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md resize-col-menu menu-drop">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-travel" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "4"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-travel" aria-haspopup="true"
+                aria-expanded="false">
                 DU LỊCH
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="travel" aria-labelledby="catbtn-travel">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "4"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md resize-col-menu menu-drop">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-life" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "5"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-life" aria-haspopup="true"
+                aria-expanded="false">
                 ĐỜI SỐNG
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="life" aria-labelledby="catbtn-life">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "5"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md-2 resize-col-menu menu-drop">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-technology" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "6"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-technology" aria-haspopup="true"
+                aria-expanded="false">
                 CÔNG NGHỆ
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="technology" aria-labelledby="catbtn-technology">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "6"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md resize-col-menu menu-drop">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-transport" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "7"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-transport" aria-haspopup="true"
+                aria-expanded="false">
                 XE CỘ
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="transport" aria-labelledby="catbtn-transport">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "7"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
         <div class="col-md menu-drop" style="padding-left: 5px; text-align: right;">
-            <a class="dropdown-toggle menu-link" href="#" id="catbtn-world" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            {{#each listCategory}}
+            {{#ifEquals id "8"}}
+            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-world" aria-haspopup="true"
+                aria-expanded="false">
                 THẾ GIỚI
             </a>
+            {{/ifEquals}}
+            {{/each}}
             <div class="dropdown-menu" id="world" aria-labelledby="catbtn-transport">
-                <a class="dropdown-item" href="#">Lọn làu</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                {{#each listSubCategory}}
+                {{#ifEquals cat_id "8"}}
+                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                {{/ifEquals}}
+                {{/each}}
             </div>
         </div>
     </div>

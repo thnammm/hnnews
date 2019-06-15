@@ -41,6 +41,12 @@
     display: none;
 }
 
+.dropdown-item {
+    border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+    margin: 2px 0px;
+}
+
 .dropdown-item:hover {
     background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     color: white;

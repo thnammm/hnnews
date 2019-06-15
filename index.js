@@ -18,11 +18,13 @@ var user = require('./routers/user');
 var detaileachpost = require('./routers/detail-eachpost');
 var editpost = require('./routers/edit-post');
 
+var indexModel = require('./models/index.model.js');
+
+app.use(require('./middlewares/categorymenu.mdw.js'));
+
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-
-var indexModel = require('./models/index.model.js');
 
 app.use(morgan('dev'));
 app.use(express.json());
@@ -43,6 +45,12 @@ app.get('/', (req, res) => {
     var top8post = indexModel.top8post();
     var top10tag = indexModel.top10tag();
     var statistic = indexModel.statistic();
+
+    // If Equals Handlebars
+    var Handlebars = require('handlebars');
+    Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    });
 
     Promise.all(
         [bestpost, newpost, viewpost, top8post, top10tag, statistic])

@@ -62,6 +62,10 @@
   margin: 0;
 }
 
+.page-item {
+  width: 34px;
+}
+
 .page-link {
   color: black;
   border: none;

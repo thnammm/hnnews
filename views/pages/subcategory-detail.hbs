@@ -39,14 +39,15 @@
                 {{#each singlesubcat}}
                 <div class="row row-margin something" style="margin-top: 35px !important">
                     <div class="col-md-5 img-postofcat" style="padding: 0">
-                        <a href="">
+                        <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}">
                             <img src="{{link_image}}" alt="{{link_name}}" class="postofcat-style">
                         </a>
                     </div>
                     <div class="col-md-7 post-flex">
                         <div>
                             <div class="title-post text-left">
-                                <a href="" class="title-postofcat">{{title}}</a>
+                                <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}"
+                                    class="title-postofcat">{{title}}</a>
                             </div>
                             <div class="post-date text-left">
                                 {{finaldate}} - {{views}} lượt xem - <a href="/chuyenmuc/{{cat_id}}/{{subcat_id}}"
@@ -68,23 +69,39 @@
                 {{!-- Pagination --}}
                 <nav class="nav-pagination" aria-label="...">
                     <ul class="pagination">
+                        {{#with btnPrevious}}
+                        {{#if disable}}
+                        <li class="page-item disabled">
+                            {{else}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            {{/if}}
+                            <a class="page-link" href="?page={{value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        {{/with}}
+
+                        {{#each subcatpagination}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+                        {{/if}}
+                        {{/each}}
+
+                        {{#with btnNext}}
+                        {{#if disable}}
+                        <li class="page-item disabled">
+                            {{else}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            {{/if}}
+                            <a class="page-link" href="?page={{value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </li>
+                        {{/with}}
                     </ul>
                 </nav>
             </div>
@@ -95,7 +112,8 @@
                     <div class="col-md-12 title-left">XEM NHIỀU</div>
                     <div class="col-md-12 line-bottom-title"></div>
                     {{#each viewmuch}}
-                    <a href="" class="row row-margin viewmuch" style="margin-top: 15px !important">
+                    <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}" class="row row-margin viewmuch"
+                        style="margin-top: 15px !important">
                         <div class="col-md-6" style="padding-right: 7px"><img class="viewmuch-pic" src="{{link_image}}"
                                 alt="{{link_name}}"></div>
                         <div class="col-md-6" style="padding-left: 7px; font-size: 10pt;">{{title}}</div>

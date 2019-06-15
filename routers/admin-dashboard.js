@@ -7,23 +7,38 @@ var admin = require('../models/admin.model.js');
 module.exports = app;
 
 app.get('/admin-dashboard', function (req, res) {
+    // Set limit and offset value for all part of admin
+    /*
+    var page = req.query.page || 1;
+    if (page < 1) page = 1;
+
+    var limit = 5;
+    var offset = (page - 1) * limit; */
+
     //Account
     var numberaccount = admin.numberaccount();
     var adminaccount = admin.allaccount();
+    // var countallaccount = admin.countallaccount();
     var adminuser = admin.alluser();
+    // var countalluser = admin.countalluser();
     var adminwriter = admin.allwriter();
+    // var countallwriter = admin.countallwriter();
     var admineditor = admin.alleditor();
+    // var countalleditor = admin.countalleditor();
 
     // Post
     var adminpost = admin.allpost();
+    // var countallpost = admin.countallpost();
 
     // Category
     var admincategory = admin.allcategory();
+    // var countallcategory = admin.countallcategory();
     var categorydad = admin.category();
     var editor = admin.editor();
 
     // Tag
     var admintag = admin.alltag();
+    // var countalltag = admin.countalltag();
 
     // ID Automatically increase
     var Handlebars = require('handlebars');
@@ -39,6 +54,481 @@ app.get('/admin-dashboard', function (req, res) {
     // Promise.then.catch and Render pages
     Promise.all([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount, adminuser, adminwriter, admineditor])
         .then(([admincategory, categorydad, editor, admintag, adminpost, numberaccount, adminaccount, adminuser, adminwriter, admineditor]) => {
+
+            /*
+            var accountvalue = countallaccount[0].accountvalue;
+            var uservalue = countalluser[0].uservalue;
+            var writervalue = countallwriter[0].writervalue;
+            var editorvalue = countalleditor[0].editorvalue;
+            var postvalue = countallpost[0].postvalue;
+            var categoryvalue = countallcategory[0].categoryvalue;
+            var tagvalue = countalltag[0].tagvalue;
+
+            var accPages = Math.floor(accountvalue / limit);
+            var userPages = Math.floor(uservalue / limit);
+            var writerPages = Math.floor(writervalue / limit);
+            var editorPages = Math.floor(editorvalue / limit);
+            var postPages = Math.floor(postvalue / limit);
+            var categoryPages = Math.floor(categoryvalue / limit);
+            var tagPages = Math.floor(tagvalue / limit);
+
+            if (accountvalue % limit > 0) accPages++;
+            if (uservalue % limit > 0) userPages++;
+            if (writervalue % limit > 0) writerPages++;
+            if (editorvalue % limit > 0) editorPages++;
+            if (postvalue % limit > 0) postPages++;
+            if (categoryvalue % limit > 0) categoryPages++;
+            if (tagvalue % limit > 0) tagPages++;
+
+
+            // Pagination Number
+            var accountpagination = [];
+            for (var i = 1; i <= accPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                accountpagination.push(object);
+            }
+
+            var userpagination = [];
+            for (var i = 1; i <= userPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                userpagination.push(object);
+            }
+
+            var writerpagination = [];
+            for (var i = 1; i <= writerPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                writerpagination.push(object);
+            }
+
+            var editorpagination = [];
+            for (var i = 1; i <= editorPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                editorpagination.push(object);
+            }
+
+            var postpagination = [];
+            for (var i = 1; i <= postPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                postpagination.push(object);
+            }
+
+            var categorypagination = [];
+            for (var i = 1; i <= categoryPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                categorypagination.push(object);
+            }
+
+            var tagpagination = [];
+            for (var i = 1; i <= tagPages; i++) {
+                var object = {
+                    value: i,
+                    active: i === +page
+                };
+                tagpagination.push(object);
+            }
+
+            // Pagination Button
+            var btnaccPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btnaccNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            var btnuserPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btnuserNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            var btnwriterPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btnwriterNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            var btneditorPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btneditorNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            var btnpostPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btnpostNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            var btncategoryPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btncategoryNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            var btntagPrevious = {
+                disable: true,
+                value: parseInt(page) - 1
+            };
+            var btntagNext = {
+                disable: false,
+                value: parseInt(page) + 1
+            };
+
+            // Account Page first
+            if (page == accountpagination[0].value) {
+                btnaccPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnaccNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Account Page last
+            if (page == accountpagination[accPages - 1].value) {
+                btnaccPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnaccNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Account Page middle
+            if (page != accountpagination[0].value && page != accountpagination[accPages - 1].value) {
+                btnaccPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnaccNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Account Just one page
+            if (page == accountpagination[0].value && page == accountpagination[accPages - 1].value) {
+                btnaccPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnaccNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+
+            // User Page first
+            if (page == userpagination[0].value) {
+                btnuserPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnuserNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // User Page last
+            if (page == userpagination[userPages - 1].value) {
+                btnuserPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnuserNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // User Page middle
+            if (page != userpagination[0].value && page != userpagination[userPages - 1].value) {
+                btnuserPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnuserNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // User Just one page
+            if (page == userpagination[0].value && page == userpagination[userPages - 1].value) {
+                btnuserPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnuserNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+
+            // Writer Page first
+            if (page == writerpagination[0].value) {
+                btnwriterPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnwriterNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Writer Page last
+            if (page == writerpagination[writerPages - 1].value) {
+                btnwriterPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnwriterNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Writer Page middle
+            if (page != writerpagination[0].value && page != writerpagination[writerPages - 1].value) {
+                btnwriterPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnwriterNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Writer Just one page
+            if (page == writerpagination[0].value && page == writerpagination[writerPages - 1].value) {
+                btnwriterPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnwriterNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+
+            // Editor Page first
+            if (page == editorpagination[0].value) {
+                btneditorPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btneditorNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Editor Page last
+            if (page == editorpagination[editorPages - 1].value) {
+                btneditorPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btneditorNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Editor Page middle
+            if (page != editorpagination[0].value && page != editorpagination[editorPages - 1].value) {
+                btneditorPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btneditorNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Editor Just one page
+            if (page == editorpagination[0].value && page == editorpagination[editorPages - 1].value) {
+                btneditorPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btneditorNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+
+            // Post Page first
+            if (page == postpagination[0].value) {
+                btnpostPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnpostNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Post Page last
+            if (page == postpagination[postPages - 1].value) {
+                btnpostPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnpostNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Post Page middle
+            if (page != postpagination[0].value && page != postpagination[postPages - 1].value) {
+                btnpostPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btnpostNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Post Just one page
+            if (page == postpagination[0].value && page == postpagination[postPages - 1].value) {
+                btnpostPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btnpostNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+
+            // Category Page first
+            if (page == categorypagination[0].value) {
+                btncategoryPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btncategoryNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Category Page last
+            if (page == categorypagination[categoryPages - 1].value) {
+                btncategoryPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btncategoryNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Category Page middle
+            if (page != categorypagination[0].value && page != categorypagination[categoryPages - 1].value) {
+                btncategoryPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btncategoryNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Category Just one page
+            if (page == categorypagination[0].value && page == categorypagination[categoryPages - 1].value) {
+                btncategoryPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btncategoryNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+
+            // Tag Page first
+            if (page == tagpagination[0].value) {
+                btntagPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btntagNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Tag Page last
+            if (page == tagpagination[tagPages - 1].value) {
+                btntagPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btntagNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Tag Page middle
+            if (page != tagpagination[0].value && page != tagpagination[tagPages - 1].value) {
+                btntagPrevious = {
+                    disable: false,
+                    value: parseInt(page) - 1
+                };
+                btntagNext = {
+                    disable: false,
+                    value: parseInt(page) + 1
+                }
+            }
+            // Tag Just one page
+            if (page == tagpagination[0].value && page == tagpagination[tagPages - 1].value) {
+                btntagPrevious = {
+                    disable: true,
+                    value: parseInt(page) - 1
+                };
+                btntagNext = {
+                    disable: true,
+                    value: parseInt(page) + 1
+                }
+            }
+            */
+
+            /* --------------------------------------------------- */
+            /* ------------------- RENDER HERE ------------------- */
+            /* --------------------------------------------------- */
+
             res.render('pages/admin-dashboard', {
                 categorylist: admincategory,
                 categorydad: categorydad,
