@@ -245,3 +245,14 @@ input:valid ~ label {
     text-decoration: underline;
     font-weight: bold;
 }
+
+.menu, .line-under-menu {
+    display: none;
+}
+
+#scroll-smooth {
+    width: 100%;
+    height: 112px;
+    background-color: white;
+    display: none;
+}

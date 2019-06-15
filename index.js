@@ -8,14 +8,13 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var main = require('./routers/main');
-var login = require('./routers/login');
-var register = require('./routers/register');
-var forgetpassword = require('./routers/forget-password');
-var resultsearch = require('./routers/result-search');
+var account = require('./routers/account');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
+var login = require('./routers/login');
+var forgetpassword = require('./routers/forget-password');
+var resultsearch = require('./routers/result-search');
 var user = require('./routers/user');
-var detaileachpost = require('./routers/detail-eachpost');
 var editpost = require('./routers/edit-post');
 
 var indexModel = require('./models/index.model.js');
@@ -38,7 +37,9 @@ app.engine('hbs', hbs({
     section: hbs_sections()
 }));
 
-app.get('/', (req, res) => {
+
+
+app.get('/', (req, res, next) => {
     var bestpost = indexModel.bestpost();
     var newpost = indexModel.newpost();
     var viewpost = indexModel.viewpost();
@@ -63,22 +64,22 @@ app.get('/', (req, res) => {
                 top10tag: top10tag,
                 statistic: statistic
             });
-        }).catch(err => {
-            console.log(err);
-        })
+        }).catch(next);
 })
 
-
 app.use(main)
-app.use(login)
-app.use(register)
-app.use(forgetpassword)
-app.use(resultsearch)
+app.use(account)
 app.use(admin)
 app.use(admindashboard)
+app.use(login)
+app.use(forgetpassword)
+app.use(resultsearch)
 app.use(user)
-app.use(detaileachpost)
 app.use(editpost);
+
+app.use((req, res, next) => {
+    res.render('pages/error404');
+})
 
 app.listen(3000, () => {
     console.log('Web Server is running at http://localhost:3000');

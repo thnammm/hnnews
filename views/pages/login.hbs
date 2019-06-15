@@ -8,10 +8,12 @@
 </head>
 
 <body>
-    <div class="container">
+    {{!-- Nav --}}
+    {{>nav}}
 
-        {{!-- Nav --}}
-        {{>nav}}
+    <div class="container">
+        <div id="scroll-smooth"></div>
+
         <div class="content">
             <div class="row" style="margin: 0px">
                 <div class="col-sm-4" style="padding-left: 0px">
@@ -57,6 +59,14 @@
                             <a href="#" class="giris-yap-buton">Đăng nhập</a>
 
                             <div style="text-align: center; margin-top: 20px">hay <strong>Đăng nhập</strong> với</div>
+                            <div style="display: flex; justify-content: center; margin-top: 20px">
+                                <a href="" class="px-2"> <img src="/img/icon-media/facebook.png" width="40px"
+                                        height="40px"> </a>
+                                <a href="" class="px-2"> <img src="/img/icon-media/google.png" width="40px"
+                                        height="40px"> </a>
+                                <a href="" class="px-2"> <img src="/img/icon-media/twitter.png" width="40px"
+                                        height="40px"> </a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -68,7 +78,7 @@
 
         {{!-- Footer --}}
         {{>footer}}
-        
+
     </div>
 
     {{!-- Bootstrap 4.3.1 --}}
@@ -84,6 +94,29 @@
 
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- Script --}}
+    <script>
+        $(document).ready(function () {
+            // Auto scroll to top
+            $(window).scrollTop(0);
+            $(".menu").hide();
+            $(".line-under-menu").hide();
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 27) {
+                    $("#scroll-smooth").css("display", "block");
+                    $("#scroll-nav").addClass("position-fixed");
+                    $("#scroll-nav").addClass("bootstrap-position-fixed");
+                }
+                else {
+                    $("#scroll-smooth").css("display", "none");
+                    $("#scroll-nav").removeClass("position-fixed");
+                    $("#scroll-nav").removeClass("bootstrap-position-fixed");
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>

@@ -8,10 +8,12 @@
 </head>
 
 <body>
-    <div class="container">
+    {{!-- Nav --}}
+    {{>nav}}
 
-        {{!-- Nav --}}
-        {{>nav}}
+    <div class="container">
+        <div id="scroll-smooth"></div>
+
         <div class="content">
             <div class="row" style="margin: 0px">
                 <div class="col-sm-4" style="padding-left: 0px">
@@ -32,44 +34,84 @@
                     </div>
 
                     <div class="login-card">
-                        <form id="login-form" class="col-lg-12">
+                        <form id="register-form" class="col-lg-12">
                             <div style="clear:both;"></div>
                             <div class="group">
-                                <input type="text" required>
+                                <input type="text" id="register-username" name="registerusername">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label><span class="span-input">Tên đăng nhập</span></label>
                             </div>
                             <div class="group">
-                                <input type="text" required>
+                                <input type="text" id="register-fullname" name="registerfullname">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label><span class="span-input">Họ tên người dùng</span></label>
                             </div>
                             <div class="group">
-                                <input type="text" required>
+                                <input type="email" id="register-email" name="registeremail">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label><span class="span-input">Email</span></label>
                             </div>
                             <div class="group">
-                                <input type="password" required>
+                                <input type="password" id="register-password" name="registerpassword">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label><span class="span-input">Mật khẩu</span></label>
                             </div>
                             <div class="row login" style="width:100%; margin:0px 0px 20px 0px">
-                                Đã có tài khoản?&nbsp; <a href="/login"> Đăng nhập</a>
+                                Đã có tài khoản?&nbsp; <a class="btn-login-other" href="/login"> Đăng nhập</a>
                             </div>
 
-                            <a href="#" class="giris-yap-buton">Đăng ký</a>
-
+                            <a role="button" id="btn-register" class="giris-yap-buton">Đăng ký</a>
                         </form>
                     </div>
                 </div>
                 <div class="col-sm-8 img-background">
                     <img src="/img/undraw/undraw-register.png" width="100%">
                 </div>
+            </div>
+        </div>
+
+        <div class="row popup-notificationSuccess">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO </p>
+                <p class="popup-content"> Tạo <span style="color: rgb(40, 200, 0)">thành
+                        công</span> tài khoản mới.</p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        <div class="row popup-notificationFailBoth">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO LỖI </p>
+                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                    do username và email đã tồn tại.</p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        <div class="row popup-notificationFailUserName">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO LỖI </p>
+                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                    do username đã tồn tại.</p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        <div class="row popup-notificationFailEmail">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO LỖI </p>
+                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                    do email đã tồn tại.</p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        <div class="row popup-notificationFailFull">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO LỖI </p>
+                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                    do chưa nhập đầy đủ thông tin.</p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
             </div>
         </div>
 
@@ -91,6 +133,130 @@
 
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- JQuery Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    {{!-- Script --}}
+    <script>
+        $(document).ready(function () {
+            // Auto scroll to top
+            $(window).scrollTop(0);
+            $(".menu").hide();
+            $(".line-under-menu").hide();
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 27) {
+                    $("#scroll-smooth").css("display", "block");
+                    $("#scroll-nav").addClass("position-fixed");
+                    $("#scroll-nav").addClass("bootstrap-position-fixed");
+                }
+                else {
+                    $("#scroll-smooth").css("display", "none");
+                    $("#scroll-nav").removeClass("position-fixed");
+                    $("#scroll-nav").removeClass("bootstrap-position-fixed");
+                }
+            });
+
+            $(".close-btn").click(function () {
+                $(".popup-notificationFailBoth").hide();
+                $(".popup-notificationFailEmail").hide();
+                $(".popup-notificationFailUserName").hide();
+                $(".popup-notificationFailFull").hide();
+            });
+
+            $(".popup-notificationSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
+
+            $("#register-form").validate({
+                rules: {
+                    registerusername: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    registerfullname: {
+                        required: true,
+                        maxlength: 100
+                    },
+                    registeremail: {
+                        required: true,
+                        email: true,
+                        maxlength: 100
+                    },
+                    registerpassword: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    registerusername: {
+                        required: 'Không được để trống tên đăng nhập',
+                        maxlength: 'Tên đăng nhập chỉ tối đa 50 kí tự'
+                    },
+                    registeremail: {
+                        required: 'Không được để trống email',
+                        email: 'Email phải nhập đúng cấu trúc',
+                        maxlength: 'Email chỉ tối đa 100 kí tự'
+                    },
+                    registerfullname: {
+                        required: 'Không được để trống họ tên',
+                        maxlength: 'Họ tên chỉ tối đa 100 kí tự'
+                    },
+                    registerpassword: {
+                        required: 'Không được để trống mật khẩu',
+                        minlength: 'Mật khẩu phải có ít nhất 6 kí tự'
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+
+            function btnregisterClick() {
+                // Create parameter
+                var username = $("#register-username").val();
+                var fullname = $("#register-fullname").val();
+                var email = $("#register-email").val();
+                var pass = $("#register-password").val();
+
+                // Final action
+                $.post("/dangky/taotaikhoan",
+                    {
+                        username: username,
+                        fullname: fullname,
+                        email: email,
+                        pass: pass
+                    },
+                    function (result) {
+                        if (result === "FailBoth") {
+                            $(".popup-background").hide();
+                            $(".popup-notificationFailBoth").show();
+                        } else if (result === "FailEmail") {
+                            $(".popup-background").hide();
+                            $(".popup-notificationFailEmail").show();
+                        } else if (result === "FailUserName") {
+                            $(".popup-background").hide();
+                            $(".popup-notificationFailUserName").show();
+                        } else if (result === "FailFull") {
+                        } else {
+                            $(".popup-background").hide();
+                            $(".popup-notificationSuccess").show();
+                        }
+                    });
+            }
+
+            $("btn-register").click(function () {
+                btnregisterClick();
+            })
+        })
+    </script>
 </body>
 
 </html>

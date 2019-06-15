@@ -3,13 +3,14 @@
 }
 
 /* container */
+
 .container {
     padding: 0;
     margin: 0;
     max-width: 100%;
 }
 
-.content{
+.content {
     /* border: solid 1px gray; */
     border-radius: 10px;
     box-shadow: 0px 0px 5px #8DB1F7;
@@ -17,9 +18,9 @@
     padding: 30px;
 }
 
-.text-login{
+.text-login {
     text-align: center;
-    background: -webkit-linear-gradient(left, #E0C3FC 30% , #8DB1F7);
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
@@ -28,24 +29,25 @@
     /* margin-top: 50px; */
 }
 
-.line-login{
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+.line-login {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     height: 3px;
     width: 40%;
-    margin: 0 98px;   
+    margin: 0 98px;
 }
 
-.text-content{
+.text-content {
     text-align: center;
     margin-top: 21px;
     font-size: 11pt;
 }
 
-.text-content strong{
+.text-content strong {
     color: black;
 }
 
 /* css login form */
+
 .login-card {
     /* background-image: url('https://selimdoyranli.com/cdn/material-form/img/bg.jpg'); */
     /* background-size: cover; */
@@ -72,8 +74,8 @@
     width: 100%;
     margin: 50px 0px;
 }
+
 .login-card:after {
-    
     width: 100%;
     height: 100%;
     position: absolute;
@@ -83,7 +85,8 @@
     opacity: 0.8;
     z-index: 3;
 }
-.login-card > form {
+
+.login-card>form {
     z-index: 4;
     position: relative;
     padding: 0px 25px;
@@ -96,6 +99,7 @@
     position: relative;
     margin-bottom: 40px;
 }
+
 .group input {
     font-size: 12pt;
     /* padding: 10px 10px 10px 10px; */
@@ -106,10 +110,12 @@
     background: none;
     color: black;
 }
+
 .group input:focus {
     outline: none;
     border-bottom: none;
 }
+
 /* LABEL ======================================= */
 
 .group label {
@@ -123,17 +129,25 @@
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
-    
 }
+
 /* active durum */
 
-.group input:focus ~ label,
-input:valid ~ label {
-    top: -15px;
-    left: -2px;
+.group input:focus~label {
+    top: -15px !important;
+    left: -2px !important;
     font-size: 8pt !important;
-    color: black;
+    color: black !important;
 }
+
+input:valid>label {
+    visibility: hidden;
+    /* top: -15px !important;
+    left: -2px !important;
+    font-size: 8pt !important;
+    color: black !important; */
+}
+
 /* BOTTOM BARS ================================= */
 
 .bar {
@@ -141,30 +155,33 @@ input:valid ~ label {
     display: block;
     width: 100%;
 }
-.bar:before,
-.bar:after {
+
+.bar:before, .bar:after {
     content: '';
     height: 2px;
     width: 0;
     bottom: 1px;
     position: absolute;
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
 }
+
 /* .bar:before {
     left: 50%;
 } */
+
 /* .bar:after {
     right: 50%;
 } */
+
 /* active durum bar */
 
-.group input:focus ~ .bar:before,
-.group input:focus ~ .bar:after {
+.group input:focus~.bar:before, .group input:focus~.bar:after {
     width: 100%;
 }
+
 /* HIGHLIGHTER ================================== */
 
 .highlight {
@@ -176,13 +193,15 @@ input:valid ~ label {
     pointer-events: none;
     opacity: 0.5;
 }
+
 /* active durum */
 
-.group input:focus ~ .highlight {
+.group input:focus~.highlight {
     -webkit-animation: inputHighlighter 0.3s ease;
     -moz-animation: inputHighlighter 0.3s ease;
     animation: inputHighlighter 0.3s ease;
 }
+
 /* form animasyon ================ */
 
 /* .input-ikon {
@@ -193,21 +212,21 @@ input:valid ~ label {
     font-size: 22px!important;
     position: relative;
 } */
+
 .span-input {
-    position: relative;
-    top: -5px;
+    position: relative !important;
+    top: -5px !important;
 }
-.giris-yap-buton,
-.kayit-ol-buton,
-.sifre-hatirlat-buton {
+
+.giris-yap-buton, .kayit-ol-buton, .sifre-hatirlat-buton {
     /* background: linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99)); */
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
     /* background: -webkit-linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99)); */
     display: block;
     text-align: center;
     text-decoration: none;
-    color: #eee;
+    color: #eee !important;
     /* font-family: roboto; */
     /* font-weight: 100; */
     padding: 4px;
@@ -218,13 +237,114 @@ input:valid ~ label {
     font-size: 12pt;
 }
 
-.giris-yap-buton:hover{
-    font-weight: 700;
-    color: rgb(255, 255, 255);
+.giris-yap-buton:hover {
+    font-weight: 700 !important;
+    color: rgb(255, 255, 255) !important;
     text-decoration: none;
+    cursor: pointer;
 }
 
-.login{
+.login {
     font-size: 10pt;
 }
 
+#scroll-smooth {
+    width: 100%;
+    height: 112px;
+    background-color: white;
+    display: none;
+}
+
+.btn-login-other {
+    color: #8DB1F7;
+}
+
+.btn-login-other:hover {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.popup-notificationFailUserName {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailEmail {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailBoth {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailFull {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationSuccess {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
