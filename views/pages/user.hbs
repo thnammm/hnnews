@@ -13,12 +13,15 @@
         {{!-- Navigation bar --}}
         {{> nav}}
 
-        {{!-- Body detail --}}
+        {{#if temp}}
+        {{!-- User --}}
         <div class="row user-body">
             <div class="col-md-3">
                 <div class="menu-left">
                     <img class="avatar" src="/img/avatar/1.png">
-                    <div class="name"> TRẦN HẠO NAM </div>
+                    {{#with muser}}
+                    <div class="name"> {{full_name}} </div>
+                    {{/with}}
                     <div class="boxshadow">
                         <li class="user-setting list">
                             <a href="" class="user-setting-link" data-target="#personal-information"
@@ -26,14 +29,9 @@
                                 Thông tin cá nhân </a>
                         </li>
                         <li class="user-setting list">
-                            <a href="" class="user-setting-link" data-target="#new-post" data-toggle="collapse"
-                                id="btn-new-post">
-                                Viết bài mới </a>
-                        </li>
-                        <li class="user-setting list">
                             <a href="" class="user-setting-link" data-target="#list-posts" data-toggle="collapse"
                                 id="btn-list-posts">
-                                Danh sách bài viết </a>
+                                Gia hạn tài khoản </a>
                         </li>
                         <li class="user-setting list">
                             <a href="" class="user-setting-link" data-target="#change-password" data-toggle="collapse"
@@ -46,6 +44,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-9">
                 <div class="content-right">
                     <div id="tab-content">
@@ -61,109 +60,57 @@
                                     </label>
                                 </div>
                                 <div class="col-md-9">
-                                    <form role="form" method="POST" action="">
+                                    <form role="form" method="POST" action="/user">
                                         <!-- Name -->
-                                        {{#with vm}}
+                                        {{#with muser}}
 
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Họ và tên
                                             </label>
-                                            <input name="name" class="col-md-10 form-control form-text-size" type="text"
-                                                placeholder="Nhập họ và tên của bạn" value="{{fullname}}">
+                                            <input name="username" class="col-md-10 form-control form-text-size" type="text"
+                                                placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
                                         </div>
-                                       
+
                                         <!-- Email -->
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Email </label>
-                                            <input name="email" class="col-md-10 form-control form-text-size"
-                                                type="email" placeholder="Nhập email của bạn" value="{{email}}" >
+                                            <input name="useremail" class="col-md-10 form-control form-text-size"
+                                                type="email" placeholder="Nhập email của bạn" value="{{email}}">
                                         </div>
                                         <!-- Day of birth -->
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Ngày tháng năm
                                                 sinh
                                             </label>
-                                            <input name="dob" class="col-md-10 form-control form-text-size" type="date"
+                                            <input name="userdob" class="col-md-10 form-control form-text-size" type="date"
                                                 value="{{dob}}">
                                         </div>
-                                        <!-- Writer name -->
-                                        <div class="form-group">
-                                            <label class="col-lg-6 col-form-label form-control-label"> Bút danh
-                                            </label>
-                                            <input name="writer" class="col-md-10 form-control form-text-size"
-                                                type="text" placeholder="Nhập bút danh của bạn">
+                                        <!-- Day Account -->
+                                        <div class="col-md-10"
+                                            style="padding: 0;display: flex; flex-direction: row; justify-content: space-between;">
+                                            <div class="row form-group"
+                                                style="margin: 0; display: flex; justify-content: flex-start">
+                                                <label class="col-md-10 col-form-label form-control-label"> Ngày tạo
+                                                </label>
+                                                <input name="dob" class="col-md-10 form-control form-text-size"
+                                                    type="text" value="{{start_date}}" disabled>
+                                            </div>
+                                            <div class="row form-group"
+                                                style="margin: 0; display: flex; justify-content: flex-end">
+                                                <label class="col-md-10 col-form-label form-control-label"> Ngày hết hạn
+                                                </label>
+                                                <input name="dob" class="col-md-10 form-control form-text-size"
+                                                    type="text" value="{{end_date}}" disabled>
+                                            </div>
                                         </div>
                                         <!-- Button -->
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-primary col-md-3" value="Cập nhật">
                                         </div>
-                                         {{/with}}
+                                        {{/with}}
                                     </form>
 
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- New post -->
-                        <div class="content collapse" id="new-post" data-parent="#tab-content">
-                            <div class="col-md-12 post-content-area">
-                                <form role="form" method="POST" action="">
-                                    <!-- Avatar post -->
-                                    <div class="form-group">
-                                        <label class="col-md-6 col-form-label form-control-label"> Ảnh đại diện bài viết
-                                        </label>
-                                        <input name="ava-post" type="file" class="form-control-file form-text-size"
-                                            style="padding: 5px 0px;" aria-describedby="fileHelp">
-                                    </div>
-                                    <!-- Title post -->
-                                    <div class="form-group">
-                                        <label class="col-md-6 col-form-label form-control-label"> Tiêu đề bài viết
-                                        </label>
-                                        <input name="title-post" class="col-md-10 form-control form-text-size"
-                                            type="text" placeholder="Nhập tiêu đề">
-                                    </div>
-                                    <!-- Summary post -->
-                                    <div class="form-group">
-                                        <label class="col-md-6 col-form-label form-control-label"> Tóm tắt bài viết
-                                        </label>
-                                        <textarea name="summary-post" class="col-md-10 form-control form-text-size"
-                                            type="text" placeholder="Nhập tóm tắt bài viết"></textarea>
-                                    </div>
-                                    <!-- Inside post -->
-                                    <div class="form-group">
-                                        <label class="col-md-6 col-form-label form-control-label"> Nội dung bài viết
-                                        </label>
-                                        <div class="col-md-10" style="padding: 0;">
-                                            <textarea class="col-md-10 form-control form-text-size"
-                                                name="editor1"></textarea></div>
-                                        <script>
-                                            CKEDITOR.replace('editor1');
-                                        </script>
-                                    </div>
-                                    <!-- Category and tag post -->
-                                    <div class="form-group row" style="margin: 0;">
-                                        <div class="col-md-4" style="padding-left: 0;">
-                                            <label class="col-form-label form-control-label"> Chuyên mục bài viết
-                                            </label>
-                                            <select name="category-post" class="col-md-12 form-control form-text-size"
-                                                placeholder="Chọn chuyên mục bài viết">
-                                                <option> Giao thông </option>
-                                                <option> Xã hội </option>
-                                                <option> Thế giới </option>
-                                                <option> Giải trí </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-8" style="padding-left: 0;">
-                                            <label class="col-form-label form-control-label"> Nhãn dán bài viết </label>
-                                            <input name="tag-post" class="col-md-9 form-control form-text-size"
-                                                type="text" data-role="tagsinput" placeholder="Gán nhãn cho bài viết">
-                                        </div>
-                                    </div>
-                                    <!-- Button -->
-                                    <div class="form-group">
-                                        <input type="submit" class="btn btn-primary col-md-3" value="Gửi bài viết">
-                                    </div>
-                                </form>
                             </div>
                         </div>
 
@@ -302,7 +249,505 @@
                 </div>
             </div>
         </div>
+        {{/if}}
 
+        {{#if temp1}}
+        {{!-- Writer --}}
+        <div class="row user-body">
+            <div class="col-md-3">
+                <div class="menu-left">
+                    <img class="avatar" src="/img/avatar/1.png">
+                    {{#with mwriter}}
+                    <div class="name">{{full_name}} </div>
+                    {{/with}}
+                    <div class="boxshadow">
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#personal-information"
+                                data-toggle="collapse" id="btn-personal-information">
+                                Thông tin cá nhân </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#new-post" data-toggle="collapse"
+                                id="btn-new-post">
+                                Viết bài mới </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#list-posts" data-toggle="collapse"
+                                id="btn-list-posts">
+                                Danh sách bài viết </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#change-password" data-toggle="collapse"
+                                id="btn-change-password">
+                                Đổi mật khẩu </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" id="btn-logout"> Đăng xuất </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="content-right">
+                    <div id="tab-content">
+
+                        <!-- Personal information -->
+                        <div class="content collapse" id="personal-information" data-parent="#tab-content">
+                            <div class="row" style="margin: 10px 20px">
+                                <div class="col-md-3" style="text-align: center;">
+                                    <img src="/img/avatar/1.png" class="m-x-auto img-fluid rounded-circle ava"
+                                        alt="avatar">
+                                    <label class="custom-file">
+                                        <span class="custom-file-control"> Đổi Avatar </span>
+                                    </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <form role="form" method="POST" action="/user">
+                                        <!-- Name -->
+                                        {{#with mwriter}}
+
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Họ và tên
+                                            </label>
+                                            <input name="writername" class="col-md-10 form-control form-text-size" type="text"
+                                                placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Email </label>
+                                            <input name="writeremail" class="col-md-10 form-control form-text-size"
+                                                type="email" placeholder="Nhập email của bạn" value="{{email}}">
+                                        </div>
+                                        <!-- Day of birth -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Ngày tháng năm
+                                                sinh
+                                            </label>
+                                            <input name="writerdob" class="col-md-10 form-control form-text-size" type="date"
+                                                value="{{dob}}">
+                                        </div>
+                                        <!-- Writer name -->
+                                        <div class="form-group">
+                                            <label class="col-lg-6 col-form-label form-control-label"> Bút danh
+                                            </label>
+                                            <input name="penname" class="col-md-10 form-control form-text-size"
+                                                type="text" placeholder="Nhập bút danh của bạn" value="{{pen_name}}">
+                                        </div>
+                                        <!-- Button -->
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary col-md-3" value="Cập nhật">
+                                        </div>
+                                        {{/with}}
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New post -->
+                        <div class="content collapse" id="new-post" data-parent="#tab-content">
+                            <div class="col-md-12 post-content-area">
+                                <form role="form" method="POST" action="">
+                                    <!-- Avatar post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Ảnh đại diện bài viết
+                                        </label>
+                                        <input name="ava-post" type="file" class="form-control-file form-text-size"
+                                            style="padding: 5px 0px;" aria-describedby="fileHelp">
+                                    </div>
+                                    <!-- Title post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Tiêu đề bài viết
+                                        </label>
+                                        <input name="title-post" class="col-md-10 form-control form-text-size"
+                                            type="text" placeholder="Nhập tiêu đề">
+                                    </div>
+                                    <!-- Summary post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Tóm tắt bài viết
+                                        </label>
+                                        <textarea name="summary-post" class="col-md-10 form-control form-text-size"
+                                            type="text" placeholder="Nhập tóm tắt bài viết"></textarea>
+                                    </div>
+                                    <!-- Inside post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Nội dung bài viết
+                                        </label>
+                                        <div class="col-md-10" style="padding: 0;">
+                                            <textarea class="col-md-10 form-control form-text-size"
+                                                name="editor1"></textarea></div>
+                                        <script>
+                                            CKEDITOR.replace('editor1');
+                                        </script>
+                                    </div>
+                                    <!-- Category and tag post -->
+                                    <div class="form-group row" style="margin: 0;">
+                                        <div class="col-md-4" style="padding-left: 0;">
+                                            <label class="col-form-label form-control-label"> Chuyên mục bài viết
+                                            </label>
+                                            <select name="category-post" class="col-md-12 form-control form-text-size"
+                                                placeholder="Chọn chuyên mục bài viết">
+                                                <option> Giao thông </option>
+                                                <option> Xã hội </option>
+                                                <option> Thế giới </option>
+                                                <option> Giải trí </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-8" style="padding-left: 0;">
+                                            <label class="col-form-label form-control-label"> Nhãn dán bài viết </label>
+                                            <input name="tag-post" class="col-md-9 form-control form-text-size"
+                                                type="text" data-role="tagsinput" placeholder="Gán nhãn cho bài viết">
+                                        </div>
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary col-md-3" value="Gửi bài viết">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- List posts -->
+                        <div class="content collapse" id="list-posts" data-parent="#tab-content">
+                            <div class="col-md-12 listposts">
+                                {{!-- Search and filter --}}
+                                <div class="col-form-label form-control-label"> Tìm kiếm </div>
+                                <div class="lp-nav-container lp-text-search">
+                                    <i class="fas fa-search lp-icon-search" style="font-size: 11pt;"></i>
+                                    <input class="form-control lp-search-box" type="text"
+                                        placeholder="Tìm kiếm bài viết theo tên bài viết" name="search"
+                                        ng-model="searchItem" />
+                                </div>
+                                {{!-- <div class="row my-1">
+
+                                </div> --}}
+
+                                {{!-- Content list posts --}}
+                                {{#each mwriterpostlist}}
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+
+                                    {{#ifEquals status_post '1'}}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: rgb(40, 200, 0)">{{status_name}}</strong>
+                                    </div>
+                                    {{/ifEquals}}
+
+                                    {{#ifEquals status_post '2' }}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: blue">{{status_name}}</strong>
+                                    </div>
+                                    {{/ifEquals}}
+
+                                    {{#ifEquals status_post '3' }}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: #ffc107">{{status_name}}</strong>
+                                    </div>
+                                    {{/ifEquals}}
+
+                                    {{#ifEquals status_post '4'}}
+                                    <div class="col-md-3 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: red">{{status_name}}</strong>
+                                    </div>
+                                    {{!-- <a class="col-md-4 " href="#"> Xem góp ý chỉnh sửa </a>
+                                    <a class="col-md-2" href="#"> Chỉnh sửa </a> --}}
+                                    <div class="col-md-6 content-button">
+                                        <a class="col-md-6" href="#"> Xem góp ý chỉnh sửa </a>
+                                        <a class="col-md-6" href="#"> Chỉnh sửa </a>
+                                    </div>
+                                    {{/ifEquals}}
+                                </div>
+                                {{/each}}
+                                {{!-- Pagination --}}
+                                <nav class="nav-pagination" aria-label="...">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <!-- Change password -->
+                        <div class="content collapse" id="change-password" data-parent="#tab-content">
+                            <div id="passwordForm" class="col-md-8 passchange">
+                                <!-- Old password -->
+                                <div class="form-group">
+                                    <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
+                                    <input type="password" class="input-lg form-control form-text-size"
+                                        name="oldpassword" id="oldpassword" placeholder="Nhập mật khẩu cũ"
+                                        autocomplete="off">
+                                </div>
+                                <!-- New password -->
+                                <div class="form-group">
+                                    <label class="col-form-label form-control-label"> Mật khẩu mới </label>
+                                    <input type="password" class="input-lg form-control form-text-size"
+                                        name="newpassword" id="newpassword" placeholder="Nhập mật khẩu mới"
+                                        autocomplete="off">
+                                </div>
+                                <!-- Retype new password -->
+                                <div class="form-group">
+                                    <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
+                                    <input type="password" class="input-lg form-control form-text-size"
+                                        name="retypepassword" id="retypepassword" placeholder="Nhập lại mật khẩu mới"
+                                        autocomplete="off">
+                                </div>
+                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-pass"
+                                    data-loading-text="Changing Password..."> Đổi mật khẩu </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if temp2}}
+        {{!-- Editor --}}
+        <div class="row user-body">
+            <div class="col-md-3">
+                <div class="menu-left">
+                    <img class="avatar" src="/img/avatar/1.png">
+                    {{#with meditor}}
+                    <div class="name"> {{full_name}} </div>
+                    {{/with}}
+                    <div class="boxshadow">
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#personal-information"
+                                data-toggle="collapse" id="btn-personal-information">
+                                Thông tin cá nhân </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#list-posts" data-toggle="collapse"
+                                id="btn-list-posts">
+                                Duyệt bài </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" data-target="#change-password" data-toggle="collapse"
+                                id="btn-change-password">
+                                Đổi mật khẩu </a>
+                        </li>
+                        <li class="user-setting list">
+                            <a href="" class="user-setting-link" id="btn-logout"> Đăng xuất </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="content-right">
+                    <div id="tab-content">
+
+                        <!-- Personal information -->
+                        <div class="content collapse" id="personal-information" data-parent="#tab-content">
+                            <div class="row" style="margin: 10px 20px">
+                                <div class="col-md-3" style="text-align: center;">
+                                    <img src="/img/avatar/1.png" class="m-x-auto img-fluid rounded-circle ava"
+                                        alt="avatar">
+                                    <label class="custom-file">
+                                        <span class="custom-file-control"> Đổi Avatar </span>
+                                    </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <form role="form" method="POST" action="/user">
+                                        <!-- Name -->
+                                        {{#with meditor}}
+
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Họ và tên
+                                            </label>
+                                            <input name="editorname" class="col-md-10 form-control form-text-size" type="text"
+                                                placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Email </label>
+                                            <input name="editoremail" class="col-md-10 form-control form-text-size"
+                                                type="email" placeholder="Nhập email của bạn" value="{{email}}">
+                                        </div>
+                                        <!-- Day of birth -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Ngày tháng năm
+                                                sinh
+                                            </label>
+                                            <input name="editordob" class="col-md-10 form-control form-text-size" type="date"
+                                                value="{{dob}}">
+                                        </div>
+                                        <!-- Button -->
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary col-md-3" value="Cập nhật">
+                                        </div>
+                                        {{/with}}
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- List posts -->
+                        <div class="content collapse" id="list-posts" data-parent="#tab-content">
+                            <div class="col-md-12 listposts">
+                                {{!-- Search and filter --}}
+                                <div class="col-form-label form-control-label"> Tìm kiếm </div>
+                                <div class="lp-nav-container lp-text-search">
+                                    <i class="fas fa-search lp-icon-search" style="font-size: 11pt;"></i>
+                                    <input class="form-control lp-search-box" type="text"
+                                        placeholder="Tìm kiếm bài viết theo tên bài viết" name="search"
+                                        ng-model="searchItem" />
+                                </div>
+                                {{!-- <div class="row my-1">
+
+                                </div> --}}
+
+                                {{!-- Content list posts --}}
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-8 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: blue">Đã duyệt
+                                            và chờ xuất bản</strong>
+                                    </div>
+                                </div>
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-8 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: rgb(40, 200, 0)">Đã
+                                            xuất bản</strong>
+                                    </div>
+                                </div>
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-3 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: red">Bị từ
+                                            chối</strong>
+                                    </div>
+                                    <div class="cold-md-3 content-button">
+                                        <a href="#"> Xem góp ý chỉnh sửa </a>
+                                    </div>
+                                    <div class="cold-md-2 content-button">
+                                        <a href="#"> Chỉnh sửa </a>
+                                    </div>
+                                </div>
+                                <div class="row content-list-post">
+                                    <div class="col-md-12 content-title">
+                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Ngày gửi bài:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                    </div>
+                                    <div class="col-md-6 content-status">
+                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: #ffc107">Chưa được
+                                            duyệt</strong>
+                                    </div>
+                                    <div class="cold-md-2 content-button">
+                                        <a href="#"> Chỉnh sửa </a>
+                                    </div>
+                                </div>
+
+                                {{!-- Pagination --}}
+                                <nav class="nav-pagination" aria-label="...">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <!-- Change password -->
+                        <div class="content collapse" id="change-password" data-parent="#tab-content">
+                            <div id="passwordForm" class="col-md-8 passchange">
+                                <!-- Old password -->
+                                <div class="form-group">
+                                    <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
+                                    <input type="password" class="input-lg form-control form-text-size"
+                                        name="oldpassword" id="oldpassword" placeholder="Nhập mật khẩu cũ"
+                                        autocomplete="off">
+                                </div>
+                                <!-- New password -->
+                                <div class="form-group">
+                                    <label class="col-form-label form-control-label"> Mật khẩu mới </label>
+                                    <input type="password" class="input-lg form-control form-text-size"
+                                        name="newpassword" id="newpassword" placeholder="Nhập mật khẩu mới"
+                                        autocomplete="off">
+                                </div>
+                                <!-- Retype new password -->
+                                <div class="form-group">
+                                    <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
+                                    <input type="password" class="input-lg form-control form-text-size"
+                                        name="retypepassword" id="retypepassword" placeholder="Nhập lại mật khẩu mới"
+                                        autocomplete="off">
+                                </div>
+                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-pass"
+                                    data-loading-text="Changing Password..."> Đổi mật khẩu </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
         {{!-- Footer --}}
         {{> footer}}
     </div>
