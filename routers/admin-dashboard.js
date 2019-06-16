@@ -4,9 +4,17 @@ var moment = require('moment');
 
 var app = express.Router();
 var admin = require('../models/admin.model.js');
-module.exports = app;
 
-app.get('/admin-dashboard', function (req, res) {
+var adminauth = require('../middlewares/adminauth.js');
+
+// Logout
+app.post('/admin-dashboard/logout', adminauth, (req, res, next) => {
+    req.logOut();
+    res.redirect('/admin');
+})
+
+// Dashboard
+app.get('/admin-dashboard', adminauth, function (req, res, next) {
     // Set limit and offset value for all part of admin
     /*
     var page = req.query.page || 1;
@@ -541,14 +549,12 @@ app.get('/admin-dashboard', function (req, res) {
                 writerlist: adminwriter,
                 editorlist: admineditor
             });
-        }).catch(err => {
-            console.log(err);
-        })
+        }).catch(next)
 })
 
 // Account
 
-app.post('/admin-dashboard/addaccount', function (req, res) {
+app.post('/admin-dashboard/addaccount', function (req, res, next) {
     // Crypt Password
     var saltRounds = 10;
     var passhashed = '';
@@ -595,9 +601,7 @@ app.post('/admin-dashboard/addaccount', function (req, res) {
                             res.send("Success");
                         }
                     })
-                    .catch(err => {
-                        console.log(err);
-                    })
+                    .catch(next)
             }
         }
 
@@ -619,9 +623,7 @@ app.post('/admin-dashboard/addaccount', function (req, res) {
                             res.send("Success");
                         }
                     })
-                    .catch(err => {
-                        console.log(err);
-                    })
+                    .catch(next)
             }
         }
 
@@ -641,14 +643,12 @@ app.post('/admin-dashboard/addaccount', function (req, res) {
                         res.send("Success");
                     }
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(next)
         }
     }
 })
 
-app.get('/admin-editaccount/:rolename/:id', function (req, res) {
+app.get('/admin-editaccount/:rolename/:id', adminauth, function (req, res, next) {
     var id = req.params.id;
     var rolename = req.params.rolename;
 
@@ -674,7 +674,6 @@ app.get('/admin-editaccount/:rolename/:id', function (req, res) {
         admin.singleuser(id).then(rows => {
             if (rows.length > 0) {
                 if (rows[0][0].count === '0') {
-                    console.log('a');
                     res.render('pages/admin-editaccount', {
                         error: true
                     });
@@ -687,6 +686,7 @@ app.get('/admin-editaccount/:rolename/:id', function (req, res) {
                 }
             }
         }).catch(err => {
+            console.log(err);
             res.render('pages/admin-editaccount', {
                 error: true
             });
@@ -760,7 +760,7 @@ app.get('/admin-editaccount/:rolename/:id', function (req, res) {
     }
 })
 
-app.post('/admin-dashboard/updateaddsubcat', function (req, res) {
+app.post('/admin-dashboard/updateaddsubcat', function (req, res, next) {
     var entity = {
         editorid: req.body.editorid,
         subcatid: req.body.subcatid
@@ -773,25 +773,21 @@ app.post('/admin-dashboard/updateaddsubcat', function (req, res) {
             .then(id => {
                 res.send("Success");
             })
-            .catch(err => {
-                console.log(err);
-            })
+            .catch(next)
     }
 })
 
-app.post('/admin-dashboard/deleteuser', function (req, res) {
+app.post('/admin-dashboard/deleteuser', function (req, res, next) {
     var id = req.body.userid;
 
     admin.deleteuser(id)
         .then(id => {
             res.redirect('/admin-dashboard');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/updateduedate', function (req, res) {
+app.post('/admin-dashboard/updateduedate', function (req, res, next) {
     var entity = {
         duedate: req.body.duedate,
         userid: req.body.userid
@@ -805,12 +801,10 @@ app.post('/admin-dashboard/updateduedate', function (req, res) {
                 res.send("Success");
             }
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/updatepenname', function (req, res) {
+app.post('/admin-dashboard/updatepenname', function (req, res, next) {
     var entity = {
         penname: req.body.penname,
         writerid: req.body.writerid
@@ -827,37 +821,31 @@ app.post('/admin-dashboard/updatepenname', function (req, res) {
                     res.send("Success");
                 }
             })
-            .catch(err => {
-                console.log(err);
-            })
+            .catch(next)
     }
 })
 
-app.post('/admin-dashboard/deletewriter', function (req, res) {
+app.post('/admin-dashboard/deletewriter', function (req, res, next) {
     var id = req.body.writerid;
 
     admin.deletewriter(id)
         .then(id => {
             res.redirect('/admin-dashboard');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/deleteeditor', function (req, res) {
+app.post('/admin-dashboard/deleteeditor', function (req, res, next) {
     var id = req.body.editorid;
 
     admin.deleteeditor(id)
         .then(id => {
             res.redirect('/admin-dashboard');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/updateremovesubcat', function (req, res) {
+app.post('/admin-dashboard/updateremovesubcat', function (req, res, next) {
     var entity = {
         editorid: req.body.editorid,
         subcatid: req.body.subcatid
@@ -875,14 +863,12 @@ app.post('/admin-dashboard/updateremovesubcat', function (req, res) {
                 res.send("Success");
             }
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
 // Post
 
-app.get('/admin-editpost/:id', function (req, res) {
+app.get('/admin-editpost/:id', adminauth, function (req, res, next) {
     var id = req.params.id;
 
     // If Equals Handlebars
@@ -938,7 +924,7 @@ app.get('/admin-editpost/:id', function (req, res) {
     })
 })
 
-app.post('/admin-dashboard/updatepost', function (req, res) {
+app.post('/admin-dashboard/updatepost', function (req, res, next) {
     var entity = {
         id: req.body.id,
         poststatus: req.body.poststatus
@@ -948,26 +934,22 @@ app.post('/admin-dashboard/updatepost', function (req, res) {
         .then(id => {
             res.send("Success");
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/deletepost', function (req, res) {
+app.post('/admin-dashboard/deletepost', function (req, res, next) {
     var id = req.body.postid;
 
     admin.deletepost(id)
         .then(id => {
             res.redirect('/admin-dashboard');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
 // Category
 
-app.post('/admin-dashboard/addcategory', function (req, res) {
+app.post('/admin-dashboard/addcategory', function (req, res, next) {
     var entity = {
         subcat: req.body.subcat,
         cat: req.body.cat,
@@ -992,12 +974,10 @@ app.post('/admin-dashboard/addcategory', function (req, res) {
                 res.send("Success");
             }
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.get('/admin-editcategory/:id', function (req, res) {
+app.get('/admin-editcategory/:id', adminauth, function (req, res, next) {
     var id = req.params.id;
 
     if (isNaN(id)) {
@@ -1027,7 +1007,7 @@ app.get('/admin-editcategory/:id', function (req, res) {
     })
 })
 
-app.post('/admin-dashboard/updatecategory', function (req, res) {
+app.post('/admin-dashboard/updatecategory', function (req, res, next) {
     var entity = {
         id: req.body.id,
         catname: req.body.newcatname
@@ -1042,26 +1022,22 @@ app.post('/admin-dashboard/updatecategory', function (req, res) {
                 res.send("Success");
             }
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/deletecategory', function (req, res) {
+app.post('/admin-dashboard/deletecategory', function (req, res, next) {
     var id = req.body.subcatid;
 
     admin.deletecategory(id)
         .then(id => {
             res.redirect('/admin-dashboard');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
 // Tag
 
-app.post('/admin-dashboard/addtag', function (req, res) {
+app.post('/admin-dashboard/addtag', function (req, res, next) {
     var entity = req.body.newtag;
 
     admin.addtag(entity)
@@ -1074,12 +1050,10 @@ app.post('/admin-dashboard/addtag', function (req, res) {
                 res.send("Success");
             }
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.get('/admin-edittag/:id', function (req, res) {
+app.get('/admin-edittag/:id', adminauth, function (req, res, next) {
     var id = req.params.id;
 
     if (isNaN(id)) {
@@ -1109,7 +1083,7 @@ app.get('/admin-edittag/:id', function (req, res) {
     })
 })
 
-app.post('/admin-dashboard/updatetag', function (req, res) {
+app.post('/admin-dashboard/updatetag', function (req, res, next) {
     var entity = {
         id: req.body.id,
         tagname: req.body.newtagname
@@ -1126,19 +1100,17 @@ app.post('/admin-dashboard/updatetag', function (req, res) {
                 res.send("Success");
             }
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
 
-app.post('/admin-dashboard/deletetag', function (req, res) {
+app.post('/admin-dashboard/deletetag', function (req, res, next) {
     var id = req.body.tagid;
 
     admin.deletetag(id)
         .then(id => {
             res.redirect('/admin-dashboard');
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
 })
+
+module.exports = app;

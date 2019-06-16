@@ -22,11 +22,12 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-md-12">
-                <div class="card w-50 shadow mx-auto">
+                <div class="card w-100 shadow mx-auto">
                     <div class="card-body text-center">
-                        <h1 class="card-title" style="color: red;"> <i class="fas fa-sad-cry"></i> Oops!</h1>
-                        <h2> Lỗi 404 - Không tìm thấy </h2>
-                        <div> Trang yêu cầu truy cập không tồn tại. Hãy thử lại.
+                        <h1 class="card-title">Oops!</h1>
+                        <h5 class="text-danger">{{message}}</h5>
+                        <div class="stack text-monospace">
+                            <small>{{error.stack}}</small>
                         </div>
                         <div class="my-4">
                             <a href="/" class="btn btn-primary btn-lg">

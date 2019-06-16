@@ -11,6 +11,16 @@
     {{!-- Nav --}}
     {{>nav}}
 
+    {{#if err_message}}
+    <div class="alert alert-warning alert-dismissible fade show popupregister-background" role="alert">
+        <div class="col-md-12 noti-popupregister">
+            <p class="popup-title"> THÔNG BÁO LỖI </p>
+            <p class="popup-content"> {{{err_message}}} </p>
+            <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+        </div>
+    </div>
+    {{/if}}
+
     <div class="container">
         <div id="scroll-smooth"></div>
 
@@ -61,7 +71,7 @@
                                 <label><span class="span-input">Mật khẩu</span></label>
                             </div>
                             <div class="row login" style="width:100%; margin:0px 0px 20px 0px">
-                                Đã có tài khoản?&nbsp; <a class="btn-login-other" href="/login"> Đăng nhập</a>
+                                Đã có tài khoản?&nbsp; <a class="btn-login-other" href="/dangnhap"> Đăng nhập</a>
                             </div>
 
                             <a role="button" id="btn-register" class="giris-yap-buton">Đăng ký</a>
@@ -72,46 +82,46 @@
                     <img src="/img/undraw/undraw-register.png" width="100%">
                 </div>
             </div>
-        </div>
 
-        <div class="row popup-notificationSuccess">
-            <div class="col-md-12 noti-popup">
-                <p class="popup-title"> THÔNG BÁO </p>
-                <p class="popup-content"> Tạo <span style="color: rgb(40, 200, 0)">thành
-                        công</span> tài khoản mới.</p>
-                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            <div class="row popup-notificationSuccess">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO </p>
+                    <p class="popup-content"> Tạo <span style="color: rgb(40, 200, 0)">thành
+                            công</span> tài khoản mới.</p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
             </div>
-        </div>
-        <div class="row popup-notificationFailBoth">
-            <div class="col-md-12 noti-popup">
-                <p class="popup-title"> THÔNG BÁO LỖI </p>
-                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
-                    do username và email đã tồn tại.</p>
-                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            <div class="row popup-notificationFailBoth">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                        do username và email đã tồn tại.</p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
             </div>
-        </div>
-        <div class="row popup-notificationFailUserName">
-            <div class="col-md-12 noti-popup">
-                <p class="popup-title"> THÔNG BÁO LỖI </p>
-                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
-                    do username đã tồn tại.</p>
-                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            <div class="row popup-notificationFailUserName">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                        do username đã tồn tại.</p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
             </div>
-        </div>
-        <div class="row popup-notificationFailEmail">
-            <div class="col-md-12 noti-popup">
-                <p class="popup-title"> THÔNG BÁO LỖI </p>
-                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
-                    do email đã tồn tại.</p>
-                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            <div class="row popup-notificationFailEmail">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                        do email đã tồn tại.</p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
             </div>
-        </div>
-        <div class="row popup-notificationFailFull">
-            <div class="col-md-12 noti-popup">
-                <p class="popup-title"> THÔNG BÁO LỖI </p>
-                <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
-                    do chưa nhập đầy đủ thông tin.</p>
-                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            <div class="row popup-notificationFailFull">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo tài khoản mới <span style="color: red">thất bại</span>
+                        do chưa nhập đầy đủ thông tin.</p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
             </div>
         </div>
 
@@ -144,21 +154,10 @@
             $(window).scrollTop(0);
             $(".menu").hide();
             $(".line-under-menu").hide();
-
-            $(window).scroll(function () {
-                if ($(window).scrollTop() > 27) {
-                    $("#scroll-smooth").css("display", "block");
-                    $("#scroll-nav").addClass("position-fixed");
-                    $("#scroll-nav").addClass("bootstrap-position-fixed");
-                }
-                else {
-                    $("#scroll-smooth").css("display", "none");
-                    $("#scroll-nav").removeClass("position-fixed");
-                    $("#scroll-nav").removeClass("bootstrap-position-fixed");
-                }
-            });
+            $(".up-nav").hide();
 
             $(".close-btn").click(function () {
+                $(".popupregister-notification").hide();
                 $(".popup-notificationFailBoth").hide();
                 $(".popup-notificationFailEmail").hide();
                 $(".popup-notificationFailUserName").hide();
@@ -167,7 +166,7 @@
 
             $(".popup-notificationSuccess").children("div").children("button").click(function () {
                 $(".popup-notificationSuccess").hide();
-                window.location.reload();
+                window.location.href = 'http://localhost:3000/dangnhap';
             })
 
             $("#register-form").validate({
@@ -225,7 +224,6 @@
                 var fullname = $("#register-fullname").val();
                 var email = $("#register-email").val();
                 var pass = $("#register-password").val();
-
                 // Final action
                 $.post("/dangky/taotaikhoan",
                     {
@@ -236,23 +234,19 @@
                     },
                     function (result) {
                         if (result === "FailBoth") {
-                            $(".popup-background").hide();
                             $(".popup-notificationFailBoth").show();
                         } else if (result === "FailEmail") {
-                            $(".popup-background").hide();
                             $(".popup-notificationFailEmail").show();
                         } else if (result === "FailUserName") {
-                            $(".popup-background").hide();
                             $(".popup-notificationFailUserName").show();
                         } else if (result === "FailFull") {
                         } else {
-                            $(".popup-background").hide();
                             $(".popup-notificationSuccess").show();
                         }
                     });
             }
 
-            $("btn-register").click(function () {
+            $("#btn-register").click(function () {
                 btnregisterClick();
             })
         })

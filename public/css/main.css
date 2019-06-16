@@ -588,3 +588,65 @@
     color: blue;
     text-decoration: none;
 }
+
+.popup-background {
+    z-index: 100;
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.noti-popup {
+    height: initial;
+    position: absolute;
+    -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+    border-radius: 10px;
+    background-color: white;
+    background-position: center;
+    top: 200px;
+    left: 400px;
+    right: 400px;
+    padding: 20px 20px;
+    font-size: 12pt;
+    text-align: center;
+    width: unset;
+}
+
+.noti-popup>button {
+    text-align: center;
+}
+
+.popup-title {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: 700;
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.popup-content {
+    color: black;
+}
+
+.text-bold {
+    font-weight: 700;
+    color: black;
+}
+
+.text-alert {
+    font-weight: 700;
+    color: red;
+}

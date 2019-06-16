@@ -3,22 +3,23 @@
 }
 
 /* container */
+
 .container {
     padding: 0;
     margin: 0;
     max-width: 100%;
 }
 
-.content{
+.content {
     border-radius: 10px;
     box-shadow: 0px 0px 5px #8DB1F7;
     margin: 50px 130px;
     padding: 30px;
 }
 
-.text-login{
+.text-login {
     text-align: center;
-    background: -webkit-linear-gradient(left, #E0C3FC 30% , #8DB1F7);
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
@@ -27,25 +28,25 @@
     /* margin-top: 50px; */
 }
 
-.line-login{
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+.line-login {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     height: 3px;
     width: 40%;
     margin: 0 98px;
-    
 }
 
-.text-content{
+.text-content {
     text-align: center;
     margin-top: 21px;
     font-size: 11pt;
 }
 
-.text-content strong{
+.text-content strong {
     color: black;
 }
 
 /* css login form */
+
 .login-card {
     /* background-image: url('https://selimdoyranli.com/cdn/material-form/img/bg.jpg'); */
     /* background-size: cover; */
@@ -70,15 +71,15 @@
     -ms-flex-pack: center;
     justify-content: center;
     width: 100%;
-    margin: 50px 0px;
+    margin: 0px !important;
+    margin-top: 50px !important;
 }
+
 .login-card:after {
     /* background: linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99)); */
     /* Login Card Arkaplan Rengi */
-    
     /* background: -webkit-linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99)); */
     /* Login Card Arkaplan Rengi */
-    
     width: 100%;
     height: 100%;
     position: absolute;
@@ -88,7 +89,8 @@
     opacity: 0.8;
     z-index: 3;
 }
-.login-card > form {
+
+.login-card>form {
     z-index: 4;
     position: relative;
     padding: 0px 25px;
@@ -101,6 +103,7 @@
     position: relative;
     margin-bottom: 40px;
 }
+
 .group input {
     font-size: 12pt;
     /* padding: 10px 10px 10px 10px; */
@@ -111,10 +114,12 @@
     background: none;
     color: black;
 }
+
 .group input:focus {
     outline: none;
     border-bottom: none;
 }
+
 /* LABEL ======================================= */
 
 .group label {
@@ -128,17 +133,17 @@
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
-    
 }
+
 /* active durum */
 
-.group input:focus ~ label,
-input:valid ~ label {
+.group input:focus~label, input:valid~label {
     top: -15px;
     left: -2px;
     font-size: 8pt !important;
     color: black;
 }
+
 /* BOTTOM BARS ================================= */
 
 .bar {
@@ -146,30 +151,33 @@ input:valid ~ label {
     display: block;
     width: 100%;
 }
-.bar:before,
-.bar:after {
+
+.bar:before, .bar:after {
     content: '';
     height: 2px;
     width: 0;
     bottom: 1px;
     position: absolute;
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
 }
+
 /* .bar:before {
     left: 50%;
 } */
+
 /* .bar:after {
     right: 50%;
 } */
+
 /* active durum bar */
 
-.group input:focus ~ .bar:before,
-.group input:focus ~ .bar:after {
+.group input:focus~.bar:before, .group input:focus~.bar:after {
     width: 100%;
 }
+
 /* HIGHLIGHTER ================================== */
 
 .highlight {
@@ -181,13 +189,15 @@ input:valid ~ label {
     pointer-events: none;
     opacity: 0.5;
 }
+
 /* active durum */
 
-.group input:focus ~ .highlight {
+.group input:focus~.highlight {
     -webkit-animation: inputHighlighter 0.3s ease;
     -moz-animation: inputHighlighter 0.3s ease;
     animation: inputHighlighter 0.3s ease;
 }
+
 /* form animasyon ================ */
 
 /* .input-ikon {
@@ -198,21 +208,21 @@ input:valid ~ label {
     font-size: 22px!important;
     position: relative;
 } */
+
 .span-input {
     position: relative;
     top: -5px;
 }
-.giris-yap-buton,
-.kayit-ol-buton,
-.sifre-hatirlat-buton {
+
+.giris-yap-buton, .kayit-ol-buton, .sifre-hatirlat-buton {
     /* background: linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99)); */
-    background-image: linear-gradient(to right,#E0C3FC 30%, #8DB1F7);
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
     background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
     /* background: -webkit-linear-gradient(-135deg, rgb(63, 81, 181), rgb(233, 30, 99)); */
     display: block;
     text-align: center;
     text-decoration: none;
-    color: #eee;
+    color: #eee !important;
     /* font-family: roboto; */
     /* font-weight: 100; */
     padding: 4px;
@@ -223,30 +233,40 @@ input:valid ~ label {
     font-size: 12pt;
 }
 
-.giris-yap-buton:hover{
-    font-weight: 700;
-    color: rgb(255, 255, 255);
+.giris-yap-buton:hover {
+    font-weight: 700 !important;
+    color: rgb(255, 255, 255) !important;
     text-decoration: none;
+    cursor: pointer;
 }
 
-.forget-password{
+.forget-password {
     color: rgb(60, 123, 248);
     text-align: left;
     font-size: 10pt;
 }
 
-.register{
+.register {
     color: rgb(60, 123, 248);
     text-align: right;
     font-size: 10pt;
 }
 
-.register:hover, .forget-password:hover{
+.btn-other {
+    color: #8DB1F7;
+}
+
+.btn-other:hover {
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+.register:hover, .forget-password:hover {
     text-decoration: underline;
     font-weight: bold;
 }
 
-.menu, .line-under-menu {
+.menu, .line-under-menu, .up-nav, .nav-container {
     display: none;
 }
 
@@ -255,4 +275,95 @@ input:valid ~ label {
     height: 112px;
     background-color: white;
     display: none;
+}
+
+.popuplogin-background {
+    z-index: 100;
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.noti-popuplogin {
+    height: initial;
+    position: absolute;
+    -moz-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(141, 176, 247, 0.5);
+    box-shadow: 0 0 10px 0 rgba(141, 176, 247, 0.5);
+    border-radius: 10px;
+    background-color: white;
+    background-position: center;
+    top: 200px;
+    left: 400px;
+    right: 400px;
+    padding: 20px 20px;
+    font-size: 12pt;
+    text-align: center;
+    width: unset;
+}
+
+.noti-popup>button {
+    text-align: center;
+}
+
+.popup-title {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: 700;
+    background: -webkit-linear-gradient(left, #E0C3FC 30%, #8DB1F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.popup-content {
+    color: black;
+}
+
+.text-bold {
+    font-weight: 700;
+    color: black;
+}
+
+.text-alert {
+    font-weight: 700;
+    color: red;
+}
+
+.login-btn {
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    display: block;
+    text-align: center;
+    color: white;
+    padding: 5px 40px !important;
+    outline: none;
+    font-size: 12pt;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+}
+
+.login-btn:hover {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #E0C3FC 30%, #8DB1F7);
+    -moz-box-shadow: 1px 2px 5px white;
+    -webkit-box-shadow: 1px 2px 5px white;
+    box-shadow: 0px 2px 10px #c4c4c4;
+    cursor: pointer;
+}
+
+.account-login-btn {
+    display: flex;
+    justify-content: center;
 }

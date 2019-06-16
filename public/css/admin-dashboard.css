@@ -151,6 +151,7 @@
     font-size: 14pt;
     font-weight: 700;
     color: black;
+    text-transform: uppercase;
 }
 
 .topbar-account-text-2 {
@@ -190,4 +191,14 @@
 
 .dashboard-bg {
     width: 45%;
+}
+
+.div-icon-logout:hover>.icon-logout {
+    color: white;
+    font-weight: 700;
+}
+
+.icon-logout {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 30pt;
 }

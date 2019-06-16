@@ -3,16 +3,20 @@
 <link rel="stylesheet" type="text/css" href="/css/menu.css">
 
 {{!-- Navbar not sign-in yet --}}
+{{#if isAuthenticatedAccount}}
+{{!-- Navbar sign-in already --}}
 <div class="row up-nav">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
     </div>
-    <div class="col-md-3" id="phone-contact">
-        <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
-    </div>
-    <div class="col-md-3" id="login-register-area">
-        <a href="/register" id="register-choice" class="choice-here"> Đăng ký </a>
-        <a href="/login" id="login-choice" class="choice-here"> Đăng nhập </a>
+    <div class="col-md-4 logined-right">
+        <div id="phone-contact">
+            <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
+        </div>
+        <div id="already-login">
+            <a href="/thongtincanhan" class="a-tag-username"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+                {{authAccount.fullname}} </a>
+        </div>
     </div>
 </div>
 
@@ -33,196 +37,195 @@
     </div>
 
     <div class="shadowbox-nav"></div>
-
-    {{!-- Navbar sign-in already --}}
-    {{!-- <div class="row up-nav">
-        <div class="col-md-9">
+    {{else}}
+    <div class="row up-nav">
+        <div class="col-md-6">
             <div style="font-weight: 700;"><strong class="text-gradient">HN </strong> News</div>
         </div>
         <div class="col-md-3" id="phone-contact">
             <i class="fa fa-phone fa-rotate-90" style="font-size: 11pt"></i> 0123.456.789
         </div>
+        <div class="col-md-3" id="login-register-area">
+            <a href="/dangky" id="register-choice" class="choice-here"> Đăng ký </a>
+            <a href="/dangnhap" id="login-choice" class="choice-here"> Đăng nhập </a>
+        </div>
     </div>
 
-    <div class="nav-main">
-        <div class="row">
-            <div class="col-md-3 nav-logo">
-                <img src="/img/general/logo.png" alt="HN News">
-            </div>
-            <div class="col-md-8 nav-container">
-                <div class="text-search">
-                    <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
-                    <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..."
-                        name="search" ng-model="searchItem" />
+    <div id="scroll-nav">
+        <div class="nav-main">
+            <div class="row">
+                <div class="col-md-4 nav-logo">
+                    <a href="/"> <img id="hnnews-logo" src="/img/general/logo.png" alt="HN News"> </a>
+                </div>
+                <div class="col-md-8 nav-container">
+                    <div class="text-search">
+                        <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
+                        <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..."
+                            name="search" ng-model="searchItem" />
+                    </div>
                 </div>
             </div>
-            <div class="col-md-1 profile-col">
-                <a class="form-inline profile-link" href="#">
-                    <span class="sr-only">(current)</span>
-                    <img class="nav-avatar" src="/img/general/avatar-default.png" alt="Ảnh đại diện">
+        </div>
+
+        <div class="shadowbox-nav"></div>
+        {{/if}}
+
+        {{!-- Menu category --}}
+        <div class="row menu">
+            <div class="col-md menu-drop" style="padding-right: 5px;">
+                {{#each listCategory}}
+                {{#ifEquals id "1"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-entertainment"
+                    aria-haspopup="true" aria-expanded="false">
+                    GIẢI TRÍ
                 </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="entertainment" aria-labelledby="catbtn-entertainment">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "1"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md resize-col-menu menu-drop">
+                {{#each listCategory}}
+                {{#ifEquals id "2"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-education" aria-haspopup="true"
+                    aria-expanded="false">
+                    GIÁO DỤC
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="education" aria-labelledby="catbtn-education">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "2"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md-2 resize-col-menu menu-drop">
+                {{#each listCategory}}
+                {{#ifEquals id "3"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-traffic" aria-haspopup="true"
+                    aria-expanded="false">
+                    GIAO THÔNG
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="traffic" aria-labelledby="catbtn-traffic">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "3"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md resize-col-menu menu-drop">
+                {{#each listCategory}}
+                {{#ifEquals id "4"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-travel" aria-haspopup="true"
+                    aria-expanded="false">
+                    DU LỊCH
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="travel" aria-labelledby="catbtn-travel">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "4"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md resize-col-menu menu-drop">
+                {{#each listCategory}}
+                {{#ifEquals id "5"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-life" aria-haspopup="true"
+                    aria-expanded="false">
+                    ĐỜI SỐNG
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="life" aria-labelledby="catbtn-life">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "5"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md-2 resize-col-menu menu-drop">
+                {{#each listCategory}}
+                {{#ifEquals id "6"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-technology"
+                    aria-haspopup="true" aria-expanded="false">
+                    CÔNG NGHỆ
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="technology" aria-labelledby="catbtn-technology">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "6"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md resize-col-menu menu-drop">
+                {{#each listCategory}}
+                {{#ifEquals id "7"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-transport" aria-haspopup="true"
+                    aria-expanded="false">
+                    XE CỘ
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="transport" aria-labelledby="catbtn-transport">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "7"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md menu-drop" style="padding-left: 5px; text-align: right;">
+                {{#each listCategory}}
+                {{#ifEquals id "8"}}
+                <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-world" aria-haspopup="true"
+                    aria-expanded="false">
+                    THẾ GIỚI
+                </a>
+                {{/ifEquals}}
+                {{/each}}
+                <div class="dropdown-menu" id="world" aria-labelledby="catbtn-transport">
+                    {{#each listSubCategory}}
+                    {{#ifEquals cat_id "8"}}
+                    <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
+                    {{/ifEquals}}
+                    {{/each}}
+                </div>
             </div>
         </div>
+
+        <div class="line-under-menu"></div>
     </div>
 
-    <div class="shadowbox-nav"></div> --}}
+    {{!-- JQuery 3.3.1 --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    {{!-- Menu category --}}
-    <div class="row menu">
-        <div class="col-md menu-drop" style="padding-right: 5px;">
-            {{#each listCategory}}
-            {{#ifEquals id "1"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-entertainment" aria-haspopup="true"
-                aria-expanded="false">
-                GIẢI TRÍ
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="entertainment" aria-labelledby="catbtn-entertainment">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "1"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md resize-col-menu menu-drop">
-            {{#each listCategory}}
-            {{#ifEquals id "2"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-education" aria-haspopup="true"
-                aria-expanded="false">
-                GIÁO DỤC
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="education" aria-labelledby="catbtn-education">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "2"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md-2 resize-col-menu menu-drop">
-            {{#each listCategory}}
-            {{#ifEquals id "3"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-traffic" aria-haspopup="true"
-                aria-expanded="false">
-                GIAO THÔNG
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="traffic" aria-labelledby="catbtn-traffic">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "3"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md resize-col-menu menu-drop">
-            {{#each listCategory}}
-            {{#ifEquals id "4"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-travel" aria-haspopup="true"
-                aria-expanded="false">
-                DU LỊCH
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="travel" aria-labelledby="catbtn-travel">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "4"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md resize-col-menu menu-drop">
-            {{#each listCategory}}
-            {{#ifEquals id "5"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-life" aria-haspopup="true"
-                aria-expanded="false">
-                ĐỜI SỐNG
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="life" aria-labelledby="catbtn-life">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "5"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md-2 resize-col-menu menu-drop">
-            {{#each listCategory}}
-            {{#ifEquals id "6"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-technology" aria-haspopup="true"
-                aria-expanded="false">
-                CÔNG NGHỆ
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="technology" aria-labelledby="catbtn-technology">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "6"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md resize-col-menu menu-drop">
-            {{#each listCategory}}
-            {{#ifEquals id "7"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-transport" aria-haspopup="true"
-                aria-expanded="false">
-                XE CỘ
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="transport" aria-labelledby="catbtn-transport">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "7"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md menu-drop" style="padding-left: 5px; text-align: right;">
-            {{#each listCategory}}
-            {{#ifEquals id "8"}}
-            <a class="dropdown-toggle menu-link" href="/chuyenmuc/{{id}}" id="catbtn-world" aria-haspopup="true"
-                aria-expanded="false">
-                THẾ GIỚI
-            </a>
-            {{/ifEquals}}
-            {{/each}}
-            <div class="dropdown-menu" id="world" aria-labelledby="catbtn-transport">
-                {{#each listSubCategory}}
-                {{#ifEquals cat_id "8"}}
-                <a class="dropdown-item" href="/chuyenmuc/{{cat_id}}/{{subcat_id}}">{{subcategory_name}}</a>
-                {{/ifEquals}}
-                {{/each}}
-            </div>
-        </div>
-    </div>
-
-    <div class="line-under-menu"></div>
-</div>
-
-{{!-- JQuery 3.3.1 --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $(".menu-drop").hover(function () {
-            $(this).children(".dropdown-menu").css("display", "block");
-            $(this).children(".menu-link").css("font-weight", "700");
-            $(this).children(".menu-link").css("color", "black");
-        }, function () {
-            $(this).children(".dropdown-menu").css("display", "none");
-            $(this).children(".menu-link").css("font-weight", "500");
-            $(this).children(".menu-link").css("color", "rgb(86, 86, 86)");
-        });
-    })
-</script>
+    <script>
+        $(document).ready(function () {
+            $(".menu-drop").hover(function () {
+                $(this).children(".dropdown-menu").css("display", "block");
+                $(this).children(".menu-link").css("font-weight", "700");
+                $(this).children(".menu-link").css("color", "black");
+            }, function () {
+                $(this).children(".dropdown-menu").css("display", "none");
+                $(this).children(".menu-link").css("font-weight", "500");
+                $(this).children(".menu-link").css("color", "rgb(86, 86, 86)");
+            });
+        })
+    </script>

@@ -99,9 +99,9 @@
 }
 
 .nav-avatar {
-    max-width: 100%;
-    width: 70%;
-    height: auto;
+    max-width: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
@@ -118,4 +118,25 @@
 .bootstrap-position-fixed {
     top: 0;
     z-index: 100;
+}
+
+#already-login {
+    color: rgb(90, 90, 238);
+    font-size: 11pt;
+    line-height: 27px;
+}
+
+.a-tag-username {
+    color: rgb(90, 90, 238);
+}
+
+.a-tag-username:hover {
+    color: rgb(50, 50, 255);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.logined-right {
+    display: flex;
+    justify-content: space-between;
 }

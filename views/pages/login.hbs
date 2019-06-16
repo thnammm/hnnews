@@ -11,6 +11,16 @@
     {{!-- Nav --}}
     {{>nav}}
 
+    {{#if err_message}}
+    <div class="alert alert-warning alert-dismissible fade show popuplogin-background" role="alert">
+        <div class="col-md-12 noti-popuplogin">
+            <p class="popup-title"> THÔNG BÁO LỖI </p>
+            <p class="popup-content"> {{{err_message}}} </p>
+            <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+        </div>
+    </div>
+    {{/if}}
+
     <div class="container">
         <div id="scroll-smooth"></div>
 
@@ -33,41 +43,44 @@
                             nghiệm nhiều tính năng của website.</p>
                     </div>
 
-                    <div class="login-card">
-                        <form id="login-form" class="col-lg-12">
+                    <div class="row login-card">
+                        <form method="POST" action="/dangnhap" id="login-form" class="col-md-12">
                             <div style="clear:both;"></div>
                             <div class="group">
-                                <input type="text" required>
+                                <input type="text" name="username" id="login-username" autofocus>
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label><span class="span-input">Tên đăng nhập</span></label>
                             </div>
                             <div class="group">
-                                <input type="password" required>
+                                <input type="password" name="password" id="login-password">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label><span class="span-input">Mật khẩu</span></label>
                             </div>
                             <div class="row" style="width:100%; margin:0px 0px 20px 0px">
-                                <a href="/forget-password" id="foget_pw" class="col-sm-8 forget-password"
+                                <a href="/quenmatkhau" id="foget_pw" class="col-sm-8 forget-password btn-other"
                                     style="padding: 0">Quên mật khẩu</a>
-                                <a href="/register" id="register" class="col-sm-4 register" style="padding: 0">Đăng
+                                <a href="/dangky" id="register" class="col-sm-4 register btn-other"
+                                    style="padding: 0">Đăng
                                     ký</a>
 
                             </div>
-
-                            <a href="#" class="giris-yap-buton">Đăng nhập</a>
-
-                            <div style="text-align: center; margin-top: 20px">hay <strong>Đăng nhập</strong> với</div>
-                            <div style="display: flex; justify-content: center; margin-top: 20px">
-                                <a href="" class="px-2"> <img src="/img/icon-media/facebook.png" width="40px"
-                                        height="40px"> </a>
-                                <a href="" class="px-2"> <img src="/img/icon-media/google.png" width="40px"
-                                        height="40px"> </a>
-                                <a href="" class="px-2"> <img src="/img/icon-media/twitter.png" width="40px"
-                                        height="40px"> </a>
+                            <div class="account-login-btn">
+                                <button type="submit" id="btn-login" class="login-btn">Đăng nhập</a>
                             </div>
                         </form>
+
+                        <div class="col-md-12" style="text-align: center; margin-top: 20px">hay <strong>Đăng
+                                nhập</strong> với</div>
+                        <div class="col-md-12" style="display: flex; justify-content: center; margin-top: 20px">
+                            <a href="" class="px-2"> <img src="/img/icon-media/facebook.png" width="40px" height="40px">
+                            </a>
+                            <a href="" class="px-2"> <img src="/img/icon-media/google.png" width="40px" height="40px">
+                            </a>
+                            <a href="" class="px-2"> <img src="/img/icon-media/twitter.png" width="40px" height="40px">
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-8 img-background">
@@ -102,18 +115,12 @@
             $(window).scrollTop(0);
             $(".menu").hide();
             $(".line-under-menu").hide();
+            $(".up-nav").hide();
+        })
 
-            $(window).scroll(function () {
-                if ($(window).scrollTop() > 27) {
-                    $("#scroll-smooth").css("display", "block");
-                    $("#scroll-nav").addClass("position-fixed");
-                    $("#scroll-nav").addClass("bootstrap-position-fixed");
-                }
-                else {
-                    $("#scroll-smooth").css("display", "none");
-                    $("#scroll-nav").removeClass("position-fixed");
-                    $("#scroll-nav").removeClass("bootstrap-position-fixed");
-                }
+        $(document).ready(function () {
+            $(".close-btn").click(function () {
+                $(".popuplogin-background").hide();
             });
         })
     </script>

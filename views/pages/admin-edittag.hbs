@@ -27,6 +27,12 @@
                             </div>
                         </div>
                         <div class="nav-bottom">
+                            <form method="POST" id="formAdminLogout" action="/admin-dashboard/logout"
+                                style="height: initial; margin-bottom: 10px;">
+                                <a href="javascript: $('#formAdminLogout').submit();" class="div-icon-logout"
+                                    title="ĐĂNG XUẤT"> <i class="far fa-arrow-alt-circle-left icon-logout"
+                                        aria-hidden="true"></i> </a>
+                            </form>
                             <div class="line-support"></div>
                             <div style="height: initial;">
                                 ADMIN PAGE
@@ -52,7 +58,7 @@
                                 <div class="topbar-title-text-2"> DANH SÁCH NHÃN DÁN </div>
                             </div>
                             <div class="col-md-3 topbar-account">
-                                <div class="topbar-account-text-1"> TRẦN HẠO NAM </div>
+                                <div class="topbar-account-text-1"> {{authAdmin.fullname}} </div>
                                 <div class="topbar-account-text-2"> Quản trị viên </div>
                             </div>
                             <div class="col-md-1 topbar-avatar">

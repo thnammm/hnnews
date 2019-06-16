@@ -14,6 +14,15 @@
                 {{> admin-nav}}
             </div>
             <div class="col-md-11 content-here">
+                {{#if err_message}}
+                <div class="alert alert-warning alert-dismissible fade show popup-background" role="alert">
+                    <div class="col-md-12 noti-popup">
+                        <p class="popup-title"> LỖI TRUY CẬP </p>
+                        <p class="popup-content"> {{{err_message}}} </p>
+                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                    </div>
+                </div>
+                {{/if}}
                 <div class="row content-undraw">
                     <div class="col-md-6 pic-left">
                         <img class="content-img" src="/img/undraw/undraw-admin1.png">
@@ -27,20 +36,22 @@
                     <div class="line-below-contentform"></div>
                     <div class="note-for-title"> Chỉ có <strong style="font-weight: 700; color: black;  ">quản trị
                             viên</strong> mới có thể đăng nhập </div>
-                    <form class="login-form">
+                    <form method="POST" action="/admin/login" class="login-form">
                         <div class="group">
-                            <input type="text" name="id-admin" id="id-admin" required>
+                            <input type="text" name="username" id="adminlogin-id" autofocus>
                             <span class="bar"></span>
                             <label><span class="span-input"> Tên đăng nhập </span></label>
                         </div>
 
                         <div class="group">
-                            <input type="password" name="password-admin" id="password-admin" required>
+                            <input type="password" name="password" id="adminlogin-password">
                             <span class="bar"></span>
                             <label><span class="span-input"> Mật khẩu </span></label>
                         </div>
 
-                        <div id="login-button" class="login-btn"> Đăng nhập </div>
+                        <div class="admin-login-btn">
+                            <button type="submit" id="login-button" class="login-btn"> Đăng nhập </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -61,14 +72,23 @@
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    {{!-- Script --}}
     <script>
-        function loginBtn() {
-            var idadmin = $("#id-admin").val();
-            var passwordadmin = $("#password-admin").val();
+        $(document).ready(function () {
+            $(".close-btn").click(function () {
+                $(".popup-background").hide();
+            });
+        })
+    </script>
 
-            $.post("/admin/admin-login",
+    {{!-- <script>
+        function loginBtn() {
+            var usernameAdmin = $("#id-admin").val();
+            var passwordAdmin = $("#password-admin").val();
+
+            $.post("/admin/login",
                 {
-                    id: idadmin,
+                    username: usernameAdmin,
                     password: passwordadmin
                 }, function (result) {
                     if (result === "wrong id") {
@@ -82,7 +102,7 @@
                 window.location.href = "localhost:3000/admin-dashboard";
             })
         })
-    </script>
+    </script> --}}
 </body>
 
 </html>

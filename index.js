@@ -1,33 +1,33 @@
 var express = require('express');
-var hbs = require('express-handlebars');
 var path = require('path');
+var hbs = require('express-handlebars');
 var morgan = require('morgan');
-var hbs_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
+var hbs_sections = require('express-handlebars-sections');
+
 
 var app = express();
 
+//Routers
 var main = require('./routers/main');
 var account = require('./routers/account');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
-var login = require('./routers/login');
-var forgetpassword = require('./routers/forget-password');
 var resultsearch = require('./routers/result-search');
 var user = require('./routers/user');
 var editpost = require('./routers/edit-post');
 
+// Models
 var indexModel = require('./models/index.model.js');
 
+// Middlewars
+// require('./middlewares/viewengine.js')(app);
+require('./middlewares/session.js')(app);
+require('./middlewares/passport.js')(app);
+
+app.use(require('./middlewares/adminauth.mdw.js'));
+app.use(require('./middlewares/accountauth.mdw.js'));
 app.use(require('./middlewares/categorymenu.mdw.js'));
-
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -37,8 +37,17 @@ app.engine('hbs', hbs({
     section: hbs_sections()
 }));
 
+// Set views and publics folder go to public file
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, '/views'));
 
+// Export JSON data using Promise at back-end
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Access to home page
 app.get('/', (req, res, next) => {
     var bestpost = indexModel.bestpost();
     var newpost = indexModel.newpost();
@@ -71,14 +80,19 @@ app.use(main)
 app.use(account)
 app.use(admin)
 app.use(admindashboard)
-app.use(login)
-app.use(forgetpassword)
 app.use(resultsearch)
 app.use(user)
 app.use(editpost);
 
 app.use((req, res, next) => {
     res.render('pages/error404');
+})
+
+app.use((error, req, res, next) => {
+    res.render('pages/errorElse', {
+        message: error.message,
+        error
+    });
 })
 
 app.listen(3000, () => {
