@@ -28,7 +28,7 @@ app.get('/dangky', function (req, res, next) {
 app.post('/dangky/taotaikhoan', function (req, res, next) {
     var saltRounds = 10;
     var passhashed = '';
-    if (req.body.pass === '') {
+    if (req.body.pass === '' || req.body.pass.length < 6) {
         passhashed = '';
     } else {
         passhashed = bcrypt.hashSync(req.body.pass, saltRounds);
@@ -41,7 +41,7 @@ app.post('/dangky/taotaikhoan', function (req, res, next) {
         password: passhashed
     }
 
-    if (entity.username === '' || entity.fullname === '' || entity.email === '') {
+    if (entity.username === '' || entity.fullname === '' || entity.email === '' || entity.password === '') {
         res.send("FailFull");
     } else {
         account.register(entity.username, entity.password, entity.fullname, entity.email)

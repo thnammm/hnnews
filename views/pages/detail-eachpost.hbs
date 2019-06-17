@@ -59,8 +59,11 @@
         {{/with}}
 
         {{!-- My comment --}}
+        {{#if isAuthenticatedAccount}}
         <div class="eachpost-mycomment">
-            <form role="form" method="POST" action="">
+            {{#with singlepost.[0]}}
+            <form role="form" method="POST" action="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}">
+                {{/with}}
                 <div class="row mycomment-margin">
                     <div class="col-md-6 mycomment-avatarandname">
                         <img class="avatar" src="/img/general/avatar-default.png" alt="Ảnh đại diện">
@@ -70,14 +73,22 @@
                 <div class="row mycomment-margin">
                     <div class="col-md-12">
                         <textarea name="comment" class="form-control form-text-size" type="text"
-                            placeholder="Bạn nghĩ gì về tin này?"></textarea>
+                            placeholder="Bạn nghĩ gì về tin này?" required></textarea>
                     </div>
                 </div>
                 <div class="row mycomment-margin mycomment-buttonsend">
-                    <a href="#" class="giris-yap-buton"> Gửi bình luận </a>
+                    <button type="submit" class="giris-yap-buton comment-btn"> Gửi bình luận </button>
                 </div>
             </form>
         </div>
+        {{else}}
+        <div class="eachpost-mycomment">
+            <div class="row mycomment-margin box-comment-signstate">
+                Để bình luận vào bài viết, vui lòng <a href="/dangnhap" class="mycomment-login">&nbsp; ĐĂNG NHẬP &nbsp;</a> vào tài
+                khoản. Nếu bạn chưa có tài khoản, hãy <a href="/dangky" class="mycomment-register">&nbsp; ĐĂNG KÝ </a>.
+            </div>
+        </div>
+        {{/if}}
 
         <div class="row eachpost-bottom">
             <div class="col-md-8 eachpost-othercomments">

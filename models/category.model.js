@@ -1,28 +1,28 @@
 var db = require('../utils/db');
 
 module.exports = {
-    postvaluesinglesubcat: (catid, subcatid) => {
-        return db.load(`call IndexSubCategoryGetPostValueOfOne(${catid}, ${subcatid})`);
+    postvaluesinglesubcat: (casepost, catid, subcatid) => {
+        return db.load(`call IndexSubCategoryGetPostValueOfOne(${casepost}, ${catid}, ${subcatid})`);
     },
 
-    singlesubcat: (catid, subcatid, limit, offset) => {
-        return db.load(`call IndexSubCategoryGetPostOf(${catid}, ${subcatid}, ${limit}, ${offset})`);
+    singlesubcat: (casepost, catid, subcatid, limit, offset) => {
+        return db.load(`call IndexSubCategoryGetPostOf(${casepost}, ${catid}, ${subcatid}, ${limit}, ${offset})`);
     },
 
-    viewmuchotherpostsinglesubcat: (catid, subcatid) => {
-        return db.load(`call IndexSubCategoryGetViewPost(${catid}, ${subcatid})`);
+    viewmuchotherpostsinglesubcat: (casepost, catid, subcatid) => {
+        return db.load(`call IndexSubCategoryGetViewPost(${casepost}, ${catid}, ${subcatid})`);
     },
 
-    postvaluesinglecat: (catid) => {
-        return db.load(`call IndexCategoryGetPostValueOfOne(${catid})`);
+    postvaluesinglecat: (casepost, catid) => {
+        return db.load(`call IndexCategoryGetPostValueOfOne(${casepost}, ${catid})`);
     },
 
-    singlecat: (catid, limit, offset) => {
-        return db.load(`call IndexCategoryGetPostOf(${catid}, ${limit}, ${offset})`);
+    singlecat: (casepost, catid, limit, offset) => {
+        return db.load(`call IndexCategoryGetPostOf(${casepost}, ${catid}, ${limit}, ${offset})`);
     },
 
-    viewmuchotherpostsinglecat: (catid) => {
-        return db.load(`call IndexCategoryGetViewPost(${catid})`);
+    viewmuchotherpostsinglecat: (casepost, catid) => {
+        return db.load(`call IndexCategoryGetViewPost(${casepost}, ${catid})`);
     },
 
     catofcat: () => {

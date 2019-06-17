@@ -9,7 +9,11 @@ module.exports = {
         return db.load(`call IndexGetCommentDetailPost(${id})`);
     },
 
-    otherpostsamecategory: id => {
-        return db.load(`call IndexGetSameCategoryPost(${id})`);
+    otherpostsamecategory: (casepost, id) => {
+        return db.load(`call IndexGetSameCategoryPost(${casepost}, ${id})`);
+    },
+
+    sendcomment: (accountid, postid, comment) => {
+        return db.load(`call IndexSendComment(${accountid}, ${postid}, '${comment}')`);
     }
 };

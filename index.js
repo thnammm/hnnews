@@ -49,10 +49,18 @@ app.use(express.urlencoded({ extended: true }));
 
 // Access to home page
 app.get('/', (req, res, next) => {
-    var bestpost = indexModel.bestpost();
-    var newpost = indexModel.newpost();
-    var viewpost = indexModel.viewpost();
-    var top8post = indexModel.top8post();
+    // CasePost
+    var casepost = 0;
+    if (!req.user || (req.user.casepost == 0)) {
+        casepost = 0;
+    } else if (req.user.casepost == 1) {
+        casepost = 1;
+    }
+
+    var bestpost = indexModel.bestpost(casepost);
+    var newpost = indexModel.newpost(casepost);
+    var viewpost = indexModel.viewpost(casepost);
+    var top8post = indexModel.top8post(casepost);
     var top10tag = indexModel.top10tag();
     var statistic = indexModel.statistic();
 

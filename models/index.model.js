@@ -1,20 +1,20 @@
 var db = require('../utils/db');
 
 module.exports = {
-    bestpost: () => {
-        return db.load('call IndexGetBestPost()');
+    bestpost: casepost => {
+        return db.load(`call IndexGetBestPost(${casepost})`);
     },
 
-    newpost: () => {
-        return db.load('call IndexGetNewPost()');
+    newpost: casepost => {
+        return db.load(`call IndexGetNewPost(${casepost})`);
     },
 
-    viewpost: () => {
-        return db.load('call IndexGetViewPost()');
+    viewpost: casepost => {
+        return db.load(`call IndexGetViewPost(${casepost})`);
     },
 
-    top8post: () => {
-        return db.load('call IndexGetTop8Post()');
+    top8post: casepost => {
+        return db.load(`call IndexGetTop8Post(${casepost})`);
     },
 
     top10tag: () => {

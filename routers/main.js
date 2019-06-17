@@ -109,16 +109,24 @@ app.get('/nhandan', (req, res) => {
 app.get('/nhandan/:tagid', (req, res) => {
     var tagid = req.params.tagid;
 
+    // CasePost
+    var casepost = 0;
+    if (!req.user || (req.user.casepost == 0)) {
+        casepost = 0;
+    } else if (req.user.casepost == 1) {
+        casepost = 1;
+    }
+
     var page = req.query.page || 1;
     if (page < 1) page = 1;
 
     var limit = 3;
     var offset = (page - 1) * limit;
 
-    var postvalue = tagModel.postvaluesingletag(tagid);
+    var postvalue = tagModel.postvaluesingletag(casepost, tagid);
     var othertag = tagModel.othertag(tagid);
-    var singletag = tagModel.singletag(tagid, limit, offset);
-    var countallpostsingletag = tagModel.postvaluesingletag(tagid);
+    var singletag = tagModel.singletag(casepost, tagid, limit, offset);
+    var countallpostsingletag = tagModel.postvaluesingletag(casepost, tagid);
 
     if (isNaN(tagid)) {
         res.render('pages/hashtag-detail', {
@@ -252,16 +260,24 @@ app.get('/nhandan/:tagid', (req, res) => {
 app.get('/chuyenmuc/:catid', (req, res) => {
     var catid = req.params.catid;
 
+    // CasePost
+    var casepost = 0;
+    if (!req.user || (req.user.casepost == 0)) {
+        casepost = 0;
+    } else if (req.user.casepost == 1) {
+        casepost = 1;
+    }
+
     var page = req.query.page || 1;
     if (page < 1) page = 1;
 
     var limit = 3;
     var offset = (page - 1) * limit;
 
-    var catvalue = categoryModel.postvaluesinglecat(catid);
-    var singlecat = categoryModel.singlecat(catid, limit, offset);
-    var viewmuch = categoryModel.viewmuchotherpostsinglecat(catid);
-    var countallpostsinglecat = categoryModel.postvaluesinglecat(catid);
+    var catvalue = categoryModel.postvaluesinglecat(casepost, catid);
+    var singlecat = categoryModel.singlecat(casepost, catid, limit, offset);
+    var viewmuch = categoryModel.viewmuchotherpostsinglecat(casepost, catid);
+    var countallpostsinglecat = categoryModel.postvaluesinglecat(casepost, catid);
 
     if (isNaN(catid)) {
         res.render('pages/subcategory-detail', {
@@ -402,16 +418,24 @@ app.get('/chuyenmuc/:catid/:subcatid', (req, res) => {
     var catid = req.params.catid;
     var subcatid = req.params.subcatid;
 
+    // CasePost
+    var casepost = 0;
+    if (!req.user || (req.user.casepost == 0)) {
+        casepost = 0;
+    } else if (req.user.casepost == 1) {
+        casepost = 1;
+    }
+
     var page = req.query.page || 1;
     if (page < 1) page = 1;
 
     var limit = 3;
     var offset = (page - 1) * limit;
 
-    var subcatvalue = categoryModel.postvaluesinglesubcat(catid, subcatid);
-    var singlesubcat = categoryModel.singlesubcat(catid, subcatid, limit, offset);
-    var viewmuch = categoryModel.viewmuchotherpostsinglesubcat(catid, subcatid);
-    var countallpostsinglesubcat = categoryModel.postvaluesinglesubcat(catid, subcatid);
+    var subcatvalue = categoryModel.postvaluesinglesubcat(casepost, catid, subcatid);
+    var singlesubcat = categoryModel.singlesubcat(casepost, catid, subcatid, limit, offset);
+    var viewmuch = categoryModel.viewmuchotherpostsinglesubcat(casepost, catid, subcatid);
+    var countallpostsinglesubcat = categoryModel.postvaluesinglesubcat(casepost, catid, subcatid);
 
     if (isNaN(catid)) {
         res.render('pages/subcategory-detail', {
@@ -558,9 +582,18 @@ app.get('/baiviet/:catid/:subcatid/:postid', (req, res) => {
     var subcatid = req.params.subcatid;
     var postid = req.params.postid;
 
+
+    // CasePost
+    var casepost = 0;
+    if (!req.user || (req.user.casepost == 0)) {
+        casepost = 0;
+    } else if (req.user.casepost == 1) {
+        casepost = 1;
+    }
+
     var singlepost = postModel.singlepost(catid, subcatid, postid);
     var postcomment = postModel.commentofpost(postid);
-    var otherpost = postModel.otherpostsamecategory(postid);
+    var otherpost = postModel.otherpostsamecategory(casepost, postid);
 
     if (isNaN(catid) || isNaN(subcatid) || isNaN(postid)) {
         res.render('pages/detail-eachpost', {
@@ -616,6 +649,29 @@ app.get('/baiviet/:catid/:subcatid/:postid', (req, res) => {
                 error: true
             });
         })
+})
+
+app.post('/baiviet/:catid/:subcatid/:postid', (req, res, next) => {
+    var postid = req.params.postid;
+    var accountid = req.user.account_id;
+    var comment = req.body.comment;
+    var catid = req.params.catid;
+    var subcatid = req.params.subcatid;
+
+    var error = {
+        stack: "You didn't type anything in your comment box. Please request backto the post page you've been reading and type again the message you want to send"
+    }
+
+    if (comment == '') {
+        res.render('pages/errorElse', {
+            message: 'NO MESSAGES TO COMMENT ON THE POST',
+            error
+        })
+    } else {
+        postModel.sendcomment(accountid, postid, comment).then(results => {
+            res.redirect(`/baiviet/${catid}/${subcatid}/${postid}`);
+        }).catch(next);
+    }
 })
 
 module.exports = app;
