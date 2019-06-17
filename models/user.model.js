@@ -33,11 +33,27 @@ module.exports = {
         return db.load(`call WriterGetInfo(${id})`);
     },
 
-    writerpostlist: id => {
+    writerpostlist: (id) => {
         return db.load(`call WriterPostList(${id})`);
     },
 
-    writerupdateinfo: (writerEntity)=>{
+    poststatus1: (id) => {
+        return db.load(`call WriterPostListStatus(${id}, '1')`);
+    },
+
+    poststatus2: (id) => {
+        return db.load(`call WriterPostListStatus(${id}, '2')`);
+    },
+
+    poststatus3: (id) => {
+        return db.load(`call WriterPostListStatus(${id}, '3')`);
+    },
+
+    poststatus4: (id) => {
+        return db.load(`call WriterPostListStatus(${id}, '4')`);
+    },
+
+    writerupdateinfo: (writerEntity) => {
         return db.load(`call WriterUpdateInfo(${writerEntity.id},'${writerEntity.fullname}'
                                              ,'${writerEntity.penname}','${writerEntity.email}'
                                              ,'${writerEntity.dob}')`);

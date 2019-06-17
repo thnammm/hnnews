@@ -13,9 +13,7 @@ var main = require('./routers/main');
 var account = require('./routers/account');
 var admin = require('./routers/admin');
 var admindashboard = require('./routers/admin-dashboard');
-var resultsearch = require('./routers/result-search');
-var user = require('./routers/user');
-var editpost = require('./routers/edit-post');
+var profile = require('./routers/profile');
 
 // Models
 var indexModel = require('./models/index.model.js');
@@ -88,9 +86,7 @@ app.use(main)
 app.use(account)
 app.use(admin)
 app.use(admindashboard)
-app.use(resultsearch)
-app.use(user)
-app.use(editpost);
+app.use(profile)
 
 app.use((req, res, next) => {
     res.render('pages/error404');

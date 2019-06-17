@@ -27,11 +27,11 @@
                 <a href="/"> <img id="hnnews-logo" src="/img/general/logo.png" alt="HN News"> </a>
             </div>
             <div class="col-md-8 nav-container">
-                <div class="text-search">
+                <form id="nav-search-box" method="GET" action="/timkiem" class="text-search">
                     <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
-                    <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..."
-                        name="search" ng-model="searchItem" />
-                </div>
+                    <input class="form-control search-box" id="text-search-box" type="text"
+                        placeholder="Nhập nội dung tìm kiếm..." name="search" ng-model="searchItem" />
+                </form>
             </div>
         </div>
     </div>
@@ -58,11 +58,11 @@
                     <a href="/"> <img id="hnnews-logo" src="/img/general/logo.png" alt="HN News"> </a>
                 </div>
                 <div class="col-md-8 nav-container">
-                    <div class="text-search">
+                    <form id="nav-search-box" method="GET" action="/timkiem" class="text-search">
                         <i class="fas fa-search icon-search" style="font-size: 12pt;"></i>
                         <input class="form-control search-box" type="text" placeholder="Nhập nội dung tìm kiếm..."
                             name="search" ng-model="searchItem" />
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

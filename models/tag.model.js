@@ -23,5 +23,9 @@ module.exports = {
 
     othertag: id => {
         return db.load(`call IndexGetOtherTag(${id})`);
+    },
+
+    searchtag: search => {
+        return db.load(`call IndexSearchTag('${search}')`);
     }
 };

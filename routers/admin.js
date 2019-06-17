@@ -10,7 +10,7 @@ app.get('/admin', function (req, res, next) {
         res.redirect('/admin-dashboard');
     } else if (req.user) {
         res.render('pages/index', {
-            err_message: 'Tài khoản không có quyền truy cập vào trang Quản trị viên'
+            err_message: 'Tài khoản không có quyền truy cập vào trang <span class="text-blue"> Quản trị viên </span>'
         })
     } else
         res.render('pages/admin');

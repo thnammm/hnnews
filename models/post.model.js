@@ -15,5 +15,13 @@ module.exports = {
 
     sendcomment: (accountid, postid, comment) => {
         return db.load(`call IndexSendComment(${accountid}, ${postid}, '${comment}')`);
+    },
+
+    searchpost: (casepost, search) => {
+        return db.load(`call IndexSearchPost(${casepost}, '${search}')`)
+    },
+
+    countsearchpost: (casepost, search) => {
+        return db.load(`call IndexCountSearchPost(${casepost}, '${search}')`);
     }
 };

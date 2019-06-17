@@ -14,5 +14,10 @@ module.exports = {
     // Get Account
     getaccount: username => {
         return db.load(`select * from account where status = 1 and user_name = '${username}'`);
+    },
+
+    // Change Password
+    changepassword: (id, pass) => {
+        return db.load(`call AccountChangePassword(${id}, '${pass}')`);
     }
 }

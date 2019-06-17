@@ -3,7 +3,7 @@
 
 <head>
     {{> header}}
-    <link rel="stylesheet" type="text/css" href="/css/user.css">
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
     <title> HNNews - Trang cá nhân </title>
     <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 </head>
@@ -13,24 +13,35 @@
         {{!-- Navigation bar --}}
         {{> nav}}
 
-        {{#if temp}}
+        {{#if err_message}}
+        <div class="alert alert-warning alert-dismissible fade show popupupdateprofile-background" role="alert">
+            <div class="col-md-12 noti-popupupdateprofile">
+                <p class="popup-title"> THÔNG BÁO LỖI </p>
+                <p class="popup-content"> {{{err_message}}} </p>
+                <button onclick="window.location.href = '/thongtincanhan';" type="button"
+                    class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#ifCond isAuthenticatedAccount authAccount.role_id 1}}
         {{!-- User --}}
         <div class="row user-body">
+
+            {{!-- Menu --}}
             <div class="col-md-3">
                 <div class="menu-left">
                     <img class="avatar" src="/img/avatar/1.png">
-                    {{#with muser}}
-                    <div class="name"> {{full_name}} </div>
-                    {{/with}}
+                    <div class="name"> {{authAccount.fullname}} </div>
                     <div class="boxshadow">
-                        <li class="user-setting list">
-                            <a href="" class="user-setting-link" data-target="#personal-information"
+                        <li class="user-setting list bg-active-now">
+                            <a href="" class="user-setting-link text-active-now" data-target="#personal-information"
                                 data-toggle="collapse" id="btn-personal-information">
                                 Thông tin cá nhân </a>
                         </li>
                         <li class="user-setting list">
-                            <a href="" class="user-setting-link" data-target="#list-posts" data-toggle="collapse"
-                                id="btn-list-posts">
+                            <a href="" class="user-setting-link" data-target="#purchase-premium" data-toggle="collapse"
+                                id="btn-purchase-premium">
                                 Gia hạn tài khoản </a>
                         </li>
                         <li class="user-setting list">
@@ -38,19 +49,23 @@
                                 id="btn-change-password">
                                 Đổi mật khẩu </a>
                         </li>
-                        <li class="user-setting list">
-                            <a href="" class="user-setting-link" id="btn-logout"> Đăng xuất </a>
+                        <li class="user-setting list menu-logout">
+                            <form id="usermenu-logout" method="POST" action="/dangxuat">
+                                <a onclick="$('#usermenu-logout').submit();" class="user-setting-link" id="btn-logout">
+                                    Đăng xuất </a>
+                            </form>
                         </li>
                     </div>
                 </div>
             </div>
 
+            {{!-- Content --}}
             <div class="col-md-9">
                 <div class="content-right">
                     <div id="tab-content">
 
                         <!-- Personal information -->
-                        <div class="content collapse" id="personal-information" data-parent="#tab-content">
+                        <div class="content collapse show" id="personal-information" data-parent="#tab-content">
                             <div class="row" style="margin: 10px 20px">
                                 <div class="col-md-3" style="text-align: center;">
                                     <img src="/img/avatar/1.png" class="m-x-auto img-fluid rounded-circle ava"
@@ -60,15 +75,15 @@
                                     </label>
                                 </div>
                                 <div class="col-md-9">
-                                    <form role="form" method="POST" action="/user">
-                                        <!-- Name -->
-                                        {{#with muser}}
+                                    <form role="form" method="POST" action="/thongtincanhan/capnhatthongtin">
+                                        {{#with user}}
 
+                                        <!-- Name -->
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Họ và tên
                                             </label>
-                                            <input name="username" class="col-md-10 form-control form-text-size" type="text"
-                                                placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
+                                            <input name="username" class="col-md-10 form-control form-text-size"
+                                                type="text" placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
                                         </div>
 
                                         <!-- Email -->
@@ -77,14 +92,16 @@
                                             <input name="useremail" class="col-md-10 form-control form-text-size"
                                                 type="email" placeholder="Nhập email của bạn" value="{{email}}">
                                         </div>
+
                                         <!-- Day of birth -->
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Ngày tháng năm
                                                 sinh
                                             </label>
-                                            <input name="userdob" class="col-md-10 form-control form-text-size" type="date"
-                                                value="{{dob}}">
+                                            <input name="userdob" class="col-md-10 form-control form-text-size"
+                                                type="date" value="{{dob}}">
                                         </div>
+
                                         <!-- Day Account -->
                                         <div class="col-md-10"
                                             style="padding: 0;display: flex; flex-direction: row; justify-content: space-between;">
@@ -103,9 +120,12 @@
                                                     type="text" value="{{end_date}}" disabled>
                                             </div>
                                         </div>
+
                                         <!-- Button -->
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-primary col-md-3" value="Cập nhật">
+                                            <button type="submit" class="btn btn-primary col-md-3" value="Cập nhật"> Cập
+                                                nhật
+                                            </button>
                                         </div>
                                         {{/with}}
                                     </form>
@@ -114,106 +134,13 @@
                             </div>
                         </div>
 
-                        <!-- List posts -->
-                        <div class="content collapse" id="list-posts" data-parent="#tab-content">
-                            <div class="col-md-12 listposts">
-                                {{!-- Search and filter --}}
-                                <div class="col-form-label form-control-label"> Tìm kiếm </div>
-                                <div class="lp-nav-container lp-text-search">
-                                    <i class="fas fa-search lp-icon-search" style="font-size: 11pt;"></i>
-                                    <input class="form-control lp-search-box" type="text"
-                                        placeholder="Tìm kiếm bài viết theo tên bài viết" name="search"
-                                        ng-model="searchItem" />
-                                </div>
-                                {{!-- <div class="row my-1">
-
-                                </div> --}}
-
-                                {{!-- Content list posts --}}
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-8 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: blue">Đã duyệt
-                                            và chờ xuất bản</strong>
-                                    </div>
-                                </div>
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-8 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: rgb(40, 200, 0)">Đã
-                                            xuất bản</strong>
-                                    </div>
-                                </div>
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-3 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: red">Bị từ
-                                            chối</strong>
-                                    </div>
-                                    <div class="cold-md-3 content-button">
-                                        <a href="#"> Xem góp ý chỉnh sửa </a>
-                                    </div>
-                                    <div class="cold-md-2 content-button">
-                                        <a href="#"> Chỉnh sửa </a>
-                                    </div>
-                                </div>
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-6 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: #ffc107">Chưa được
-                                            duyệt</strong>
-                                    </div>
-                                    <div class="cold-md-2 content-button">
-                                        <a href="#"> Chỉnh sửa </a>
-                                    </div>
-                                </div>
-
-                                {{!-- Pagination --}}
-                                <nav class="nav-pagination" aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                        <!-- Purchase Premium -->
+                        <div class="content collapse" id="purchase-premium" data-parent="#tab-content">
+                            <div class="col-md-12 purchase-notification">
+                                <p style="padding: 5px 20px; text-align: justify;"> Tính năng này chưa phát triển, vui
+                                    lòng liên hệ <span style="color: #8DB1F7; font-weight: 700;"> Quản trị viên </span>
+                                    trang báo HNNews thông qua email: <span style="color: red; font-weight: 700;">
+                                        hnnews@hn.com </span> để được gia hạn. </p>
                             </div>
                         </div>
 
@@ -224,45 +151,94 @@
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
                                     <input type="password" class="input-lg form-control form-text-size"
-                                        name="oldpassword" id="oldpassword" placeholder="Nhập mật khẩu cũ"
+                                        name="oldpassword" id="user-oldpassword" placeholder="Nhập mật khẩu cũ"
                                         autocomplete="off">
                                 </div>
                                 <!-- New password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu mới </label>
                                     <input type="password" class="input-lg form-control form-text-size"
-                                        name="newpassword" id="newpassword" placeholder="Nhập mật khẩu mới"
+                                        name="newpassword" id="user-newpassword" placeholder="Nhập mật khẩu mới"
                                         autocomplete="off">
                                 </div>
                                 <!-- Retype new password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
                                     <input type="password" class="input-lg form-control form-text-size"
-                                        name="retypepassword" id="retypepassword" placeholder="Nhập lại mật khẩu mới"
-                                        autocomplete="off">
+                                        name="retypepassword" id="user-retypepassword"
+                                        placeholder="Nhập lại mật khẩu mới" autocomplete="off">
                                 </div>
-                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-pass"
+                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-user-changepass"
                                     data-loading-text="Changing Password..."> Đổi mật khẩu </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{/if}}
 
-        {{#if temp1}}
+            {{!-- Popup --}}
+            <div class="row popup-notificationSuccess">
+                <div class="col-md-12 noti-popup">
+                    <form id="success-logout" method="POST" action="/dangxuat">
+                        <p class="popup-title"> THÔNG BÁO </p>
+                        <p class="popup-content"> Thay đổi mật khẩu <span style="color: rgb(40, 200, 0)">thành
+                                công</span>. Bạn có thể kiểm tra bằng cách<a onclick="$('#success-logout').submit();"
+                                class="changepass-logout">&nbsp;ĐĂNG XUẤT&nbsp;</a>và vào lại hệ thống. </p>
+                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailOldPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu cũ không đúng. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailEqualPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu nhập mới nhập lại không giống nhau. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailNotTyping">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do chưa điền đầy đủ thông tin yêu cầu. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailEnoughCharacter">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu phải có ít nhất 6 kí tự. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+        </div>
+        {{/ifCond}}
+
+        {{#ifCond isAuthenticatedAccount authAccount.role_id 2}}
         {{!-- Writer --}}
-        <div class="row user-body">
+        <div class="row writer-body">
+
+            {{!-- Menu --}}
             <div class="col-md-3">
                 <div class="menu-left">
                     <img class="avatar" src="/img/avatar/1.png">
-                    {{#with mwriter}}
-                    <div class="name">{{full_name}} </div>
-                    {{/with}}
+                    <div class="name">{{authAccount.fullname}} </div>
                     <div class="boxshadow">
-                        <li class="user-setting list">
-                            <a href="" class="user-setting-link" data-target="#personal-information"
+                        <li class="user-setting list bg-active-now">
+                            <a href="" class="user-setting-link text-active-now" data-target="#personal-information"
                                 data-toggle="collapse" id="btn-personal-information">
                                 Thông tin cá nhân </a>
                         </li>
@@ -281,19 +257,24 @@
                                 id="btn-change-password">
                                 Đổi mật khẩu </a>
                         </li>
-                        <li class="user-setting list">
-                            <a href="" class="user-setting-link" id="btn-logout"> Đăng xuất </a>
+                        <li class="user-setting list menu-logout">
+                            <form id="writermenu-logout" method="POST" action="/dangxuat">
+                                <a onclick="$('#writermenu-logout').submit();" class="user-setting-link"
+                                    id="btn-logout">
+                                    Đăng xuất </a>
+                            </form>
                         </li>
                     </div>
                 </div>
             </div>
 
+            {{!-- Content --}}
             <div class="col-md-9">
                 <div class="content-right">
                     <div id="tab-content">
 
                         <!-- Personal information -->
-                        <div class="content collapse" id="personal-information" data-parent="#tab-content">
+                        <div class="content collapse show" id="personal-information" data-parent="#tab-content">
                             <div class="row" style="margin: 10px 20px">
                                 <div class="col-md-3" style="text-align: center;">
                                     <img src="/img/avatar/1.png" class="m-x-auto img-fluid rounded-circle ava"
@@ -303,15 +284,14 @@
                                     </label>
                                 </div>
                                 <div class="col-md-9">
-                                    <form role="form" method="POST" action="/user">
+                                    <form role="form" method="POST" action="/thongtincanhan/capnhatthongtin">
+                                        {{#with writer}}
                                         <!-- Name -->
-                                        {{#with mwriter}}
-
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Họ và tên
                                             </label>
-                                            <input name="writername" class="col-md-10 form-control form-text-size" type="text"
-                                                placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
+                                            <input name="writername" class="col-md-10 form-control form-text-size"
+                                                type="text" placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
                                         </div>
 
                                         <!-- Email -->
@@ -320,14 +300,16 @@
                                             <input name="writeremail" class="col-md-10 form-control form-text-size"
                                                 type="email" placeholder="Nhập email của bạn" value="{{email}}">
                                         </div>
+
                                         <!-- Day of birth -->
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Ngày tháng năm
                                                 sinh
                                             </label>
-                                            <input name="writerdob" class="col-md-10 form-control form-text-size" type="date"
-                                                value="{{dob}}">
+                                            <input name="writerdob" class="col-md-10 form-control form-text-size"
+                                                type="date" value="{{dob}}">
                                         </div>
+
                                         <!-- Writer name -->
                                         <div class="form-group">
                                             <label class="col-lg-6 col-form-label form-control-label"> Bút danh
@@ -335,13 +317,16 @@
                                             <input name="penname" class="col-md-10 form-control form-text-size"
                                                 type="text" placeholder="Nhập bút danh của bạn" value="{{pen_name}}">
                                         </div>
+
                                         <!-- Button -->
                                         <div class="form-group">
-                                            <input type="submit" class="btn btn-primary col-md-3" value="Cập nhật">
+                                            <button type="submit" class="btn btn-primary col-md-3" value="Cập nhật"> Cập
+                                                nhật
+                                            </button>
                                         </div>
                                         {{/with}}
-                                    </form>
 
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -412,21 +397,22 @@
                         <!-- List posts -->
                         <div class="content collapse" id="list-posts" data-parent="#tab-content">
                             <div class="col-md-12 listposts">
-                                {{!-- Search and filter --}}
-                                <div class="col-form-label form-control-label"> Tìm kiếm </div>
-                                <div class="lp-nav-container lp-text-search">
-                                    <i class="fas fa-search lp-icon-search" style="font-size: 11pt;"></i>
-                                    <input class="form-control lp-search-box" type="text"
-                                        placeholder="Tìm kiếm bài viết theo tên bài viết" name="search"
-                                        ng-model="searchItem" />
+                                {{!-- Filter --}}
+                                <div class="col-form-label form-control-label"> Sắp xếp bài viết </div>
+                                <div class="row content-filter">
+                                    <a id="filter-0" class="filter-btn filter-active"> Tất cả </a>
+                                    <a id="filter-1" class="filter-btn"> Đã xuất bản </a>
+                                    <a id="filter-2" class="filter-btn"> Đã duyệt và chờ xuất bản </a>
+                                    <a id="filter-3" class="filter-btn"> Chưa được duyệt </a>
+                                    <a id="filter-4" class="filter-btn"> Bị từ chối </a>
                                 </div>
                                 {{!-- <div class="row my-1">
 
                                 </div> --}}
 
                                 {{!-- Content list posts --}}
-                                {{#each mwriterpostlist}}
-                                <div class="row content-list-post">
+                                {{#each writerpostlist}}
+                                <div class="row content-list-post all-post">
                                     <div class="col-md-12 content-title">
                                         {{title}}
                                     </div>
@@ -461,37 +447,84 @@
                                         Trạng thái:&nbsp; <strong
                                             style="font-weight: 600; color: red">{{status_name}}</strong>
                                     </div>
-                                    {{!-- <a class="col-md-4 " href="#"> Xem góp ý chỉnh sửa </a>
-                                    <a class="col-md-2" href="#"> Chỉnh sửa </a> --}}
                                     <div class="col-md-6 content-button">
-                                        <a class="col-md-6" href="#"> Xem góp ý chỉnh sửa </a>
+                                        <a class="col-md-6" href="#"> Xem góp ý </a>
                                         <a class="col-md-6" href="#"> Chỉnh sửa </a>
                                     </div>
                                     {{/ifEquals}}
                                 </div>
                                 {{/each}}
-                                {{!-- Pagination --}}
-                                <nav class="nav-pagination" aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+
+                                {{#each poststatus1}}
+                                <div class="row content-list-post one-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: rgb(40, 200, 0)">{{status_name}}</strong>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{#each poststatus2}}
+                                <div class="row content-list-post two-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: blue">{{status_name}}</strong>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{#each poststatus3}}
+                                <div class="row content-list-post three-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: #ffc107">{{status_name}}</strong>
+                                    </div>
+                                    <div class="col-md-3 content-button text-right">
+                                        <a class="col-md-6" href="#"> Chỉnh sửa </a>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{#each poststatus4}}
+                                <div class="row content-list-post four-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-3 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: red">{{status_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-button text-right">
+                                        <a class="col-md-6" href="#"> Xem góp ý </a>
+                                        <a class="col-md-6" href="#"> Chỉnh sửa </a>
+                                    </div>
+                                </div>
+                                {{/each}}
                             </div>
                         </div>
 
@@ -501,37 +534,86 @@
                                 <!-- Old password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="oldpassword" id="oldpassword" placeholder="Nhập mật khẩu cũ"
-                                        autocomplete="off">
+                                    <input id="writer-oldpassword" type="password"
+                                        class="input-lg form-control form-text-size" name="oldpassword" id="oldpassword"
+                                        placeholder="Nhập mật khẩu cũ" autocomplete="off">
                                 </div>
                                 <!-- New password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu mới </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="newpassword" id="newpassword" placeholder="Nhập mật khẩu mới"
-                                        autocomplete="off">
+                                    <input id="writer-newpassword" type="password"
+                                        class="input-lg form-control form-text-size" name="newpassword" id="newpassword"
+                                        placeholder="Nhập mật khẩu mới" autocomplete="off">
                                 </div>
                                 <!-- Retype new password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="retypepassword" id="retypepassword" placeholder="Nhập lại mật khẩu mới"
-                                        autocomplete="off">
+                                    <input id="writer-retypepassword" type="password"
+                                        class="input-lg form-control form-text-size" name="retypepassword"
+                                        id="retypepassword" placeholder="Nhập lại mật khẩu mới" autocomplete="off">
                                 </div>
-                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-pass"
+                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-writer-changepass"
                                     data-loading-text="Changing Password..."> Đổi mật khẩu </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{/if}}
 
-        {{#if temp2}}
+            {{!-- Popup --}}
+            <div class="row popup-notificationSuccess">
+                <div class="col-md-12 noti-popup">
+                    <form id="success-logout" method="POST" action="/dangxuat">
+                        <p class="popup-title"> THÔNG BÁO </p>
+                        <p class="popup-content"> Thay đổi mật khẩu <span style="color: rgb(40, 200, 0)">thành
+                                công</span>. Bạn có thể kiểm tra bằng cách<a onclick="$('#success-logout').submit();"
+                                class="changepass-logout">&nbsp;ĐĂNG XUẤT&nbsp;</a>và vào lại hệ thống. </p>
+                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailOldPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu cũ không đúng. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailEqualPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu nhập mới nhập lại không giống nhau. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailNotTyping">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do chưa điền đầy đủ thông tin yêu cầu. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailEnoughCharacter">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu phải có ít nhất 6 kí tự. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+        </div>
+        {{/ifCond}}
+
+        {{#ifCond isAuthenticatedAccount authAccount.role_id 3}}
         {{!-- Editor --}}
-        <div class="row user-body">
+        <div class="row editor-body">
             <div class="col-md-3">
                 <div class="menu-left">
                     <img class="avatar" src="/img/avatar/1.png">
@@ -583,8 +665,8 @@
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Họ và tên
                                             </label>
-                                            <input name="editorname" class="col-md-10 form-control form-text-size" type="text"
-                                                placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
+                                            <input name="editorname" class="col-md-10 form-control form-text-size"
+                                                type="text" placeholder="Nhập họ và tên của bạn" value="{{full_name}}">
                                         </div>
 
                                         <!-- Email -->
@@ -598,8 +680,8 @@
                                             <label class="col-md-6 col-form-label form-control-label"> Ngày tháng năm
                                                 sinh
                                             </label>
-                                            <input name="editordob" class="col-md-10 form-control form-text-size" type="date"
-                                                value="{{dob}}">
+                                            <input name="editordob" class="col-md-10 form-control form-text-size"
+                                                type="date" value="{{dob}}">
                                         </div>
                                         <!-- Button -->
                                         <div class="form-group">
@@ -747,7 +829,8 @@
                 </div>
             </div>
         </div>
-        {{/if}}
+        {{/ifCond}}
+
         {{!-- Footer --}}
         {{> footer}}
     </div>
@@ -775,17 +858,159 @@
             $("#btn-new-post").removeClass("text-active-now");
             $("#btn-list-posts").parent(".list").removeClass("bg-active-now");
             $("#btn-list-posts").removeClass("text-active-now");
+            $("#btn-purchase-premium").parent(".list").removeClass("bg-active-now");
+            $("#btn-purchase-premium").removeClass("text-active-now");
             $("#btn-change-password").parent(".list").removeClass("bg-active-now");
             $("#btn-change-password").removeClass("text-active-now");
             $(this).parent(".list").addClass("bg-active-now");
             $(this).addClass("text-active-now");
         });
 
+        $(".filter-btn").click(function () {
+            $("#filter-1").removeClass("filter-active");
+            $("#filter-2").removeClass("filter-active");
+            $("#filter-3").removeClass("filter-active");
+            $("#filter-4").removeClass("filter-active");
+            $("#filter-0").removeClass("filter-active");
+            $(this).addClass("filter-active");
+        })
+
+        $(".one-post").hide();
+        $(".two-post").hide();
+        $(".three-post").hide();
+        $(".four-post").hide();
+
+        $("#filter-0").click(function () {
+            $(".one-post").hide();
+            $(".two-post").hide();
+            $(".three-post").hide();
+            $(".four-post").hide();
+            $(".all-post").show();
+            $(".all-post").css("visibility", "visible");
+        })
+
+        $("#filter-1").click(function () {
+            $(".all-post").hide();
+            $(".two-post").hide();
+            $(".three-post").hide();
+            $(".four-post").hide();
+            $(".one-post").show();
+            $(".one-post").css("visibility", "visible");
+        })
+
+        $("#filter-2").click(function () {
+            $(".one-post").hide();
+            $(".all-post").hide();
+            $(".three-post").hide();
+            $(".four-post").hide();
+            $(".two-post").show();
+            $(".two-post").css("visibility", "visible");
+        })
+
+        $("#filter-3").click(function () {
+            $(".one-post").hide();
+            $(".two-post").hide();
+            $(".all-post").hide();
+            $(".four-post").hide();
+            $(".three-post").show();
+            $(".three-post").css("visibility", "visible");
+        })
+
+        $("#filter-4").click(function () {
+            $(".one-post").hide();
+            $(".two-post").hide();
+            $(".three-post").hide();
+            $(".all-post").hide();
+            $(".four-post").show();
+            $(".four-post").css("visibility", "visible");
+        })
+
+        $(".user-setting").hover(function () {
+            if ($(this).hasClass("menu-logout")) {
+                $(this).children("form").children("#btn-logout").addClass("text-active-now");
+            }
+        }, function () {
+            if ($(this).hasClass("menu-logout")) {
+                $(this).children("form").children("#btn-logout").removeClass("text-active-now");
+            }
+        })
+
         $(".list").hover(function () {
             $(this).children(".user-setting-link").css("color", "white");
         }, function () {
             $(this).children(".user-setting-link").css("color", "black");
         });
+
+        $(".close-btn").click(function () {
+            $(".popup-notificationFailOldPass").hide();
+            $(".popup-notificationFailEqualPass").hide();
+            $(".popup-notificationFailNotTyping").hide();
+            $(".popup-notificationFailEnoughCharacter").hide();
+        })
+
+        $(".popup-notificationSuccess").children("div").children("form").children("button").click(function () {
+            $(".popup-notificationSuccess").hide();
+            window.location.reload();
+        })
+
+        function btnuserchangepassClick() {
+            // Create parameters
+            var oldpass = $("#user-oldpassword").val();
+            var newpass = $("#user-newpassword").val();
+            var retypepass = $("#user-retypepassword").val();
+
+            $.post('/thongtincanhan/doimatkhau', {
+                oldpass: oldpass,
+                newpass: newpass,
+                retypepass: retypepass
+            }, function (result) {
+                if (result === 'FailOldPass') {
+                    $(".popup-notificationFailOldPass").show();
+                } else if (result === 'FailEqualPass') {
+                    $(".popup-notificationFailEqualPass").show();
+                } else if (result === 'FailEnoughCharacter') {
+                    $(".popup-notificationFailEnoughCharacter").show();
+                } else if (result === 'FailNotTyping') {
+                    $(".popup-notificationFailNotTyping").show();
+                } else if (result === 'Success') {
+                    $(".popup-notificationSuccess").show();
+                }
+            })
+        }
+
+        $("#btn-user-changepass").click(function () {
+            btnuserchangepassClick();
+        })
+
+        function btnwriterchangepassClick() {
+            // Create parameters
+            var oldpass = $("#writer-oldpassword").val();
+            var newpass = $("#writer-newpassword").val();
+            var retypepass = $("#writer-retypepassword").val();
+
+            $.post('/thongtincanhan/doimatkhau', {
+                oldpass: oldpass,
+                newpass: newpass,
+                retypepass: retypepass
+            }, function (result) {
+                if (result === 'FailOldPass') {
+                    $(".popup-notificationFailOldPass").show();
+                } else if (result === 'FailEqualPass') {
+                    $(".popup-notificationFailEqualPass").show();
+                } else if (result === 'FailEnoughCharacter') {
+                    $(".popup-notificationFailEnoughCharacter").show();
+                } else if (result === 'FailNotTyping') {
+                    $(".popup-notificationFailNotTyping").show();
+                } else if (result === 'Success') {
+                    $(".popup-notificationSuccess").show();
+                }
+            })
+        }
+
+        $("#btn-writer-changepass").click(function () {
+            btnwriterchangepassClick();
+        })
+
     </script>
 </body>
 

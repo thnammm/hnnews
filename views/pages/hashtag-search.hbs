@@ -16,12 +16,28 @@
         <div class="nav-search">
             <div class="title-nav-search">DANH SÁCH NHÃN DÁN</div>
             <form method="GET" action="/nhandan-timkiem" class="col-md-12" style="padding: 0">
-                <input class="input-search" type="text" placeholder="Nhập nhãn dán tìm kiếm..." name="tagsearch" ng-model="searchItem">
+                <input class="input-search" type="text" placeholder="Nhập nhãn dán tìm kiếm..." name="tagsearch"
+                    ng-model="searchItem">
             </form>
         </div>
+        {{#if none_result}}
+
+        <div style="margin: 0px 130px 110px 130px">
+            <div class="row row-margin row-hashtag" style="display: flex; justify-content: center;">
+                <p> KHÔNG CÓ KẾT QUẢ TÌM KIẾM </p>
+            </div>
+            <div class="row row-margin row-hashtag" style="display: flex; justify-content: center;">
+                <button onclick="window.location.href = '/nhandan';" type="button" class="btn btn-dark close-btn"> Quay
+                    về danh sách nhãn dán
+                </button>
+            </div>
+        </div>
+
+        {{else}}
+
         <div style="margin: 0px 130px 30px 130px">
             <div class="row row-margin row-hashtag">
-                {{#each alltag.[0]}}
+                {{#each datasearch}}
                 <a href="/nhandan/{{tag_id}}" class="col-md-3 singletag">
                     <div class="row row-margin hashtag-img">
                         <div class="col-md-12">
@@ -37,8 +53,10 @@
             </div>
         </div>
 
+        {{/if}}
+
         {{!-- Pagination --}}
-        <nav class="nav-pagination" aria-label="...">
+        <!-- <nav class="nav-pagination" aria-label="...">
             <ul class="pagination">
                 {{#with btnPrevious}}
                 {{#if disable}}
@@ -74,7 +92,7 @@
                 </li>
                 {{/with}}
             </ul>
-        </nav>
+        </nav> -->
     </div>
 
 

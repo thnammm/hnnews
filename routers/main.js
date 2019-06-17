@@ -255,6 +255,43 @@ app.get('/nhandan/:tagid', (req, res) => {
         })
 })
 
+app.get('/nhandan-timkiem', (req, res, next) => {
+    //If Equals Handlebars
+    var Handlebars = require('handlebars');
+    Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    });
+
+    var none = 0;
+    var none_result = true;
+
+    var search = req.query.tagsearch;
+
+    if (search == '') {
+        res.render('pages/hashtag-search', {
+            none_result,
+            none
+        });
+    } else {
+        tagModel.searchtag(search).then(rows => {
+            if (rows[0].length == 0) {
+                none_result = true;
+                res.render('pages/hashtag-search', {
+                    none_result,
+                    none
+                });
+            } else {
+                none_result = false;
+                res.render('pages/hashtag-search', {
+                    none_result,
+                    length: rows[0].length,
+                    datasearch: rows[0]
+                });
+            }
+        }).catch(next);
+    }
+})
+
 // Category
 
 app.get('/chuyenmuc/:catid', (req, res) => {
@@ -674,4 +711,167 @@ app.post('/baiviet/:catid/:subcatid/:postid', (req, res, next) => {
     }
 })
 
-module.exports = app;
+app.get('/timkiem', (req, res, next) => {
+    //If Equals Handlebars
+    var Handlebars = require('handlebars');
+    Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    });
+
+    var none = 0;
+    var none_result = true;
+
+    var search = req.query.search;
+
+    // CasePost
+    var casepost = 0;
+    if (!req.user || (req.user.casepost == 0)) {
+        casepost = 0;
+    } else if (req.user.casepost == 1) {
+        casepost = 1;
+    }
+
+    // Pagination
+    var page = req.query.page || 1;
+    if (page < 1) page = 1;
+
+    var limit = 3;
+    var offset = (page - 1) * limit;
+
+    async function GetTagOfPost(array) {
+        var eachtag = [];
+        for (let each of array) {
+            try {
+                var tagofpost = await tagModel.tagofpost(each.post_id);
+                eachtag.push({
+                    alltag: tagofpost[0]
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
+        }
+        return eachtag;
+    }
+
+    var searchpost = postModel.searchpost(casepost, search);
+    var countsearchpost = postModel.countsearchpost(casepost, search);
+
+    if (search == '') {
+        res.render('pages/result-search', {
+            none_result,
+            none
+        });
+    } else {
+        Promise.all([searchpost, countsearchpost])
+            .then(([searchpost, countsearchpost]) => {
+                if (searchpost[0].length == 0) {
+                    none_result = true;
+                    res.render('pages/result-search', {
+                        none_result,
+                        none
+                    });
+                } else {
+                    // var singlesearchpostvalue = countsearchpost[0][0].postvalue;
+                    // var nPages = Math.floor(singlesearchpostvalue / limit);
+                    // if (singlesearchpostvalue % limit > 0) nPages++;
+
+                    // // Pagination Number
+                    // var searchpagination = [];
+                    // for (var i = 1; i <= nPages; i++) {
+                    //     var object = {
+                    //         value: i,
+                    //         active: i === +page,
+                    //         search: search
+                    //     };
+                    //     searchpagination.push(object);
+                    // }
+                    // // Pagination Button
+                    // var btnPrevious = {
+                    //     disable: true,
+                    //     value: parseInt(page) - 1,
+                    //     search: search
+                    // };
+                    // var btnNext = {
+                    //     disable: false,
+                    //     value: parseInt(page) + 1,
+                    //     search: search
+                    // };
+                    // // Page first
+                    // if (page == searchpagination[0].value) {
+                    //     btnPrevious = {
+                    //         disable: true,
+                    //         value: parseInt(page) - 1,
+                    //         search: search
+                    //     };
+                    //     btnNext = {
+                    //         disable: false,
+                    //         value: parseInt(page) + 1,
+                    //         search: search
+                    //     }
+                    // }
+                    // // Page last
+                    // if (page == searchpagination[nPages - 1].value) {
+                    //     btnPrevious = {
+                    //         disable: false,
+                    //         value: parseInt(page) - 1,
+                    //         search: search
+                    //     };
+                    //     btnNext = {
+                    //         disable: true,
+                    //         value: parseInt(page) + 1,
+                    //         search: search
+                    //     }
+                    // }
+                    // // Page middle
+                    // if (page != searchpagination[0].value && page != searchpagination[nPages - 1].value) {
+                    //     btnPrevious = {
+                    //         disable: false,
+                    //         value: parseInt(page) - 1,
+                    //         search: search
+                    //     };
+                    //     btnNext = {
+                    //         disable: false,
+                    //         value: parseInt(page) + 1,
+                    //         search: search
+                    //     }
+                    // }
+                    // // Just one page
+                    // if (page == searchpagination[0].value && page == searchpagination[nPages - 1].value) {
+                    //     btnPrevious = {
+                    //         disable: true,
+                    //         value: parseInt(page) - 1,
+                    //         search: search
+                    //     };
+                    //     btnNext = {
+                    //         disable: true,
+                    //         value: parseInt(page) + 1,
+                    //         search: search
+                    //     }
+                    // }
+
+                    none_result = false;
+
+                    GetTagOfPost(searchpost[0]).then(results => {
+                        for (var i = 0; i < searchpost[0].length; i++) {
+                            searchpost[0][i].tagofpost = results[i].alltag;
+                        }
+                        res.render('pages/result-search', {
+                            none_result,
+                            length: countsearchpost[0][0].postvalue,
+                            datasearch: searchpost[0]
+                        });
+                    }).catch(err => {
+                        console.log(err);
+                        none_result = true;
+                        res.render('pages/result-search', {
+                            none_result,
+                            none
+                        });
+                    })
+                }
+            }).catch(next)
+    }
+})
+
+module.exports = app;   
