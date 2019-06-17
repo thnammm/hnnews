@@ -4,7 +4,7 @@ var userModel = require('../models/user.model.js');
 
 module.exports = app;
 
-app.get('/user', function (req, res) {
+app.get('/thongtincanhan', function (req, res) {
     var userloadinfo = userModel.userloadinfo(1);
     var editorloadinfo = userModel.editorloadinfo(1);
     var writerloadinfo = userModel.writerloadinfo(1);
