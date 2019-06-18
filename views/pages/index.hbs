@@ -46,7 +46,10 @@
                     </ol>
                     <div class="carousel-inner">
                         {{#each bestpost.[0]}}
-                        <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}" class="carousel-item active">
+                        <a href="/baiviet/{{cat_id}}/{{sub_id}}/{{post_id}}" class="carousel-item active">
+                            {{#ifEquals is_premium 1}}
+                            <div class="ispremium"> <i class="fa fa-star icon-ispremium" aria-hidden="true"></i> </div>
+                            {{/ifEquals}}
                             <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
                             <div class="carousel-caption d-none d-md-block top">
@@ -61,7 +64,10 @@
                         </a>
                         {{/each}}
                         {{#each bestpost.[1]}}
-                        <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}" class="carousel-item">
+                        <a href="/baiviet/{{cat_id}}/{{sub_id}}/{{post_id}}" class="carousel-item">
+                            {{#ifEquals is_premium 1}}
+                            <div class="ispremium"> <i class="fa fa-star icon-ispremium" aria-hidden="true"></i> </div>
+                            {{/ifEquals}}
                             <img src="{{link_image}}" class="d-block w-100 highlight-right-pic" alt="{{link_name}}">
                             <div class="transparent"></div>
                             <div class="carousel-caption d-none d-md-block top">
@@ -106,6 +112,9 @@
                 {{#each newpost.[0]}}
                 <div class="row row-margin newest-post-content">
                     <div class="col-md-5 newest-post-content-pic">
+                        {{#ifEquals is_premium 1}}
+                        <div class="ispremium"> <i class="fa fa-star icon-ispremium" aria-hidden="true"></i> </div>
+                        {{/ifEquals}}
                         <img class="content-pic-pic" src="{{link_image}}" alt="{{link_name}}">
                         <div class="content-pic-transparent"></div>
                         <p class="content-pic-category"> Chuyên mục: {{category_name}} - {{subcategory_name}} </p>
@@ -133,6 +142,9 @@
                 {{#each viewpost.[0]}}
                 <div class="row row-margin newest-post-content">
                     <div class="col-md-5 newest-post-content-pic">
+                        {{#ifEquals is_premium 1}}
+                        <div class="ispremium"> <i class="fa fa-star icon-ispremium" aria-hidden="true"></i> </div>
+                        {{/ifEquals}}
                         <img class="content-pic-pic" src="{{link_image}}" alt="{{link_name}}">
                         <div class="content-pic-transparent"></div>
                         <p class="content-pic-category"> Chuyên mục: {{category_name}} - {{subcategory_name}} </p>
@@ -167,6 +179,10 @@
                             </div>
                         </div>
                         <div class="row row-margin top10-post-content-part">
+                            {{#ifEquals premium 1}}
+                            <div class="top8ispremium"> <i class="fa fa-star icon-top8ispremium" aria-hidden="true"></i>
+                            </div>
+                            {{/ifEquals}}
                             <a class="a-tag-specialstyle" href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}">
                                 <img class="top10-post-content-pic" src="{{link}}" alt="">
                                 <div class="top10-post-content-transparent"></div>

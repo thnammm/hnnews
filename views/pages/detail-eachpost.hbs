@@ -42,6 +42,9 @@
                     <p class="eachpost-datetime"> {{finaldate}} - {{views}} lượt xem </p>
                 </div>
                 <div class="col-md-6 eachpost-right">
+                    {{#ifEquals is_premium 1}}
+                    <div class="ispremium"> <i class="fa fa-star icon-ispremium" aria-hidden="true"></i> </div>
+                    {{/ifEquals}}
                     <img class="eachpost-image" src="{{link_image}}" alt="{{link_name}}">
                 </div>
             </div>
@@ -84,7 +87,8 @@
         {{else}}
         <div class="eachpost-mycomment">
             <div class="row mycomment-margin box-comment-signstate">
-                Để bình luận vào bài viết, vui lòng <a href="/dangnhap" class="mycomment-login">&nbsp; ĐĂNG NHẬP &nbsp;</a> vào tài
+                Để bình luận vào bài viết, vui lòng <a href="/dangnhap" class="mycomment-login">&nbsp; ĐĂNG NHẬP
+                    &nbsp;</a> vào tài
                 khoản. Nếu bạn chưa có tài khoản, hãy <a href="/dangky" class="mycomment-register">&nbsp; ĐĂNG KÝ </a>.
             </div>
         </div>

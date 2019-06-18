@@ -386,3 +386,24 @@
     height: 75px;
     border-radius: 5px;
 }
+
+.icon-ispremium {
+    color: yellow;
+    text-shadow: 0 0 2px rgb(182, 164, 4);
+    font-size: 15pt;
+    line-height: 40px;
+}
+
+.ispremium {
+    border-radius: 50px;
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0 2px rgb(253, 253, 253);
+    z-index: 100;
+}

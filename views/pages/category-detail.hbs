@@ -39,6 +39,9 @@
                 {{#each singlecat}}
                 <div class="row row-margin something" style="margin-top: 35px !important">
                     <div class="col-md-5 img-postofcat" style="padding: 0">
+                        {{#ifEquals is_premium 1}}
+                        <div class="ispremium"> <i class="fa fa-star icon-ispremium" aria-hidden="true"></i> </div>
+                        {{/ifEquals}}
                         <a href="/baiviet/{{cat_id}}/{{subcat_id}}/{{post_id}}">
                             <img src="{{link_image}}" alt="{{link_name}}" class="postofcat-style">
                         </a>
