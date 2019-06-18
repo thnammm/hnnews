@@ -316,6 +316,40 @@
     display: none;
 }
 
+.popup-notificationSuccessNow {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.popup-notificationGetFeedBack {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
 .popup-notificationFailOldPass {
     height: initial;
     position: relative;
@@ -385,6 +419,57 @@
 }
 
 .popup-notificationSuccess {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationSuccessPost {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailNotTypingPost {
+    height: initial;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.692);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    margin: 0 !important;
+    padding: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.popup-notificationFailQueryPost {
     height: initial;
     position: relative;
     background-color: rgba(255, 255, 255, 0.692);
@@ -502,4 +587,58 @@
 
 .one-post, .two-post, .three-post, .four-post {
     visibility: hidden;
+}
+
+.btn-file {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+}
+
+.file-caption-name {
+    font-size: 11pt !important;
+}
+
+.btn-secondary {
+    font-size: 11pt !important;
+}
+
+.tag {
+    z-index: 100;
+    font-size: 10pt !important;
+    color: white!important;
+    font-weight: 500 !important;
+    padding: 3px 10px;
+    background-color: #8DB1F7;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.btnTag {
+    border: none;
+    background-color: initial;
+    color: white;
+    margin-right: 0;
+}
+
+.tag:hover {
+    background-color: rgb(30, 105, 255);
+    cursor: pointer;
+}
+
+.fileinput-upload-button {
+    display: none;
+}
+
+.bts-file-input {
+    display: inline-block;
+}
+
+#writer-getfeedback {
+    color: #007bff;
+}
+
+#writer-getfeedback:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0056b3;
 }

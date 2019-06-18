@@ -37,19 +37,19 @@ module.exports = {
         return db.load(`call WriterPostList(${id})`);
     },
 
-    poststatus1: (id) => {
+    writerpoststatus1: (id) => {
         return db.load(`call WriterPostListStatus(${id}, '1')`);
     },
 
-    poststatus2: (id) => {
+    writerpoststatus2: (id) => {
         return db.load(`call WriterPostListStatus(${id}, '2')`);
     },
 
-    poststatus3: (id) => {
+    writerpoststatus3: (id) => {
         return db.load(`call WriterPostListStatus(${id}, '3')`);
     },
 
-    poststatus4: (id) => {
+    writerpoststatus4: (id) => {
         return db.load(`call WriterPostListStatus(${id}, '4')`);
     },
 
@@ -67,5 +67,69 @@ module.exports = {
     userupdateinfo: (userEntity) => {
         return db.load(`call UserUpdateInfo(${userEntity.id},'${userEntity.fullname}'
                                             , '${userEntity.email}', '${userEntity.dob}' )`);
-    }
+    },
+
+    writeraddpost: (writerid, title, summary, content, ispremium, subid, linkimage) => {
+        return db.load(`call WriterCreatePost(${writerid}, '${title}', '${summary}', '${content}', '${ispremium}', ${subid}, '${linkimage}')`);
+    },
+
+    writeraddtagofpost: (id, tagname) => {
+        return db.load(`call WriterAddTagOfPost(${id}, '${tagname}')`);
+    },
+
+    writergeteditpost: (writerid, postid) => {
+        return db.load(`call WriterGetEditPost(${writerid}, ${postid})`);
+    },
+
+    writergettagofonepost: (postid) => {
+        return db.load(`call WriterGetTagOfPost(${postid})`);
+    },
+
+    writergetothersubcat: (postid) => {
+        return db.load(`call WriterGetOtherCatOfEditPost(${postid})`);
+    },
+
+    editorpostlist: (id) => {
+        return db.load(`call EditorPostList(${id})`);
+    },
+
+    editorpoststatus1: (id) => {
+        return db.load(`call EditorPostListStatus(${id}, '1')`);
+    },
+
+    editorpoststatus2: (id) => {
+        return db.load(`call EditorPostListStatus(${id}, '2')`);
+    },
+
+    editorpoststatus3: (id) => {
+        return db.load(`call EditorPostListStatus(${id}, '3')`);
+    },
+
+    editorpoststatus4: (id) => {
+        return db.load(`call EditorPostListStatus(${id}, '4')`);
+    },
+
+    editorgeteditpost: (editorid, postid) => {
+        return db.load(`call EditorGetEditPost(${editorid}, ${postid})`);
+    },
+
+    editorgettagofonepost: (postid) => {
+        return db.load(`call EditorGetTagOfPost(${postid})`);
+    },
+
+    editorgetothersubcat: (postid) => {
+        return db.load(`call EditorGetOtherCatOfEditPost(${postid})`);
+    },
+
+    editorsendfeedback: (postid, editorid, content) => {
+        return db.load(`call EditorSendFeedback(${postid}, ${editorid}, '${content}')`);
+    },
+
+    editorapprove: (postid, subid, postdate) => {
+        return db.load(`call EditorApprovePost(${postid}, ${subid}, '${postdate}')`)
+    },
+
+    editoraddtagofpost: (id, tagname) => {
+        return db.load(`call EditorAddTagOfPost(${id}, '${tagname}')`);
+    },
 };

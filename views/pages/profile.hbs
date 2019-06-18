@@ -4,8 +4,9 @@
 <head>
     {{> header}}
     <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+        rel="stylesheet" type="text/css" />
     <title> HNNews - Trang cá nhân </title>
-    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -228,6 +229,16 @@
         {{/ifCond}}
 
         {{#ifCond isAuthenticatedAccount authAccount.role_id 2}}
+        {{#if meg.length}}
+        <div class="row popup-notificationSuccessNow">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO </p>
+                <p class="popup-content"> {{{meg}}} </p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        {{/if}}
+
         {{!-- Writer --}}
         <div class="row writer-body">
 
@@ -334,26 +345,34 @@
                         <!-- New post -->
                         <div class="content collapse" id="new-post" data-parent="#tab-content">
                             <div class="col-md-12 post-content-area">
-                                <form role="form" method="POST" action="">
+                                <form role="form" method="POST" action="/thongtincanhan/vietbai"
+                                    enctype="multipart/form-data" id="frm-writerpost">
                                     <!-- Avatar post -->
                                     <div class="form-group">
                                         <label class="col-md-6 col-form-label form-control-label"> Ảnh đại diện bài viết
                                         </label>
-                                        <input name="ava-post" type="file" class="form-control-file form-text-size"
-                                            style="padding: 5px 0px;" aria-describedby="fileHelp">
+                                        <div class="col-md-10" style="padding: 0;">
+                                            <input id="bts-fileinput" name="writeravapost" type="file"
+                                                class="form-control-file form-text-size" style="padding: 5px 0px;"
+                                                aria-describedby="fileHelp" data-show-preview="false">
+                                            <label class="custom-file-label" for="bts-fileinput"
+                                                style="font-size: 11pt !important; padding-top: 8px; height: 38px;">
+                                                Chọn tệp ...
+                                            </label>
+                                        </div>
                                     </div>
                                     <!-- Title post -->
                                     <div class="form-group">
                                         <label class="col-md-6 col-form-label form-control-label"> Tiêu đề bài viết
                                         </label>
-                                        <input name="title-post" class="col-md-10 form-control form-text-size"
+                                        <input name="writertitlepost" class="col-md-10 form-control form-text-size"
                                             type="text" placeholder="Nhập tiêu đề">
                                     </div>
                                     <!-- Summary post -->
                                     <div class="form-group">
                                         <label class="col-md-6 col-form-label form-control-label"> Tóm tắt bài viết
                                         </label>
-                                        <textarea name="summary-post" class="col-md-10 form-control form-text-size"
+                                        <textarea name="writersummarypost" class="col-md-10 form-control form-text-size"
                                             type="text" placeholder="Nhập tóm tắt bài viết"></textarea>
                                     </div>
                                     <!-- Inside post -->
@@ -361,34 +380,56 @@
                                         <label class="col-md-6 col-form-label form-control-label"> Nội dung bài viết
                                         </label>
                                         <div class="col-md-10" style="padding: 0;">
-                                            <textarea class="col-md-10 form-control form-text-size"
-                                                name="editor1"></textarea></div>
-                                        <script>
-                                            CKEDITOR.replace('editor1');
-                                        </script>
+                                            <textarea id="tinymce-txt" class="col-md-10 form-control form-text-size"
+                                                name="writertinymce"></textarea></div>
                                     </div>
-                                    <!-- Category and tag post -->
+                                    <!-- Category and is_premium post -->
                                     <div class="form-group row" style="margin: 0;">
-                                        <div class="col-md-4" style="padding-left: 0;">
+                                        <div class="col-md-6" style="padding-left: 0;">
                                             <label class="col-form-label form-control-label"> Chuyên mục bài viết
                                             </label>
-                                            <select name="category-post" class="col-md-12 form-control form-text-size"
+                                            <select name="writercategorypost"
+                                                class="col-md-12 form-control form-text-size"
                                                 placeholder="Chọn chuyên mục bài viết">
-                                                <option> Giao thông </option>
-                                                <option> Xã hội </option>
-                                                <option> Thế giới </option>
-                                                <option> Giải trí </option>
+                                                <option value="" disabled selected> Chọn chuyên mục </option>
+                                                {{#each subcategory}}
+                                                <option value="{{subcat_id}}"> {{subcategory_name}} </option>
+                                                {{/each}}
                                             </select>
                                         </div>
-                                        <div class="col-md-8" style="padding-left: 0;">
-                                            <label class="col-form-label form-control-label"> Nhãn dán bài viết </label>
-                                            <input name="tag-post" class="col-md-9 form-control form-text-size"
-                                                type="text" data-role="tagsinput" placeholder="Gán nhãn cho bài viết">
+                                        <div class="col-md-4" style="padding-left: 0;">
+                                            <label class="col-form-label form-control-label"> Thiết lập Premium
+                                            </label>
+                                            <select name="writerispremium"
+                                                class="col-md-12 form-control form-text-size">
+                                                <option value="" disabled selected> Chọn thiết lập </option>
+                                                <option value="1"> Bài viết Premium </option>
+                                                <option value="0"> Bài viết thường </option>
+                                            </select>
                                         </div>
                                     </div>
+
+                                    {{!-- Tag post --}}
+                                    <div class="form-group">
+                                        <div class="col-md-10" style="padding-left: 0;">
+                                            <label for="tag-typer" class="col-form-label form-control-label"> Nhãn dán
+                                                bài viết </label>
+                                            <div id="writertags">
+                                                <input id="tag-typer" name="tagtyper"
+                                                    class="form-control form-text-size" type="text"
+                                                    placeholder="Thêm nhãn..."
+                                                    style="background-color: transparent;  margin-top: 10px;">
+                                                <input name="writertagpost"
+                                                    class="col-md-10 form-control form-text-size" type="text"
+                                                    data-role="tagsinput" style="display: none;">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Button -->
                                     <div class="form-group">
-                                        <input type="submit" class="btn btn-primary col-md-3" value="Gửi bài viết">
+                                        <button type="submit" class="btn btn-primary col-md-3"
+                                            id="btn-writer-create-post" value="Gửi bài viết"> Gửi bài viết </button>
                                     </div>
                                 </form>
                             </div>
@@ -440,6 +481,10 @@
                                         Trạng thái:&nbsp; <strong
                                             style="font-weight: 600; color: #ffc107">{{status_name}}</strong>
                                     </div>
+                                    <div class="col-md-3 content-button text-right">
+                                        <a class="col-md-6" href="/thongtincanhan/suabaiviet/{{post_id}}"> Chỉnh sửa
+                                        </a>
+                                    </div>
                                     {{/ifEquals}}
 
                                     {{#ifEquals status_post '4'}}
@@ -447,11 +492,21 @@
                                         Trạng thái:&nbsp; <strong
                                             style="font-weight: 600; color: red">{{status_name}}</strong>
                                     </div>
-                                    <div class="col-md-6 content-button">
-                                        <a class="col-md-6" href="#"> Xem góp ý </a>
-                                        <a class="col-md-6" href="#"> Chỉnh sửa </a>
+                                    <div class="col-md-5 content-button text-right">
+                                        <a onclick="$('#feedbai{{post_id}}').show()" class="col-md-6"
+                                            id="writer-getfeedback"> Xem góp ý </a>
+                                        <a class="col-md-6" href="/thongtincanhan/suabaiviet/{{post_id}}"> Chỉnh sửa
+                                        </a>
                                     </div>
                                     {{/ifEquals}}
+                                </div>
+
+                                <div class="row popup-notificationGetFeedBack" id="feedbai{{post_id}}">
+                                    <div class="col-md-12 noti-popup">
+                                        <p class="popup-title"> GÓP Ý CHỈNH SỬA </p>
+                                        <p class="popup-content"> {{content}} </p>
+                                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                                    </div>
                                 </div>
                                 {{/each}}
 
@@ -501,7 +556,8 @@
                                             style="font-weight: 600; color: #ffc107">{{status_name}}</strong>
                                     </div>
                                     <div class="col-md-3 content-button text-right">
-                                        <a class="col-md-6" href="#"> Chỉnh sửa </a>
+                                        <a class="col-md-6" href="/thongtincanhan/suabaiviet/{{post_id}}"> Chỉnh sửa
+                                        </a>
                                     </div>
                                 </div>
                                 {{/each}}
@@ -521,7 +577,8 @@
                                     </div>
                                     <div class="col-md-5 content-button text-right">
                                         <a class="col-md-6" href="#"> Xem góp ý </a>
-                                        <a class="col-md-6" href="#"> Chỉnh sửa </a>
+                                        <a class="col-md-6" href="/thongtincanhan/suabaiviet/{{post_id}}"> Chỉnh sửa
+                                        </a>
                                     </div>
                                 </div>
                                 {{/each}}
@@ -535,14 +592,14 @@
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
                                     <input id="writer-oldpassword" type="password"
-                                        class="input-lg form-control form-text-size" name="oldpassword" id="oldpassword"
+                                        class="input-lg form-control form-text-size" name="oldpassword"
                                         placeholder="Nhập mật khẩu cũ" autocomplete="off">
                                 </div>
                                 <!-- New password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu mới </label>
                                     <input id="writer-newpassword" type="password"
-                                        class="input-lg form-control form-text-size" name="newpassword" id="newpassword"
+                                        class="input-lg form-control form-text-size" name="newpassword"
                                         placeholder="Nhập mật khẩu mới" autocomplete="off">
                                 </div>
                                 <!-- Retype new password -->
@@ -550,7 +607,7 @@
                                     <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
                                     <input id="writer-retypepassword" type="password"
                                         class="input-lg form-control form-text-size" name="retypepassword"
-                                        id="retypepassword" placeholder="Nhập lại mật khẩu mới" autocomplete="off">
+                                        placeholder="Nhập lại mật khẩu mới" autocomplete="off">
                                 </div>
                                 <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-writer-changepass"
                                     data-loading-text="Changing Password..."> Đổi mật khẩu </button>
@@ -608,21 +665,58 @@
                     <button type="button" class="btn btn-dark close-btn"> Đóng </button>
                 </div>
             </div>
+
+            <div class="row popup-notificationSuccessPost">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO </p>
+                    <p class="popup-content"> Tạo bài viết mới <span style="color: rgb(40, 200, 0)">thành
+                            công</span>. Hãy vào danh sách bài v iết để kiểm tra. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailQueryPost">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo bài viết mới <span style="color: red">thất bại</span>
+                        . Vui lòng kiểm tra kĩ lại thông tin tạo bài viết. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailNotTypingPost">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo bài viết mới <span style="color: red">thất bại</span>
+                        do chưa điền đầy đủ thông tin yêu cầu. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
         </div>
         {{/ifCond}}
 
         {{#ifCond isAuthenticatedAccount authAccount.role_id 3}}
+        {{#if meg.length}}
+        <div class="row popup-notificationSuccessNow">
+            <div class="col-md-12 noti-popup">
+                <p class="popup-title"> THÔNG BÁO </p>
+                <p class="popup-content"> {{{meg}}} </p>
+                <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+            </div>
+        </div>
+        {{/if}}
+
         {{!-- Editor --}}
         <div class="row editor-body">
+
+            {{!-- Menu --}}
             <div class="col-md-3">
                 <div class="menu-left">
                     <img class="avatar" src="/img/avatar/1.png">
-                    {{#with meditor}}
-                    <div class="name"> {{full_name}} </div>
-                    {{/with}}
+                    <div class="name"> {{authAccount.fullname}} </div>
                     <div class="boxshadow">
-                        <li class="user-setting list">
-                            <a href="" class="user-setting-link" data-target="#personal-information"
+                        <li class="user-setting list bg-active-now">
+                            <a href="" class="user-setting-link text-active-now" data-target="#personal-information"
                                 data-toggle="collapse" id="btn-personal-information">
                                 Thông tin cá nhân </a>
                         </li>
@@ -636,19 +730,24 @@
                                 id="btn-change-password">
                                 Đổi mật khẩu </a>
                         </li>
-                        <li class="user-setting list">
-                            <a href="" class="user-setting-link" id="btn-logout"> Đăng xuất </a>
+                        <li class="user-setting list menu-logout">
+                            <form id="editormenu-logout" method="POST" action="/dangxuat">
+                                <a onclick="$('#editormenu-logout').submit();" class="user-setting-link"
+                                    id="btn-logout">
+                                    Đăng xuất </a>
+                            </form>
                         </li>
                     </div>
                 </div>
             </div>
 
+            {{!-- Content --}}
             <div class="col-md-9">
                 <div class="content-right">
                     <div id="tab-content">
 
                         <!-- Personal information -->
-                        <div class="content collapse" id="personal-information" data-parent="#tab-content">
+                        <div class="content collapse show" id="personal-information" data-parent="#tab-content">
                             <div class="row" style="margin: 10px 20px">
                                 <div class="col-md-3" style="text-align: center;">
                                     <img src="/img/avatar/1.png" class="m-x-auto img-fluid rounded-circle ava"
@@ -658,10 +757,9 @@
                                     </label>
                                 </div>
                                 <div class="col-md-9">
-                                    <form role="form" method="POST" action="/user">
+                                    <form role="form" method="POST" action="/thongtincanhan/capnhatthongtin">
+                                        {{#with editor}}
                                         <!-- Name -->
-                                        {{#with meditor}}
-
                                         <div class="form-group">
                                             <label class="col-md-6 col-form-label form-control-label"> Họ và tên
                                             </label>
@@ -694,106 +792,134 @@
                             </div>
                         </div>
 
-                        <!-- List posts -->
+                        <!-- Approve -->
                         <div class="content collapse" id="list-posts" data-parent="#tab-content">
                             <div class="col-md-12 listposts">
-                                {{!-- Search and filter --}}
-                                <div class="col-form-label form-control-label"> Tìm kiếm </div>
-                                <div class="lp-nav-container lp-text-search">
-                                    <i class="fas fa-search lp-icon-search" style="font-size: 11pt;"></i>
-                                    <input class="form-control lp-search-box" type="text"
-                                        placeholder="Tìm kiếm bài viết theo tên bài viết" name="search"
-                                        ng-model="searchItem" />
+                                {{!-- Filter --}}
+                                <div class="col-form-label form-control-label"> Sắp xếp bài viết </div>
+                                <div class="row content-filter">
+                                    <a id="filter-0" class="filter-btn filter-active"> Tất cả </a>
+                                    <a id="filter-1" class="filter-btn"> Đã xuất bản </a>
+                                    <a id="filter-2" class="filter-btn"> Đã duyệt và chờ xuất bản </a>
+                                    <a id="filter-3" class="filter-btn"> Chưa được duyệt </a>
+                                    <a id="filter-4" class="filter-btn"> Bị từ chối </a>
                                 </div>
                                 {{!-- <div class="row my-1">
 
                                 </div> --}}
 
                                 {{!-- Content list posts --}}
-                                <div class="row content-list-post">
+                                {{#each editorpostlist}}
+                                <div class="row content-list-post all-post">
                                     <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
+                                        {{title}}
                                     </div>
                                     <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
                                     </div>
-                                    <div class="col-md-8 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: blue">Đã duyệt
-                                            và chờ xuất bản</strong>
-                                    </div>
-                                </div>
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-8 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: rgb(40, 200, 0)">Đã
-                                            xuất bản</strong>
-                                    </div>
-                                </div>
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-3 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: red">Bị từ
-                                            chối</strong>
-                                    </div>
-                                    <div class="cold-md-3 content-button">
-                                        <a href="#"> Xem góp ý chỉnh sửa </a>
-                                    </div>
-                                    <div class="cold-md-2 content-button">
-                                        <a href="#"> Chỉnh sửa </a>
-                                    </div>
-                                </div>
-                                <div class="row content-list-post">
-                                    <div class="col-md-12 content-title">
-                                        Hàng nghìn người đổ xô đi mua iPhone 5.000 VNĐ làm ùn tắc giao thông
-                                    </div>
-                                    <div class="col-md-4 content-datesend">
-                                        Ngày gửi bài:&nbsp; <strong
-                                            style="font-weight: 600; color: black;">14/10/2018</strong>
-                                    </div>
-                                    <div class="col-md-6 content-status">
-                                        Trạng thái:&nbsp; <strong style="font-weight: 600; color: #ffc107">Chưa được
-                                            duyệt</strong>
-                                    </div>
-                                    <div class="cold-md-2 content-button">
-                                        <a href="#"> Chỉnh sửa </a>
-                                    </div>
-                                </div>
 
-                                {{!-- Pagination --}}
-                                <nav class="nav-pagination" aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                    {{#ifEquals status_post '1'}}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: rgb(40, 200, 0)">{{status_name}}</strong>
+                                    </div>
+                                    {{/ifEquals}}
+
+                                    {{#ifEquals status_post '2' }}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: blue">{{status_name}}</strong>
+                                    </div>
+                                    {{/ifEquals}}
+
+                                    {{#ifEquals status_post '3' }}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: #ffc107">{{status_name}}</strong>
+                                    </div>
+                                    <div class="col-md-3 content-button text-right">
+                                        <a class="col-md-6" href="/thongtincanhan/duyetbaiviet/{{post_id}}"> Duyệt bài
+                                        </a>
+                                    </div>
+                                    {{/ifEquals}}
+
+                                    {{#ifEquals status_post '4'}}
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: red">{{status_name}}</strong>
+                                    </div>
+                                    {{/ifEquals}}
+                                </div>
+                                {{/each}}
+
+                                {{#each pstatus1}}
+                                <div class="row content-list-post one-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: rgb(40, 200, 0)">{{status_name}}</strong>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{#each pstatus2}}
+                                <div class="row content-list-post two-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: blue">{{status_name}}</strong>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{#each pstatus3}}
+                                <div class="row content-list-post three-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: #ffc107">{{status_name}}</strong>
+                                    </div>
+                                    <div class="col-md-3 content-button text-right">
+                                        <a class="col-md-6" href="/thongtincanhan/duyetbaiviet/{{post_id}}"> Duyệt bài
+                                        </a>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                                {{#each pstatus4}}
+                                <div class="row content-list-post four-post">
+                                    <div class="col-md-12 content-title">
+                                        {{title}}
+                                    </div>
+                                    <div class="col-md-4 content-datesend">
+                                        Chuyên mục:&nbsp; <strong
+                                            style="font-weight: 600; color: black;">{{subcategory_name}}</strong>
+                                    </div>
+                                    <div class="col-md-5 content-status">
+                                        Trạng thái:&nbsp; <strong
+                                            style="font-weight: 600; color: red">{{status_name}}</strong>
+                                    </div>
+                                </div>
+                                {{/each}}
                             </div>
                         </div>
 
@@ -803,31 +929,81 @@
                                 <!-- Old password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu cũ </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="oldpassword" id="oldpassword" placeholder="Nhập mật khẩu cũ"
-                                        autocomplete="off">
+                                    <input id="editor-oldpassword" type="password"
+                                        class="input-lg form-control form-text-size" name="oldpassword"
+                                        placeholder="Nhập mật khẩu cũ" autocomplete="off">
                                 </div>
                                 <!-- New password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Mật khẩu mới </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="newpassword" id="newpassword" placeholder="Nhập mật khẩu mới"
-                                        autocomplete="off">
+                                    <input id="editor-newpassword" type="password"
+                                        class="input-lg form-control form-text-size" name="newpassword"
+                                        placeholder="Nhập mật khẩu mới" autocomplete="off">
                                 </div>
                                 <!-- Retype new password -->
                                 <div class="form-group">
                                     <label class="col-form-label form-control-label"> Nhập lại mật khẩu </label>
-                                    <input type="password" class="input-lg form-control form-text-size"
-                                        name="retypepassword" id="retypepassword" placeholder="Nhập lại mật khẩu mới"
-                                        autocomplete="off">
+                                    <input id="editor-retypepassword" type="password"
+                                        class="input-lg form-control form-text-size" name="retypepassword"
+                                        placeholder="Nhập lại mật khẩu mới" autocomplete="off">
                                 </div>
-                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-pass"
+                                <button class="col-md-4 btn btn-load btn-lg btn-primary" id="btn-editor-changepass"
                                     data-loading-text="Changing Password..."> Đổi mật khẩu </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {{!-- Popup --}}
+            <div class="row popup-notificationSuccess">
+                <div class="col-md-12 noti-popup">
+                    <form id="success-logout" method="POST" action="/dangxuat">
+                        <p class="popup-title"> THÔNG BÁO </p>
+                        <p class="popup-content"> Thay đổi mật khẩu <span style="color: rgb(40, 200, 0)">thành
+                                công</span>. Bạn có thể kiểm tra bằng cách<a onclick="$('#success-logout').submit();"
+                                class="changepass-logout">&nbsp;ĐĂNG XUẤT&nbsp;</a>và vào lại hệ thống. </p>
+                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailOldPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu cũ không đúng. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailEqualPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu nhập mới nhập lại không giống nhau. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailNotTyping">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do chưa điền đầy đủ thông tin yêu cầu. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailEnoughCharacter">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu phải có ít nhất 6 kí tự. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
         </div>
         {{/ifCond}}
 
@@ -849,168 +1025,351 @@
     {{!-- JQuery 3.3.1 --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    {{!-- JQuery Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    {{!-- TinyMCE --}}
+    <script
+        src="https://cdn.tiny.cloud/1/oxfc3x7e0wx57fgn8yne72k6q047976brc8rzl1x1qt8u80p/tinymce/5/tinymce.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                tinymce.init({
+                    selector: '#tinymce-txt',
+                    height: 200,
+                    menubar: false,
+                    plugins: 'paste image link autolink lists table media',
+                    toolbar: [
+                        'undo redo | bold italic underline | numlist bullist | alignleft aligncenter alignright',
+                        'forecolor backcolor',
+                        'link image media',
+                    ]
+                });
+            })
+        })
+    </script>
+
+    {{!-- Bootstrap Fileinput --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+    <script>
+        $(function () {
+            $('#bts-fileinput').fileinput({
+                theme: 'fa',
+                dropZoneEnabled: false,
+                allowedFileExtensions: ['png', 'jpg'],
+                uploadUrl: '/thongtincanhan/vietbai',
+                uploadAsync: false,
+            });
+        })
+    </script>
+
     {{!-- Script JS --}}
     <script>
-        $(".user-setting-link").click(function () {
-            $("#btn-personal-information").parent(".list").removeClass("bg-active-now");
-            $("#btn-personal-information").removeClass("text-active-now");
-            $("#btn-new-post").parent(".list").removeClass("bg-active-now");
-            $("#btn-new-post").removeClass("text-active-now");
-            $("#btn-list-posts").parent(".list").removeClass("bg-active-now");
-            $("#btn-list-posts").removeClass("text-active-now");
-            $("#btn-purchase-premium").parent(".list").removeClass("bg-active-now");
-            $("#btn-purchase-premium").removeClass("text-active-now");
-            $("#btn-change-password").parent(".list").removeClass("bg-active-now");
-            $("#btn-change-password").removeClass("text-active-now");
-            $(this).parent(".list").addClass("bg-active-now");
-            $(this).addClass("text-active-now");
-        });
+        $(document).ready(function () {
 
-        $(".filter-btn").click(function () {
-            $("#filter-1").removeClass("filter-active");
-            $("#filter-2").removeClass("filter-active");
-            $("#filter-3").removeClass("filter-active");
-            $("#filter-4").removeClass("filter-active");
-            $("#filter-0").removeClass("filter-active");
-            $(this).addClass("filter-active");
-        })
+            $(".user-setting-link").click(function () {
+                $("#btn-personal-information").parent(".list").removeClass("bg-active-now");
+                $("#btn-personal-information").removeClass("text-active-now");
+                $("#btn-new-post").parent(".list").removeClass("bg-active-now");
+                $("#btn-new-post").removeClass("text-active-now");
+                $("#btn-list-posts").parent(".list").removeClass("bg-active-now");
+                $("#btn-list-posts").removeClass("text-active-now");
+                $("#btn-purchase-premium").parent(".list").removeClass("bg-active-now");
+                $("#btn-purchase-premium").removeClass("text-active-now");
+                $("#btn-change-password").parent(".list").removeClass("bg-active-now");
+                $("#btn-change-password").removeClass("text-active-now");
+                $(this).parent(".list").addClass("bg-active-now");
+                $(this).addClass("text-active-now");
+            });
 
-        $(".one-post").hide();
-        $(".two-post").hide();
-        $(".three-post").hide();
-        $(".four-post").hide();
+            $(".filter-btn").click(function () {
+                $("#filter-1").removeClass("filter-active");
+                $("#filter-2").removeClass("filter-active");
+                $("#filter-3").removeClass("filter-active");
+                $("#filter-4").removeClass("filter-active");
+                $("#filter-0").removeClass("filter-active");
+                $(this).addClass("filter-active");
+            })
 
-        $("#filter-0").click(function () {
             $(".one-post").hide();
             $(".two-post").hide();
             $(".three-post").hide();
             $(".four-post").hide();
-            $(".all-post").show();
-            $(".all-post").css("visibility", "visible");
-        })
 
-        $("#filter-1").click(function () {
-            $(".all-post").hide();
-            $(".two-post").hide();
-            $(".three-post").hide();
-            $(".four-post").hide();
-            $(".one-post").show();
-            $(".one-post").css("visibility", "visible");
-        })
+            $("#filter-0").click(function () {
+                $(".one-post").hide();
+                $(".two-post").hide();
+                $(".three-post").hide();
+                $(".four-post").hide();
+                $(".all-post").show();
+                $(".all-post").css("visibility", "visible");
+            })
 
-        $("#filter-2").click(function () {
-            $(".one-post").hide();
-            $(".all-post").hide();
-            $(".three-post").hide();
-            $(".four-post").hide();
-            $(".two-post").show();
-            $(".two-post").css("visibility", "visible");
-        })
+            $("#filter-1").click(function () {
+                $(".all-post").hide();
+                $(".two-post").hide();
+                $(".three-post").hide();
+                $(".four-post").hide();
+                $(".one-post").show();
+                $(".one-post").css("visibility", "visible");
+            })
 
-        $("#filter-3").click(function () {
-            $(".one-post").hide();
-            $(".two-post").hide();
-            $(".all-post").hide();
-            $(".four-post").hide();
-            $(".three-post").show();
-            $(".three-post").css("visibility", "visible");
-        })
+            $("#filter-2").click(function () {
+                $(".one-post").hide();
+                $(".all-post").hide();
+                $(".three-post").hide();
+                $(".four-post").hide();
+                $(".two-post").show();
+                $(".two-post").css("visibility", "visible");
+            })
 
-        $("#filter-4").click(function () {
-            $(".one-post").hide();
-            $(".two-post").hide();
-            $(".three-post").hide();
-            $(".all-post").hide();
-            $(".four-post").show();
-            $(".four-post").css("visibility", "visible");
-        })
+            $("#filter-3").click(function () {
+                $(".one-post").hide();
+                $(".two-post").hide();
+                $(".all-post").hide();
+                $(".four-post").hide();
+                $(".three-post").show();
+                $(".three-post").css("visibility", "visible");
+            })
 
-        $(".user-setting").hover(function () {
-            if ($(this).hasClass("menu-logout")) {
-                $(this).children("form").children("#btn-logout").addClass("text-active-now");
-            }
-        }, function () {
-            if ($(this).hasClass("menu-logout")) {
-                $(this).children("form").children("#btn-logout").removeClass("text-active-now");
-            }
-        })
+            $("#filter-4").click(function () {
+                $(".one-post").hide();
+                $(".two-post").hide();
+                $(".three-post").hide();
+                $(".all-post").hide();
+                $(".four-post").show();
+                $(".four-post").css("visibility", "visible");
+            })
 
-        $(".list").hover(function () {
-            $(this).children(".user-setting-link").css("color", "white");
-        }, function () {
-            $(this).children(".user-setting-link").css("color", "black");
-        });
-
-        $(".close-btn").click(function () {
-            $(".popup-notificationFailOldPass").hide();
-            $(".popup-notificationFailEqualPass").hide();
-            $(".popup-notificationFailNotTyping").hide();
-            $(".popup-notificationFailEnoughCharacter").hide();
-        })
-
-        $(".popup-notificationSuccess").children("div").children("form").children("button").click(function () {
-            $(".popup-notificationSuccess").hide();
-            window.location.reload();
-        })
-
-        function btnuserchangepassClick() {
-            // Create parameters
-            var oldpass = $("#user-oldpassword").val();
-            var newpass = $("#user-newpassword").val();
-            var retypepass = $("#user-retypepassword").val();
-
-            $.post('/thongtincanhan/doimatkhau', {
-                oldpass: oldpass,
-                newpass: newpass,
-                retypepass: retypepass
-            }, function (result) {
-                if (result === 'FailOldPass') {
-                    $(".popup-notificationFailOldPass").show();
-                } else if (result === 'FailEqualPass') {
-                    $(".popup-notificationFailEqualPass").show();
-                } else if (result === 'FailEnoughCharacter') {
-                    $(".popup-notificationFailEnoughCharacter").show();
-                } else if (result === 'FailNotTyping') {
-                    $(".popup-notificationFailNotTyping").show();
-                } else if (result === 'Success') {
-                    $(".popup-notificationSuccess").show();
+            $(".user-setting").hover(function () {
+                if ($(this).hasClass("menu-logout")) {
+                    $(this).children("form").children("#btn-logout").addClass("text-active-now");
+                }
+            }, function () {
+                if ($(this).hasClass("menu-logout")) {
+                    $(this).children("form").children("#btn-logout").removeClass("text-active-now");
                 }
             })
-        }
 
-        $("#btn-user-changepass").click(function () {
-            btnuserchangepassClick();
-        })
+            $(".list").hover(function () {
+                $(this).children(".user-setting-link").css("color", "white");
+            }, function () {
+                $(this).children(".user-setting-link").css("color", "black");
+            });
 
-        function btnwriterchangepassClick() {
-            // Create parameters
-            var oldpass = $("#writer-oldpassword").val();
-            var newpass = $("#writer-newpassword").val();
-            var retypepass = $("#writer-retypepassword").val();
-
-            $.post('/thongtincanhan/doimatkhau', {
-                oldpass: oldpass,
-                newpass: newpass,
-                retypepass: retypepass
-            }, function (result) {
-                if (result === 'FailOldPass') {
-                    $(".popup-notificationFailOldPass").show();
-                } else if (result === 'FailEqualPass') {
-                    $(".popup-notificationFailEqualPass").show();
-                } else if (result === 'FailEnoughCharacter') {
-                    $(".popup-notificationFailEnoughCharacter").show();
-                } else if (result === 'FailNotTyping') {
-                    $(".popup-notificationFailNotTyping").show();
-                } else if (result === 'Success') {
-                    $(".popup-notificationSuccess").show();
-                }
+            $(".close-btn").click(function () {
+                $(".popup-notificationFailOldPass").hide();
+                $(".popup-notificationFailEqualPass").hide();
+                $(".popup-notificationFailNotTyping").hide();
+                $(".popup-notificationFailEnoughCharacter").hide();
+                $(".popup-notificationFailQueryPost").hide();
+                $(".popup-notificationFailNotTypingPost").hide();
+                $(".popup-notificationSuccessNow").hide();
+                $(".popup-notificationGetFeedBack").hide();
             })
-        }
 
-        $("#btn-writer-changepass").click(function () {
-            btnwriterchangepassClick();
+            $(".popup-notificationSuccess").children("div").children("form").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
+
+            $(".popup-notificationSuccessPost").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
+
+            function btnuserchangepassClick() {
+                // Create parameters
+                var oldpass = $("#user-oldpassword").val();
+                var newpass = $("#user-newpassword").val();
+                var retypepass = $("#user-retypepassword").val();
+
+                $.post('/thongtincanhan/doimatkhau', {
+                    oldpass: oldpass,
+                    newpass: newpass,
+                    retypepass: retypepass
+                }, function (result) {
+                    if (result === 'FailOldPass') {
+                        $(".popup-notificationFailOldPass").show();
+                    } else if (result === 'FailEqualPass') {
+                        $(".popup-notificationFailEqualPass").show();
+                    } else if (result === 'FailEnoughCharacter') {
+                        $(".popup-notificationFailEnoughCharacter").show();
+                    } else if (result === 'FailNotTyping') {
+                        $(".popup-notificationFailNotTyping").show();
+                    } else if (result === 'Success') {
+                        $(".popup-notificationSuccess").show();
+                    }
+                })
+            }
+
+            $("#btn-user-changepass").click(function () {
+                btnuserchangepassClick();
+            })
+
+            function btnwriterchangepassClick() {
+                // Create parameters
+                var oldpass = $("#writer-oldpassword").val();
+                var newpass = $("#writer-newpassword").val();
+                var retypepass = $("#writer-retypepassword").val();
+
+                $.post('/thongtincanhan/doimatkhau', {
+                    oldpass: oldpass,
+                    newpass: newpass,
+                    retypepass: retypepass
+                }, function (result) {
+                    if (result === 'FailOldPass') {
+                        $(".popup-notificationFailOldPass").show();
+                    } else if (result === 'FailEqualPass') {
+                        $(".popup-notificationFailEqualPass").show();
+                    } else if (result === 'FailEnoughCharacter') {
+                        $(".popup-notificationFailEnoughCharacter").show();
+                    } else if (result === 'FailNotTyping') {
+                        $(".popup-notificationFailNotTyping").show();
+                    } else if (result === 'Success') {
+                        $(".popup-notificationSuccess").show();
+                    }
+                })
+            }
+
+            $("#btn-writer-changepass").click(function () {
+                btnwriterchangepassClick();
+            })
+
+            function btneditorchangepassClick() {
+                // Create parameters
+                var oldpass = $("#editor-oldpassword").val();
+                var newpass = $("#editor-newpassword").val();
+                var retypepass = $("#editor-retypepassword").val();
+
+                $.post('/thongtincanhan/doimatkhau', {
+                    oldpass: oldpass,
+                    newpass: newpass,
+                    retypepass: retypepass
+                }, function (result) {
+                    if (result === 'FailOldPass') {
+                        $(".popup-notificationFailOldPass").show();
+                    } else if (result === 'FailEqualPass') {
+                        $(".popup-notificationFailEqualPass").show();
+                    } else if (result === 'FailEnoughCharacter') {
+                        $(".popup-notificationFailEnoughCharacter").show();
+                    } else if (result === 'FailNotTyping') {
+                        $(".popup-notificationFailNotTyping").show();
+                    } else if (result === 'Success') {
+                        $(".popup-notificationSuccess").show();
+                    }
+                })
+            }
+
+            $("#btn-editor-changepass").click(function () {
+                btneditorchangepassClick();
+            })
+
+            function btnwritercreatepostClick() {
+                $.post('/thongtincanhan/vietbai', {}, function (result) {
+                    if (result === 'Success') {
+                        $(".popup-notificationSuccessPost").show();
+                    } else if (result === 'FailNotTyping') {
+                        $(".popup-notificationFailNotTypingPost").show();
+                    } else if (result === 'FailQuery') {
+                        $(".popup-notificationFailQueryPost").show();
+                    }
+                })
+            }
+
+            $("#btn-writer-create-post").click(function () {
+                btnwritercreatepostClick();
+            })
+
+            $("#frm-writerpost").validate({
+                rules: {
+                    writeravapost: {
+                        required: true
+                    },
+                    writertitlepost: {
+                        required: true,
+                        maxlength: 60
+                    },
+                    writersummarypost: {
+                        required: true,
+                        maxlength: 80
+                    },
+                    writertinymce: {
+                        required: true
+                    },
+                    writercategorypost: {
+                        required: true,
+                    },
+                    writertagpost: {
+                        required: true,
+                    },
+                    writerispremium: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    writeravapost: {
+                        required: 'Không được để trống ảnh đại diện'
+                    },
+                    writertitlepost: {
+                        required: 'Không được để trống tiêu đề',
+                        maxlength: 'Tiêu đề chỉ tối đa 60 kí tự'
+                    },
+                    writersummarypost: {
+                        required: 'Không được để trống tóm tắt',
+                        maxlength: 'Tóm tắt chỉ tối đa 80 kí tự'
+                    },
+                    writertinymce: {
+                        required: 'Không được để trống nội dung bài viết'
+                    },
+                    writercategorypost: {
+                        required: 'Không được để trống chuyên mục',
+                    },
+                    writertagpost: {
+                        required: 'Không được để trống nhãn dán',
+                    },
+                    writerispremium: {
+                        required: 'Không được để trống thiết lập',
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
         })
 
+        var arrTag = [];
+
+        $(document).ready(function () {
+            $("#tag-typer").keypress(function (event) {
+                var key = event.which;
+                if (key == 32) {
+                    event.preventDefault();
+                    var tag = $(this).val();
+                    if (tag.length > 0) {
+                        $("<span class='tag' id = 'tag' style='display:none'>" + tag + "<button id='btnTag' class = 'btnTag' type='button'>&times</button></span>").insertBefore(this).fadeIn(500);
+                        if (arrTag.indexOf(tag) == -1) {
+                            arrTag.push(tag);
+                        }
+                        $('[name=writertagpost]').val(arrTag);
+                        $(this).val("");
+                    }
+                }
+            });
+
+            $(document).on("click", ".btnTag", function () {
+                var index = $(this).parent().index();
+                arrTag.splice(index, 1);
+                $('[name=writertagpost]').val(arrTag);
+                $(this).parent().remove();
+            });
+        })
     </script>
 </body>
 

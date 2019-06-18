@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> header}}
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+        rel="stylesheet" type="text/css" />
+    <title> HNNews - Phóng viên </title>
+</head>
+
+<body>
+    <div class="container">
+        {{!-- Navigation bar --}}
+        {{> nav}}
+
+        {{#if error}}
+        <div class="col-md-12 alert alert-danger" style="height: initial; margin: 20px 0px; text-align: center"
+            role="alert">
+            <p style="margin: 20px 0px;"> <i class="fas fa-sad-tear"
+                    style="color: rgb(235, 129, 129); font-size: 200px;"></i> </p>
+            <p style="margin: 20px 200px;"> Không tìm thấy dữ liệu bài viết, lỗi truy cập. Hãy kiểm tra những bài viết
+                cho
+                phép chỉnh sửa chỉ riêng tài khoản Phóng viên của bạn.<a href="/thongtincanhan" class="alert-link"> Quay
+                    trở về</a> </p>
+        </div>
+        {{else}}
+
+        {{!-- Writer --}}
+        <div class="row writer-body">
+
+            {{!-- Menu --}}
+            <div class="col-md-3">
+                <div class="menu-left">
+                    <img class="avatar" src="/img/avatar/1.png">
+                    <div class="name">{{authAccount.fullname}} </div>
+                    <div class="boxshadow">
+                        <li class="user-setting list bg-active-now">
+                            <a href="" class="user-setting-link text-active-now" data-target="#new-post"
+                                data-toggle="collapse" id="btn-new-post">
+                                Chỉnh sửa bài viết bài </a>
+                        <li class="user-setting list menu-logout">
+                            <a href="/thongtincanhan" class="user-setting-link" id="btn-logout"> Quay lại </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Content --}}
+            <div class="col-md-9">
+                <div class="content-right">
+                    <div id="tab-content">
+                        <!-- Edit post -->
+                        <div class="content collapse show" id="new-post" data-parent="#tab-content">
+                            <div class="col-md-12 post-content-area">
+
+                                {{#with editpost}}
+                                <form role="form" method="POST" action="/thongtincanhan/suabaiviet/{{post_id}}"
+                                    enctype="multipart/form-data" id="frm-writerpost">
+
+                                    <!-- Avatar post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Ảnh đại diện bài viết
+                                        </label>
+                                        <img src="{{link_image}}" type="image"
+                                            class="col-md-10 form-control-file form-text-size"
+                                            style="padding: 5px 0px; border-radius: 20px;">
+                                        <input type="text" name="writeroldavapost" value="{{link_image}}" style="display: none;">
+                                    </div>
+
+                                    <!-- New Avatar post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Chỉnh ảnh (có thể
+                                            không chọn)
+                                        </label>
+                                        <div class="col-md-10" style="padding: 0;">
+                                            <input id="bts-fileinput" name="writeravapost" type="file"
+                                                class="form-control-file form-text-size" style="padding: 5px 0px;"
+                                                aria-describedby="fileHelp" data-show-preview="false">
+                                            <label class="custom-file-label" for="bts-fileinput"
+                                                style="font-size: 11pt !important; padding-top: 8px; height: 38px;">
+                                                Chọn tệp ...
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Title post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Tiêu đề bài viết
+                                        </label>
+                                        <input name="writertitlepost" class="col-md-10 form-control form-text-size"
+                                            type="text" value="{{title}}" placeholder="Nhập tiêu đề">
+                                    </div>
+
+                                    <!-- Summary post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Tóm tắt bài viết
+                                        </label>
+                                        <textarea name="writersummarypost" class="col-md-10 form-control form-text-size"
+                                            type="text" placeholder="Nhập tóm tắt bài viết">{{summary}}</textarea>
+                                    </div>
+
+                                    <!-- Inside post -->
+                                    <div class="form-group">
+                                        <label class="col-md-6 col-form-label form-control-label"> Nội dung bài viết
+                                        </label>
+                                        <div class="col-md-10" style="padding: 0;">
+                                            <textarea id="tinymce-txt" class="col-md-10 form-control form-text-size"
+                                                name="writertinymce">{{content}}</textarea></div>
+                                    </div>
+                                    {{/with}}
+
+                                    <!-- Category and is_premium post -->
+                                    <div class="form-group row" style="margin: 0;">
+                                        <div class="col-md-6" style="padding-left: 0;">
+                                            <label class="col-form-label form-control-label"> Chuyên mục bài viết
+                                            </label>
+                                            <select name="writercategorypost"
+                                                class="col-md-12 form-control form-text-size"
+                                                placeholder="Chọn chuyên mục bài viết">
+                                                <option value="" disabled> Chọn chuyên mục </option>
+                                                {{#with editpost}}
+                                                <option value="{{subid}}" selected> {{subcategory_name}} </option>
+                                                {{/with}}
+                                                {{#each subcat}}
+                                                <option value="{{subcat_id}}"> {{subcategory_name}} </option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        {{#with editpost}}
+                                        <div class="col-md-4" style="padding-left: 0;">
+                                            <label class="col-form-label form-control-label"> Thiết lập Premium
+                                            </label>
+                                            <select name="writerispremium"
+                                                class="col-md-12 form-control form-text-size">
+                                                {{#ifEquals is_premium 0}}
+                                                <option value="" disabled> Chọn thiết lập </option>
+                                                <option value="1"> Bài viết Premium </option>
+                                                <option value="0" selected> Bài viết thường </option>
+                                                {{/ifEquals}}
+                                                {{#ifEquals is_premium 1}}
+                                                <option value="" disabled> Chọn thiết lập </option>
+                                                <option value="1" selected> Bài viết Premium </option>
+                                                <option value="0"> Bài viết thường </option>
+                                                {{/ifEquals}}
+                                            </select>
+                                        </div>
+                                        {{/with}}
+                                    </div>
+
+                                    {{!-- Tag post --}}
+                                    <div class="form-group">
+                                        <div class="col-md-10" style="padding-left: 0;">
+                                            <label for="tag-typer" class="col-form-label form-control-label"> Nhãn dán
+                                                bài viết </label>
+                                            <div id="writertags">
+                                                {{#each eachtag}}
+                                                <span class="tag" id="tag" style>
+                                                    {{tag}}
+                                                    <button id="btnTag" class="btnTag" type="button">&times;</button>
+                                                </span>
+                                                {{/each}}
+                                                <input id="tag-typer" name="tagtyper"
+                                                    class="form-control form-text-size" type="text"
+                                                    placeholder="Thêm nhãn..."
+                                                    style="background-color: transparent;  margin-top: 10px;">
+                                                <input name="writertagpost"
+                                                    class="col-md-10 form-control form-text-size" type="text"
+                                                    data-role="tagsinput" style="display: none;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary col-md-4"
+                                            id="btn-writer-update-post" value="Lưu chỉnh sửa bài viết">
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Popup --}}
+            <div class="row popup-notificationSuccessPost">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO </p>
+                    <p class="popup-content"> Tạo bài viết mới <span style="color: rgb(40, 200, 0)">thành
+                            công</span>. Hãy vào danh sách bài v iết để kiểm tra. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailQueryPost">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo bài viết mới <span style="color: red">thất bại</span>
+                        . Vui lòng kiểm tra kĩ lại thông tin tạo bài viết. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailNotTypingPost">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Tạo bài viết mới <span style="color: red">thất bại</span>
+                        do chưa điền đầy đủ thông tin yêu cầu. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- Footer --}}
+        {{> footer}}
+    </div>
+
+    {{!-- Bootstrap 4.3.1 --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    {{!-- JQuery 3.3.1 --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- JQuery Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    {{!-- TinyMCE --}}
+    <script
+        src="https://cdn.tiny.cloud/1/oxfc3x7e0wx57fgn8yne72k6q047976brc8rzl1x1qt8u80p/tinymce/5/tinymce.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                tinymce.init({
+                    selector: '#tinymce-txt',
+                    height: 200,
+                    menubar: false,
+                    plugins: 'paste image link autolink lists table media',
+                    toolbar: [
+                        'undo redo | bold italic underline | numlist bullist | alignleft aligncenter alignright',
+                        'forecolor backcolor',
+                        'link image media',
+                    ]
+                });
+            })
+        })
+    </script>
+
+    {{!-- Bootstrap Fileinput --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+    <script>
+        $(function () {
+            $('#bts-fileinput').fileinput({
+                theme: 'fa',
+                dropZoneEnabled: false,
+                allowedFileExtensions: ['png', 'jpg'],
+                uploadUrl: '/thongtincanhan/vietbai',
+                uploadAsync: false,
+            });
+        })
+    </script>
+
+    {{!-- Script JS --}}
+    <script>
+        $(document).ready(function () {
+
+            $(".user-setting-link").click(function () {
+                $("#btn-personal-information").parent(".list").removeClass("bg-active-now");
+                $("#btn-personal-information").removeClass("text-active-now");
+                $("#btn-new-post").parent(".list").removeClass("bg-active-now");
+                $("#btn-new-post").removeClass("text-active-now");
+                $("#btn-list-posts").parent(".list").removeClass("bg-active-now");
+                $("#btn-list-posts").removeClass("text-active-now");
+                $("#btn-purchase-premium").parent(".list").removeClass("bg-active-now");
+                $("#btn-purchase-premium").removeClass("text-active-now");
+                $("#btn-change-password").parent(".list").removeClass("bg-active-now");
+                $("#btn-change-password").removeClass("text-active-now");
+                $(this).parent(".list").addClass("bg-active-now");
+                $(this).addClass("text-active-now");
+            });
+
+            $(".user-setting").hover(function () {
+                if ($(this).hasClass("menu-logout")) {
+                    $(this).children("form").children("#btn-logout").addClass("text-active-now");
+                }
+            }, function () {
+                if ($(this).hasClass("menu-logout")) {
+                    $(this).children("form").children("#btn-logout").removeClass("text-active-now");
+                }
+            })
+
+            $(".list").hover(function () {
+                $(this).children(".user-setting-link").css("color", "white");
+            }, function () {
+                $(this).children(".user-setting-link").css("color", "black");
+            });
+
+            $(".close-btn").click(function () {
+                $(".popup-notificationFailQueryPost").hide();
+                $(".popup-notificationFailNotTypingPost").hide();
+            })
+
+            $(".popup-notificationSuccessPost").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
+
+            /* function btnwriterupdatepostClick() {
+                $.post('/thongtincanhan/suabaiviet', {}, function (result) {
+                    if (result == 'Success') {
+                        $(".popup-notificationSuccessPost").show();
+                    } else if (result == 'FailNotTyping') {
+                        $(".popup-notificationFailNotTypingPost").show();
+                    } else if (result == 'FailQuery') {
+                        $(".popup-notificationFailQueryPost").show();
+                    }
+                })
+            }
+
+            $("#btn-writer-update-post").click(function () {
+                btnwriterupdatepostClick();
+            })*/
+
+            $("#frm-writerpost").validate({
+                rules: {
+                    writertitlepost: {
+                        required: true,
+                        maxlength: 60
+                    },
+                    writersummarypost: {
+                        required: true,
+                        maxlength: 80
+                    },
+                    writertinymce: {
+                        required: true
+                    },
+                    writercategorypost: {
+                        required: true,
+                    },
+                    writertagpost: {
+                        required: true,
+                    },
+                    writerispremium: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    writertitlepost: {
+                        required: 'Không được để trống tiêu đề',
+                        maxlength: 'Tiêu đề chỉ tối đa 60 kí tự'
+                    },
+                    writersummarypost: {
+                        required: 'Không được để trống tóm tắt',
+                        maxlength: 'Tóm tắt chỉ tối đa 80 kí tự'
+                    },
+                    writertinymce: {
+                        required: 'Không được để trống nội dung bài viết'
+                    },
+                    writercategorypost: {
+                        required: 'Không được để trống chuyên mục',
+                    },
+                    writertagpost: {
+                        required: 'Không được để trống nhãn dán',
+                    },
+                    writerispremium: {
+                        required: 'Không được để trống thiết lập',
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+        })
+
+        var arrTag = [];
+
+        $(document).ready(function () {
+            $("#tag-typer").keypress(function (event) {
+                var key = event.which;
+                if (key == 32) {
+                    event.preventDefault();
+                    var tag = $(this).val();
+                    if (tag.length > 0) {
+                        $("<span class='tag' id = 'tag' style='display:none'>" + tag + "<button id='btnTag' class = 'btnTag' type='button'>&times</button></span>").insertBefore(this).fadeIn(500);
+                        if (arrTag.indexOf(tag) == -1) {
+                            arrTag.push(tag);
+                        }
+                        $('[name=writertagpost]').val(arrTag);
+                        $(this).val("");
+                    }
+                }
+            });
+
+            $(document).on("click", ".btnTag", function () {
+                var index = $(this).parent().index();
+                arrTag.splice(index, 1);
+                $('[name=writertagpost]').val(arrTag);
+                $(this).parent().remove();
+            });
+        })
+    </script>
+</body>
+
+</html>

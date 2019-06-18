@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> header}}
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/css/editor-editpost.css">
+    <title> HNNews - Biên tập viên </title>
+</head>
+
+<body>
+    <div class="container">
+        {{!-- Navigation bar --}}
+        {{> nav}}
+
+        {{#if error}}
+        <div class="col-md-12 alert alert-danger" style="height: initial; margin: 20px 0px; text-align: center"
+            role="alert">
+            <p style="margin: 20px 0px;"> <i class="fas fa-sad-tear"
+                    style="color: rgb(235, 129, 129); font-size: 200px;"></i> </p>
+            <p style="margin: 20px 200px;"> Không tìm thấy dữ liệu bài viết, lỗi truy cập. Hãy kiểm tra những bài viết
+                cho phép chỉnh sửa chỉ riêng tài khoản Phóng viên của bạn.<a href="/thongtincanhan" class="alert-link">
+                    Quay trở về</a> </p>
+        </div>
+        {{else}}
+
+        {{#if meg.length}}
+        <div class="row popup-notificationSuccessPostP">
+            <div class="col-md-12 noti-popup">
+                <form id="success-logout">
+                    <p class="popup-title"> THÔNG BÁO </p>
+                    <p class="popup-content" style="margin-bottom: 10px;"> {{{meg}}} </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </form>
+            </div>
+        </div>
+        {{/if}}
+
+
+        {{!-- Editor --}}
+        <div class="row editor-body">
+
+            {{!-- Menu --}}
+            <div class="col-md-3">
+                <div class="menu-left">
+                    <img class="avatar" src="/img/avatar/1.png">
+                    <div class="name"> {{authAccount.fullname}} </div>
+                    <div class="boxshadow">
+                        <li class="user-setting list bg-active-now">
+                            <a href="" class="user-setting-link text-active-now" data-target="#approve-posts"
+                                data-toggle="collapse" id="btn-list-posts">
+                                Duyệt bài </a>
+                        </li>
+                        <li class="user-setting list menu-logout">
+                            <a href="/thongtincanhan" class="user-setting-link" id="btn-logout"> Quay lại </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Content --}}
+            <div class="col-md-9">
+                <div class="content-right">
+                    <div id="tab-content">
+                        <!-- Approve -->
+                        <div class="content collapse show" id="approve-posts" data-parent="#tab-content">
+                            <div class="col-md-12 listposts" style="margin-left: 0;">
+                                <div class="row something" style="margin: 15px !important">
+                                    {{#with editpost}}
+                                    <div class="col-md-7 img-postofcat" style="padding: 0">
+                                        <img src="{{link_image}}" alt="" class="postofcat-style">
+                                    </div>
+                                    <div class="col-md-5 post-flex" style="padding-left: 0;">
+                                        <div>
+                                            <div class="title-post text-left">
+                                                <p class="title-postofcat">{{title}}</p>
+                                            </div>
+                                            <div class="post-label text-left">
+                                                Chuyên mục: <span class="subname-postcat">{{subcategory_name}}</span>
+                                            </div>
+                                            {{/with}}
+                                            <div class="post-hashtag text-left">
+                                                {{#each tagpost}}
+                                                <span style="margin-right: 10px;"> {{tag_name}} </span>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                        {{#with editpost}}
+                                        <div>
+                                            <div class="post-label">
+                                                Trạng thái:&nbsp; <strong style="font-weight: 600; color: #ffc107">Chưa
+                                                    được duyệt</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 post-content">
+                                        <div class="post-content-label">
+                                            Nội dung bài viết:
+                                        </div>
+                                        <div class="post-content-data">{{{content}}}</div>
+                                        <div class="post-writer-label">
+                                            Phóng viên viết bài: <span class="post-writer-data">{{writername}}</span>
+                                        </div>
+                                        <div class="post-writer-label">
+                                            Thiết lập bài viết:
+                                            {{#ifEquals is_premium 0}}
+                                            <span class="post-writer-data" style="color: rgb(255, 83, 83);"> Bài viết
+                                                thường </span>
+                                            {{/ifEquals}}
+                                            {{#ifEquals is_premium 1}}
+                                            <span class="post-writer-data" style="color: rgb(255, 83, 83);"> Bài viết
+                                                Premium </span>
+                                            {{/ifEquals}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 post-content" style="margin-top: 0px;">
+                                        <div class="content-btn">
+                                            <button id="btn-reject" type="button" class="giris-yap-buton comment-btn"
+                                                style="margin-right: 25px">Từ chối</button>
+                                            <button id="btn-approve" type="button"
+                                                class="giris-yap-buton comment-btn">Phê duyệt</button>
+                                        </div>
+                                    </div>
+
+                                    <form method="POST" action="/thongtincanhan/tuchoi/{{post_id}}" id="reject-content"
+                                        class="col-md-12 bordered-section">
+                                        <!-- Approval reason -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Ghi chú lí do
+                                                không phê duyệt bài viết
+                                            </label>
+                                            <textarea name="rejectreason" class="col-md-12 form-control form-text-size"
+                                                type="text" placeholder="Nhập nội dung tại đây..."></textarea>
+                                        </div>
+                                        <button type="submit" class="giris-yap-buton comment-btn">Gửi từ chối</button>
+                                    </form>
+
+
+                                    <form method="POST" action="/thongtincanhan/duyet/{{post_id}}" id="approve-content"
+                                        class="col-md-12 bordered-section">
+                                        {{/with}}
+                                        <!-- Post cat -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Hiệu chỉnh chuyên
+                                                mục bài viết
+                                            </label>
+                                            <select name="editorcategorypost"
+                                                class="col-md-12 form-control form-text-size" type="text">
+                                                <option value="" disabled> Chọn chuyên mục </option>
+                                                {{#with editpost}}
+                                                <option value="{{subid}}" selected> {{subcategory_name}} </option>
+                                                {{/with}}
+                                                {{#each subcat}}
+                                                <option value="{{subcat_id}}"> {{subcategory_name}} </option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+
+                                        <!-- Category -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Hiệu chỉnh nhãn
+                                                dán bài viết
+                                            </label>
+                                            <div id="writertags">
+                                                {{#each eachtag}}
+                                                <span class="tag" id="tag">
+                                                    {{tag}}
+                                                    <button id="btnTag" class="btnTag" type="button">&times;</button>
+                                                </span>
+                                                {{/each}}
+                                                <input id="tag-typer" name="tagtyper"
+                                                    class="form-control form-text-size" type="text"
+                                                    placeholder="Thêm nhãn..."
+                                                    style="background-color: transparent;  margin-top: 10px;">
+                                                <input name="editortagpost"
+                                                    class="col-md-10 form-control form-text-size" type="text"
+                                                    data-role="tagsinput" style="display: none;">
+                                            </div>
+                                        </div>
+
+                                        <!-- Post date -->
+                                        <div class="form-group">
+                                            <label class="col-md-6 col-form-label form-control-label"> Thiết lập thời
+                                                điểm xuất bản bài viết
+                                            </label>
+                                            <input name="editorpostdate" class="col-md-12 form-control form-text-size"
+                                                type="date">
+                                        </div>
+                                        <button type="submit" class="giris-yap-buton comment-btn">Xác nhận</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Popup --}}
+            <div class="row popup-notificationSuccess">
+                <div class="col-md-12 noti-popup">
+                    <form id="success-logout" method="POST" action="/dangxuat">
+                        <p class="popup-title"> THÔNG BÁO </p>
+                        <p class="popup-content"> Thay đổi mật khẩu <span style="color: rgb(40, 200, 0)">thành
+                                công</span>. Bạn có thể kiểm tra bằng cách<a onclick="$('#success-logout').submit();"
+                                class="changepass-logout">&nbsp;ĐĂNG
+                                XUẤT&nbsp;</a>và vào lại hệ thống. </p>
+                        <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row popup-notificationFailOldPass">
+                <div class="col-md-12 noti-popup">
+                    <p class="popup-title"> THÔNG BÁO LỖI </p>
+                    <p class="popup-content"> Thay đổi mật khẩu <span style="color: red">thất bại</span>
+                        do mật khẩu cũ không đúng. </p>
+                    <button type="button" class="btn btn-dark close-btn"> Đóng </button>
+                </div>
+            </div>
+
+        </div>
+        {{/if}}
+
+        {{!-- Footer --}}
+        {{> footer}}
+    </div>
+
+    {{!-- Bootstrap 4.3.1 --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    {{!-- JQuery 3.3.1 --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{!-- JQuery Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    {{!-- Script JS --}}
+    <script>
+        $(document).ready(function () {
+
+            $(".user-setting-link").click(function () {
+                $("#btn-personal-information").parent(".list").removeClass("bg-active-now");
+                $("#btn-personal-information").removeClass("text-active-now");
+                $("#btn-new-post").parent(".list").removeClass("bg-active-now");
+                $("#btn-new-post").removeClass("text-active-now");
+                $("#btn-list-posts").parent(".list").removeClass("bg-active-now");
+                $("#btn-list-posts").removeClass("text-active-now");
+                $("#btn-purchase-premium").parent(".list").removeClass("bg-active-now");
+                $("#btn-purchase-premium").removeClass("text-active-now");
+                $("#btn-change-password").parent(".list").removeClass("bg-active-now");
+                $("#btn-change-password").removeClass("text-active-now");
+                $(this).parent(".list").addClass("bg-active-now");
+                $(this).addClass("text-active-now");
+            });
+
+            $(".user-setting").hover(function () {
+                if ($(this).hasClass("menu-logout")) {
+                    $(this).children("form").children("#btn-logout").addClass("text-active-now");
+                }
+            }, function () {
+                if ($(this).hasClass("menu-logout")) {
+                    $(this).children("form").children("#btn-logout").removeClass("text-active-now");
+                }
+            })
+
+            $(".list").hover(function () {
+                $(this).children(".user-setting-link").css("color", "white");
+            }, function () {
+                $(this).children(".user-setting-link").css("color", "black");
+            });
+
+            $(".close-btn").click(function () {
+                $(".popup-notificationFailOldPass").hide();
+                $(".popup-notificationFailEqualPass").hide();
+                $(".popup-notificationFailNotTyping").hide();
+                $(".popup-notificationFailEnoughCharacter").hide();
+                $(".popup-notificationFailQueryPost").hide();
+                $(".popup-notificationFailNotTypingPost").hide();
+                $(".popup-notificationSuccessPostP").hide();
+            })
+
+            $(".popup-notificationSuccess").children("div").children("button").click(function () {
+                $(".popup-notificationSuccess").hide();
+                window.location.reload();
+            })
+
+            $("#reject-content").hide();
+            $("#approve-content").hide();
+
+
+            $("#btn-reject").click(function () {
+                $("#reject-content").show();
+                $("#reject-content").css('transform', 'scaleY(1)');
+                $("#approve-content").hide();
+                $("#approve-content").css('transform', 'scaleY(0)');
+            })
+
+            $("#btn-approve").click(function () {
+                $("#reject-content").hide();
+                $("#reject-content").css('transform', 'scaleY(0)');
+                $("#approve-content").show();
+                $("#approve-content").css('transform', 'scaleY(1)');
+            })
+
+            $("#reject-content").validate({
+                rules: {
+                    rejectreason: {
+                        required: true
+                    }
+                },
+                messages: {
+                    rejectreason: {
+                        required: 'Hãy điền góp ý chỉnh sửa cho Phóng viên viết bài này'
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+
+            $("#approve-content").validate({
+                rules: {
+                    editorcategorypost: {
+                        required: true
+                    },
+                    editortagpost: {
+                        required: true
+                    },
+                    editorpostdate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    editorcategorypost: {
+                        required: "Không được để trống chuyên mục bài viết"
+                    },
+                    editortagpost: {
+                        required: "Không được để trống nhãn dán bài viết"
+                    },
+                    editorpostdate: {
+                        required: "Không được để trống ngày xuất bản"
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+        })
+
+        var arrTag = [];
+
+        $(document).ready(function () {
+            $("#tag-typer").keypress(function (event) {
+                var key = event.which;
+                if (key == 32) {
+                    event.preventDefault();
+                    var tag = $(this).val();
+                    if (tag.length > 0) {
+                        $("<span class='tag' id = 'tag' style='display:none'>" + tag + "<button id='btnTag' class = 'btnTag' type='button'>&times</button></span>").insertBefore(this).fadeIn(500);
+                        if (arrTag.indexOf(tag) == -1) {
+                            arrTag.push(tag);
+                        }
+                        $('[name=writertagpost]').val(arrTag);
+                        $(this).val("");
+                    }
+                }
+            });
+
+            $(document).on("click", ".btnTag", function () {
+                var index = $(this).parent().index();
+                arrTag.splice(index, 1);
+                $('[name=writertagpost]').val(arrTag);
+                $(this).parent().remove();
+            });
+        })
+    </script>
+</body>
+
+</html>

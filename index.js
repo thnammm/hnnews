@@ -4,6 +4,7 @@ var hbs = require('express-handlebars');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var hbs_sections = require('express-handlebars-sections');
+var flash = require('connect-flash');
 
 
 var app = express();
@@ -22,6 +23,7 @@ var indexModel = require('./models/index.model.js');
 // require('./middlewares/viewengine.js')(app);
 require('./middlewares/session.js')(app);
 require('./middlewares/passport.js')(app);
+// require('./middlewares/upload.js')(app);
 
 app.use(require('./middlewares/adminauth.mdw.js'));
 app.use(require('./middlewares/accountauth.mdw.js'));
@@ -44,6 +46,7 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
 
 // Access to home page
 app.get('/', (req, res, next) => {
