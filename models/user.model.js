@@ -89,6 +89,14 @@ module.exports = {
         return db.load(`call WriterGetOtherCatOfEditPost(${postid})`);
     },
 
+    writerupdaterejectpost: (postid, title, summary, content, subid, ispremium, linkimage) => {
+        return db.load(`call WriterUpdateRejectPost(${postid}, '${title}', '${summary}', '${content}', ${subid}, '${ispremium}', '${linkimage}')`);
+    },
+
+    writerupdatetagofrejectpost: (postid, tagname) => {
+        return db.load(`call WriterUpdateTagOfRejectPost(${postid}, '${tagname}')`);
+    },
+
     editorpostlist: (id) => {
         return db.load(`call EditorPostList(${id})`);
     },
@@ -131,5 +139,5 @@ module.exports = {
 
     editoraddtagofpost: (id, tagname) => {
         return db.load(`call EditorAddTagOfPost(${id}, '${tagname}')`);
-    },
+    }
 };

@@ -65,7 +65,8 @@
                                         <img src="{{link_image}}" type="image"
                                             class="col-md-10 form-control-file form-text-size"
                                             style="padding: 5px 0px; border-radius: 20px;">
-                                        <input type="text" name="writeroldavapost" value="{{link_image}}" style="display: none;">
+                                        <input type="text" name="writeroldavapost" value="{{link_image}}"
+                                            style="display: none;">
                                     </div>
 
                                     <!-- New Avatar post -->
@@ -155,8 +156,7 @@
                                                 bài viết </label>
                                             <div id="writertags">
                                                 {{#each eachtag}}
-                                                <span class="tag" id="tag" style>
-                                                    {{tag}}
+                                                <span class="tag" id="tag" style>{{tag}}
                                                     <button id="btnTag" class="btnTag" type="button">&times;</button>
                                                 </span>
                                                 {{/each}}
@@ -389,6 +389,13 @@
         })
 
         var arrTag = [];
+
+        //var count = $("span[class*='tag']").length;
+        //console.log($("#writertags span").text())
+        //for (var i = 0; i < count; i++) {
+        //    var tag = 'tag'
+        //    var temp = $("#writertags span").html()
+        //}
 
         $(document).ready(function () {
             $("#tag-typer").keypress(function (event) {

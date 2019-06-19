@@ -296,9 +296,9 @@ app.get('/thongtincanhan/suabaiviet/:postid', accountauth, (req, res, next) => {
         });
 })
 
-// Not done
 app.post('/thongtincanhan/suabaiviet/:postid', upload.single('writeravapost'), (req, res, next) => {
     var writerid = req.user.profile_id;
+    var postid = req.params.postid;
     var title = req.body.writertitlepost;
     var summary = req.body.writersummarypost;
     var content = req.body.writertinymce;
@@ -308,34 +308,45 @@ app.post('/thongtincanhan/suabaiviet/:postid', upload.single('writeravapost'), (
 
     var linkimage = '';
     if (!req.file) {
+        linkimage = req.body.writeroldavapost;
+        console.log(linkimage);
+        var tmp = 'public';
+        linkimage = tmp.concat(linkimage);
+        console.log(linkimage);
+
+    } else {
         linkimage = req.file.path;
         linkimage = linkimage.replace(/\\/g, '/');
-    } else {
-        linkimage = req.body.writeroldavapost;
-        var tmp = '/public';
-        linkimage = tmp.concat(linkimage);
     }
 
-    var listtag = tag.split(",");
-
-
-    if (title == '' || summary == '' || content == '' || subid == '' || tag == '' || ispremium == '' || linkimage == '') {
-        res.send('FailNotTyping');
+    if (tag == '') {
+        listtag = '';
     } else {
-        // userModel.writeraddpost(writerid, title, summary, content, ispremium, subid, linkimage).then(id => {
-        //     if (id[0].length == 0) {
-        //         res.send('FailQuery');
-        //     } else {
-        //         var postid = id[0][0].id;
-        //         for (var i = 0; i < listtag.length; i++) {
-        //             var temp = "#";
-        //             listtag[i] = listtag[i].replace(/'/g, "");
-        //             var finaltag = temp.concat(listtag[i]);
-        //             userModel.writeraddtagofpost(postid, finaltag).then(id => { }).catch(next)
-        //         }
-        //         res.send('Success');
-        //     }
-        // }).catch(next);
+        listtag = tag.split(",");
+    }
+
+
+    if (title == '' || summary == '' || content == '' || subid == '' || ispremium == '') {
+        req.flash('meg', 'Cập nhật bài viết <span style="color: red"> thất bại </span>. Vui lòng nhập đầy đủ nội dung, tiêu chí yêu cầu của bài viết.');
+        res.redirect(`/thongtincanhan/suabaiviet/${postid}`);
+    } else {
+        if (isNaN(postid)) {
+            next;
+        } else {
+            userModel.writerupdaterejectpost(postid, title, summary, content, subid, ispremium, linkimage).then(id => {
+                if (listtag != '') {
+                    for (var i = 0; i < listtag.length; i++) {
+                        var temp = "#";
+                        listtag[i] = listtag[i].replace(/'/g, "");
+                        var finaltag = temp.concat(listtag[i]);
+                        console.log(finaltag);
+                        userModel.editoraddtagofpost(postid, finaltag).then(id => { }).catch(next)
+                    }
+                }
+                req.flash('meg', 'Cập nhật bài viết <span style="color: rgb(54, 177, 23)"> thành công </span>. Hãy vào trang danh sách bài viết để kiểm tra lại và chờ Biên tập viên phụ trách duyệt bài.');
+                res.redirect(`/thongtincanhan`);
+            }).catch(next);
+        }
     }
 })
 
