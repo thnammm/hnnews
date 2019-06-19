@@ -484,7 +484,7 @@ app.post('/thongtincanhan/duyet/:postid', (req, res, next) => {
                 }
             }
             req.flash('meg', 'Duyệt bài viết <span style="color: rgb(54, 177, 23)"> thành công </span>. Hãy vào trang danh sách bài viết để kiểm tra lại.');
-            res.redirect(`/thongtincanhan/duyetbaiviet/${postid}`);
+            res.redirect(`/thongtincanhan`);
         }).catch(next);
     }
 })
